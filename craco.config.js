@@ -13,12 +13,4 @@ module.exports = {
       '@': path.resolve(__dirname, 'src')
     }
   },
-  // style: {
-  //   loaderOptions: (loader) => {
-  //     if (loader === 'sass-loader') {
-  //       return sassLoaderOptions;
-  //     }
-  //     return {};
-  //   },
-  // },
 }
