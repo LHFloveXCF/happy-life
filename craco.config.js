@@ -1,29 +1,24 @@
 const path = require('path')
 
+const sassLoaderOptions = {
+  implementation: require('node-sass'),
+  sassOptions: {
+    includePaths: ['./node_modules']
+  }
+};
+
 module.exports = {
-    webpack: {
-        alias: {
-            '@': path.resolve(__dirname, 'src')
-        }
-    },
-    module: {
-        rules: [
-          {
-            test: /\.s[ac]ss$/i,
-            use: [
-              "style-loader",
-              "css-loader",
-              {
-                loader: "sass-loader",
-                options: {
-                  sassOptions: {
-                    style: `compressed`,
-                    loadPaths: ["absolute/path/a", "absolute/path/b"],
-                  },
-                },
-              },
-            ],
-          },
-        ],
-      },
+  webpack: {
+    alias: {
+      '@': path.resolve(__dirname, 'src')
+    }
+  },
+  // style: {
+  //   loaderOptions: (loader) => {
+  //     if (loader === 'sass-loader') {
+  //       return sassLoaderOptions;
+  //     }
+  //     return {};
+  //   },
+  // },
 }

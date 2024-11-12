@@ -1,5 +1,5 @@
 import './index.custom.scss';
-import style from './index.scss';
+import './index.scss';
 
 import { NavLink } from 'react-router-dom';
 import classNames from 'classnames';
@@ -16,18 +16,16 @@ function Nav() {
 
     return (
         <>
-          <nav className={classNames(style.nav, { [style.hiddenNav]: !navShow })} >
-            <div className={style.navContent}>
-              {console.log(style.nav)
-              }
-    
+          <nav className={"nav"} >
+            <div className={'navContent'}>
+              test
               {/* 文章单独按钮 */}
-              <div className={style.articlesBtn}>
-                <div className={style.articelsSecond}>
+              <div className={"articlesBtn"}>
+                <div className={"articelsSecond"}>
                   {secondNavArr.map((item, index) => (
                     <NavLink
                       className={({ isActive }) =>
-                        isActive ? style.sedActive : style.articelsSecondItem
+                        isActive ? "sedActive" : "articelsSecondItem"
                       }
                       to={item.to}
                       key={index}
