@@ -2,7 +2,7 @@ import './index.scss';
 
 import { siteTitle } from '@/utils/constant';
 import { useTitle } from 'ahooks';
-import PageTitle from '../../components/pageTitle';
+import PageTitle from '@/components/PageTitle';
 import Section from './Section';
 
 

@@ -8,7 +8,7 @@ export const icp_no = '浙ICP备2020043821号-1';
 
 export const blogAdminUrl = 'https://admin.lzxjack.top:81';
 
-export const siteTitle = '飞鸟小站';
+export const siteTitle = '幸福的小窝';
 
 // GitHub地址
 export const githubUrl = 'https://github.com/lzxjack';

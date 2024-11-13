@@ -11,8 +11,8 @@ function App({ mode }) {
 
   return (
     <>
-      <div className={classNames("AppBox", bgClasses[mode])}>
-        <Nav />
+      <div className={classNames("AppBox", bgClasses[0])}>
+        <Nav navShow={true} />
         <Main />
       </div>
 

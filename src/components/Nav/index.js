@@ -1,56 +1,43 @@
-import './index.custom.scss';
 import './index.scss';
 
 import {
   BgColorsOutlined,
   CheckOutlined,
   HomeOutlined,
-  MenuOutlined,
-  SettingOutlined
 } from '@ant-design/icons';
 import {
-  useEventListener,
-  useLocalStorageState,
-  useSafeState,
-  useUpdateEffect
+  useLocalStorageState
 } from 'ahooks';
-import { Drawer } from 'antd';
 
-import { NavLink, useNavigate } from 'react-router-dom';
 import classNames from 'classnames';
+import { useDispatch, useSelector } from 'react-redux';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { useLinkList } from './config';
-import { modeMap, modeMapArr } from '@/utils/modeMap';
+
+import { changeMode } from '@/redux/modules/s_nav';
 
 const bodyStyle = window.document.getElementsByTagName('body')[0].style;
 
 
-function Nav({mode, navShow, setNavShow, setMode}) {
+function Nav() {
 
   const navigate = useNavigate();
-  const { secondNavArr, navArr, mobileNavArr } = useLinkList();
+  const { secondNavArr, navArr } = useLinkList();
   const modeOptions = ['rgb(19, 38, 36)', 'rgb(110, 180, 214)', 'rgb(171, 194, 208)'];
-  const [visible, setVisible] = useSafeState(false);
-  const [_, setLocalMode] = useLocalStorageState('localMode');
+  const [setLocalMode] = useLocalStorageState('localMode');
+  const dispatch = useDispatch();
+  const navState = useSelector((state) => state.s_nav)
+  console.log("navState", navState);
 
-  useUpdateEffect(() => {
-    setLocalMode(mode);
-    for (const type of modeMapArr) {
-      bodyStyle.setProperty(type, modeMap[type][mode]);
-    }
-  }, [mode]);
+  const onModeChange = (event, index) => {
+    console.log("index", index);
 
-  useEventListener(
-    'mousewheel',
-    event => {
-      event = event || window.event;
-      setNavShow(event.wheelDeltaY > 0);
-    },
-    { target: document.body }
-  );
+    dispatch(changeMode(index))
+  }
 
   return (
     <>
-      <nav className={classNames('nav', { "hiddenNav": !navShow })} >
+      <nav className={classNames('nav', { "hiddenNav": !navState.navShow })} >
         <div className={'navContent'}>
           {/* 主页 */}
           <div className={"homeBtn"} onClick={() => navigate('/')}>
@@ -66,9 +53,9 @@ function Nav({mode, navShow, setNavShow, setMode}) {
                   key={index}
                   style={{ backgroundColor }}
                   className={classNames("modeItem", `modeItem${index}`)}
-                  onClick={() => setMode?.(index)}
+                  onClick={(event) => onModeChange(event, index)}
                 >
-                  <CheckOutlined style={{ display: mode === index ? 'block' : 'none' }} />
+                  <CheckOutlined style={{ display: navState.mode === index ? 'block' : 'none' }} />
                 </div>
               ))}
             </div>
@@ -103,40 +90,6 @@ function Nav({mode, navShow, setNavShow, setMode}) {
           ))}
         </div>
       </nav>
-      <div className={"mobileNavBtn"} onClick={() => setVisible(true)}>
-        <MenuOutlined />
-      </div>
-
-      <Drawer
-        placement='right'
-        onClose={() => setVisible(false)}
-        visible={visible}
-        className='mobile-nav-box'
-      >
-        <div className={"mobileNavBox"}>
-          {mobileNavArr.map((item, index) => (
-            <NavLink
-              className={({ isActive }) =>
-                isActive ? "mobileNavActive" : "mobileNavItem"
-              }
-              to={item.to}
-              key={index}
-            >
-              {item.name}
-            </NavLink>
-          ))}
-          {modeOptions.map((backgroundColor, index) => (
-            <div
-              key={index}
-              style={{ backgroundColor }}
-              className={classNames("modeItem", `modeItem${index}`)}
-              onClick={() => setMode?.(index)}
-            >
-              {mode === index && <CheckOutlined />}
-            </div>
-          ))}
-        </div>
-      </Drawer>
     </>
   );
 }
