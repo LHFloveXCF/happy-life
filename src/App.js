@@ -1,12 +1,21 @@
-import { RouterProvider } from 'react-router-dom';
-import router from './routers';
+import './global.custom.scss';
+import './App.scss';
 
-function App() {
+import classNames from 'classnames';
+import Nav from './components/Nav';
+import Main from './components/Main';
+
+function App({ mode }) {
+
+  const bgClasses = ["bg0", "bg1", "bg2"];
 
   return (
     <>
-      <RouterProvider router={router}>
-      </RouterProvider>
+      <div className={classNames("AppBox", bgClasses[mode])}>
+        <Nav />
+        <Main />
+      </div>
+
     </>
   );
 }

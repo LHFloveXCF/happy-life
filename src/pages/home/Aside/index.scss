@@ -1,0 +1,16 @@
+@use '../../../styles/base' as b;
+
+.aside {
+  width: b.$asideWidth;
+
+  .cardSticky {
+    position: sticky;
+    top: b.$navHeight + $space;
+  }
+}
+
+@media screen and (max-width: 1240px) {
+  .aside {
+    display: none;
+  }
+}

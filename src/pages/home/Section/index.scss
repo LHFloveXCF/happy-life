@@ -1,0 +1,14 @@
+@use '../../../styles/base' as b;
+
+.section {
+  width: calc(100% - #{b.$asideWidth});
+  padding-right: b.$space;
+  box-sizing: border-box;
+}
+
+@media screen and (max-width: 1240px) {
+  .section {
+    width: 100vw;
+    padding: 0 10rem;
+  }
+}
