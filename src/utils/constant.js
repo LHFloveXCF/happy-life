@@ -4,7 +4,7 @@ export const env = 'react-blog-admin-test-1a3424a4e2';
 export const source_github = 'https://github.com/lzxjack/react-blog';
 
 export const icp_site = 'https://beian.miit.gov.cn/#/Integrated/index';
-export const icp_no = '浙ICP备2020043821号-1';
+export const icp_no = '沫沫的微笑-001';
 
 export const blogAdminUrl = 'https://admin.lzxjack.top:81';
 

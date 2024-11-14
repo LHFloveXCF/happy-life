@@ -1,0 +1,48 @@
+@use '../../styles/base' as b;
+@use '../../styles/style.scss';
+
+.footer {
+  height: b.$footerHeight;
+  background-color: b.$footerBg;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  color: b.$textColor;
+  font-size: 16px;
+  margin-top: 2 * b.$space;
+  font-weight: 700;
+
+  .text {
+    color: b.$textColor;
+    @extend .trans;
+  }
+  .text:hover {
+    color: b.$hoverColor;
+  }
+
+  .siteFrame {
+    background-color: b.$themeColor;
+    padding: 2px 8px;
+    margin-right: 10px;
+    border-radius: 6px;
+    user-select: none;
+    @extend .hover;
+  }
+  .siteFrame:last-child {
+    margin-right: 0;
+  }
+}
+
+@media screen and (max-width: 1240px) {
+  .footer {
+    font-weight: 400;
+    height: 70rem;
+    font-size: 14rem;
+    margin-top: 20rem;
+
+    .siteFrame {
+      display: none;
+    }
+  }
+}

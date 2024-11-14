@@ -4,6 +4,7 @@ import './App.scss';
 import classNames from 'classnames';
 import Nav from './components/Nav';
 import Main from './components/Main';
+import Footer from './components/Footer';
 
 function App({ mode }) {
 
@@ -14,6 +15,7 @@ function App({ mode }) {
       <div className={classNames("AppBox", bgClasses[0])}>
         <Nav navShow={true} />
         <Main />
+        <Footer/>
       </div>
 
     </>
