@@ -1,36 +1,19 @@
-import { useRequest, useToggle } from 'ahooks';
-import React from 'react';
+import './index.scss';
 
+import { useToggle } from 'ahooks';
 import Layout from '@/components/Layout';
-import { staleTime } from '@/utils/constant';
-
-import { Title } from '../titleConfig';
-import AboutMe from './AboutMe';
-import AboutSite from './AboutSite';
-import { fetchData } from './fetchData';
-import s from './index.scss';
 import Switch from './Switch';
+import AboutMe from './AboutMe';
 
 
 function About() {
     const [state, { toggle, setLeft, setRight }] = useToggle();
 
-    const { data, loading } = useRequest(fetchData, {
-        retryCount: 3,
-        cacheKey: `About-${DB.About}`,
-        staleTime
-    });
 
     return (
-        <Layout title={Title.About} loading={loading}>
+        <Layout title={"关于"} isPost={false}>
             <Switch state={state} toggle={toggle} setLeft={setLeft} setRight={setRight} />
-            <AboutMe className={state ? '' : s.hidden} content={data?.about.data[1].content} />
-            <AboutSite
-                className={state ? s.hidden : ''}
-                content={data?.about.data[0].content}
-                classes={data?.classes.data}
-                artSum={data?.artSum.total}
-            />
+            <AboutMe className={state ? '' : "hidden"}/>
         </Layout>
     )
 }

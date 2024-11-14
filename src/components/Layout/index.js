@@ -1,39 +1,34 @@
-import {useTitle} from 'ahooks';
+import './index.scss';
+
+import { siteTitle } from '@/utils/constant';
+import { useTitle } from 'ahooks';
 import classNames from 'classnames';
 import dayjs from 'dayjs';
-import React from 'react';
-
-import {setNavShow} from '@/redux/actions';
-import {siteTitle} from '@/utils/constant';
-import useTop from '@/utils/hooks/useTop';
-
+import PageTitle from '../PageTitle';
 import Card from '../Card';
 import LayoutLoading from '../LayoutLoading';
-import PageTitle from '../PageTitle';
-import s from './index.scss';
 
 
-function Layout() {
+function Layout({ title, isPost = false, date, classes, loading, className, rows, children }) {
 
   useTitle(`${siteTitle} | ${title || ''}`);
 
-  useTop(setNavShow!);
   return (
-      <>
-        <PageTitle title={title} className={classNames({ [s.postTitle]: isPost })}>
-          {isPost && (
-              <div>
-                <span className={s.articleClass}>{classes}</span>
-                <span className={s.articleDate}>
+    <>
+      <PageTitle title={title} className={classNames({ ["postTitle"]: isPost })}>
+        {isPost && (
+          <div>
+            <span className={"articleClass"}>{classes}</span>
+            <span className={"articleDate"}>
               {dayjs(date).format('YYYY-MM-DD HH:mm:ss')}
             </span>
-              </div>
-          )}
-        </PageTitle>
-        <Card isStatic={true} className={classNames(s.layoutCard, className)}>
-          {loading ? <LayoutLoading rows={rows} /> : children}
-        </Card>
-      </>
+          </div>
+        )}
+      </PageTitle>
+      <Card isStatic={true} className={classNames("layoutCard", {className})}>
+        {loading ? <LayoutLoading rows={rows} /> : children}
+      </Card>
+    </>
   );
 }
 

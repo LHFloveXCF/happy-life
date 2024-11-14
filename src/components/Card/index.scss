@@ -1,0 +1,31 @@
+@use '../../styles/base' as b;
+@use '../../styles/style.scss';
+
+.card {
+  margin-bottom: b.$space;
+  border-radius: b.$bigRadius;
+  overflow: hidden;
+  user-select: none;
+  background-color: b.$themeColor;
+  color: b.$textColor;
+  padding: b.$space;
+  @extend .trans;
+}
+
+.active:hover {
+  transform: scale(1.04);
+}
+
+.center {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+}
+
+@media screen and (max-width: 1240px) {
+  .card {
+    margin-bottom: 10rem;
+    border-radius: 18rem;
+    padding: 10rem;
+  }
+}

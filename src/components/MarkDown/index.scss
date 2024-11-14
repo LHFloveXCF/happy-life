@@ -10,7 +10,7 @@
   h5 {
     margin-top: 0;
     margin-bottom: 15px;
-    color: $textColor;
+    color: b.$textColor;
     font-weight: 700;
   }
   h5 {
@@ -43,10 +43,10 @@
   }
 
   strong {
-    color: $hoverColor;
+    color: b.$hoverColor;
   }
   code {
-    background-color: $inlineCode;
+    background-color: b.$inlineCode;
     font-family: 'dengxian';
     padding: 3px 8px;
     border-radius: 8px;
@@ -61,11 +61,11 @@
   }
 
   blockquote {
-    background-color: $themeColor1;
+    background-color: b.$themeColor1;
     padding: 14px 40px;
     font-size: 18px;
     border-radius: 20px;
-    border: 2px $hoverColor dashed;
+    border: 2px b.$hoverColor dashed;
   }
   blockquote p {
     margin: 0;
@@ -74,7 +74,7 @@
   table {
     margin: 20px auto;
     border: 2px solid rgb(120, 120, 120);
-    background-color: $themeColor1;
+    background-color: b.$themeColor1;
     border-spacing: 0; /*去掉单元格间隙*/
     text-align: center;
   }
@@ -88,7 +88,7 @@
     font-weight: 700;
     text-decoration: underline !important;
     margin: 0 4px;
-    color: $hoverColor;
+    color: b.$hoverColor;
     @extend .trans;
   }
   a:hover {
@@ -141,7 +141,7 @@
       padding: 6rem 20rem;
       font-size: 16rem;
       border-radius: 10rem;
-      border: 2rem $hoverColor dashed;
+      border: 2rem b.$hoverColor dashed;
     }
 
     table {

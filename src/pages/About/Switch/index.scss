@@ -1,5 +1,5 @@
-@import '../../../styles/base.scss';
-@import '../../../styles/style.scss';
+@use '../../../styles/base' as b;
+@use '../../../styles/style.scss';
 
 $switchWidth: 36px;
 
@@ -9,14 +9,14 @@ $switchWidth: 36px;
   justify-content: flex-start;
   align-items: center;
   user-select: none;
-  margin-bottom: $space;
+  margin-bottom: b.$space;
 
   .box {
     height: $switchWidth;
     width: $switchWidth * 2;
     border-radius: calc($switchWidth / 2);
     position: relative;
-    background-color: $themeColor1;
+    background-color: b.$themeColor1;
 
     .btn {
       height: $switchWidth;
@@ -26,7 +26,7 @@ $switchWidth: 36px;
       top: 50%;
       left: 0;
       transform: translate(0, -50%);
-      background-color: $themeColor2;
+      background-color: b.$themeColor2;
       @extend .trans;
     }
 
@@ -35,13 +35,13 @@ $switchWidth: 36px;
     }
   }
   .box:hover .btn {
-    background-color: $hoverColor;
+    background-color: b.$hoverColor;
   }
 
   .text {
     font-size: 34px;
     font-weight: 700;
-    color: $textColor;
+    color: b.$textColor;
   }
 
   .site {
@@ -54,7 +54,7 @@ $switchWidth: 36px;
   }
 
   .titleOff {
-    color: $switchOff;
+    color: b.$switchOff;
   }
 }
 
