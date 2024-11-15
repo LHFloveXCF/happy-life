@@ -91,5 +91,6 @@ export const defaultCommentAvatarArr = [
 export const avatarArrLen = defaultCommentAvatarArr.length;
 
 // 评论回复时，发送邮件提醒的API地址
-export const emailApi =
-  'https://react-blog-admin-test-1a3424a4e2-1304393382.ap-shanghai.app.tcloudbase.com/email';
+export const emailApi = 'https://react-blog-admin-test-1a3424a4e2-1304393382.ap-shanghai.app.tcloudbase.com/email';
+
+export const server_host = '172.20.12.25:18140';
