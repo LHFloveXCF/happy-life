@@ -6,6 +6,8 @@
   .center {
     width: b.$centerWidth;
     margin: auto;
+    display: flex;
+    flex-direction: column;
   }
 }
 

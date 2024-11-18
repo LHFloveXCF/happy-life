@@ -9,23 +9,14 @@ import Card from '../Card';
 import LayoutLoading from '../LayoutLoading';
 
 
-function Layout({ title, isPost = false, date, classes, loading, className, rows, children }) {
+function Layout({ title, isPost = false, date, classes, loading, rows, children }) {
 
   useTitle(`${siteTitle} | ${title || ''}`);
 
   return (
     <>
-      <PageTitle title={title} className={classNames({ ["postTitle"]: isPost })}>
-        {isPost && (
-          <div>
-            <span className={"articleClass"}>{classes}</span>
-            <span className={"articleDate"}>
-              {dayjs(date).format('YYYY-MM-DD HH:mm:ss')}
-            </span>
-          </div>
-        )}
-      </PageTitle>
-      <Card isStatic={true} className={classNames("layoutCard", {className})}>
+      <PageTitle title={title} className={classNames({ ["postTitle"]: isPost })} />
+      <Card isStatic={true} className={classNames("layoutCard")}>
         {loading ? <LayoutLoading rows={rows} /> : children}
       </Card>
     </>

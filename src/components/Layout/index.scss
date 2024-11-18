@@ -1,15 +1,15 @@
-@import '../../styles/base.scss';
-@import '../../styles/style.scss';
+@use '../../styles/base' as b;
+@use '../../styles/style.scss';
 
 .articleInfo {
   display: inline-block;
   font-size: 18px;
   padding: 0 10px;
   line-height: 40px;
-  margin-right: $space;
+  margin-right: b.$space;
   border-radius: 14px;
   user-select: none;
-  background-color: $themeColor;
+  background-color: b.$themeColor;
   @extend .hover;
 }
 
@@ -27,8 +27,8 @@
 
 .layoutCard {
   margin: auto;
-  width: $layoutWidth;
-  padding: 2 * $space;
+  width: b.$layoutWidth;
+  padding: 2 * b.$space;
   font-size: 20px;
   line-height: 1.6em;
   user-select: text;

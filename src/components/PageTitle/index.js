@@ -4,10 +4,10 @@ import React from 'react';
 import classNames from 'classnames';
 
 
-function PageTitle({ title, desc, className, children }) {
+function PageTitle({ title, desc, children }) {
     return (
         <>
-            <div className={classNames("box", className)}>
+            <div className={classNames("box")}>
                 <div className={"title"}>{title}</div>
                 {desc && <div className={"desc"}>{desc}</div>}
                 {children}

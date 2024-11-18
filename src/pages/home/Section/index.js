@@ -1,3 +1,5 @@
+import './index.scss';
+
 import { useSafeState } from 'ahooks';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -5,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import MyPagination from '@/components/MyPagination';
 import { homeSize } from '@/utils/constant';
 
-import s from './index.scss';
+
 
 
 function Section({artSum}) {
@@ -15,7 +17,8 @@ function Section({artSum}) {
   
 
   return (
-    <section className={s.section}>
+    <section className={"section"}>
+      <p>TEST</p>
       <MyPagination
         current={page}
         defaultPageSize={homeSize}
