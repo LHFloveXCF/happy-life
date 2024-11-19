@@ -21,7 +21,7 @@ function MsgInfo() {
                 </div>
             </div>
             <div className={"siteLink"}>
-                <div className={"link"}>本站链接：</div>
+                <div className={"link"}>请留下你的足迹吧！</div>
                 {mySite.map(
                     (
                         item,

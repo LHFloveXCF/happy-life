@@ -8,11 +8,11 @@ import Footer from './components/Footer';
 
 function App({ mode }) {
 
-  const bgClasses = ["bg0", "bg1", "bg2"];
+  const bgClasses = ["bg0", "bg1", "bg2", "bg3"];
 
   return (
     <>
-      <div className={classNames("AppBox", bgClasses[0])}>
+      <div className={classNames("AppBox", bgClasses[3])}>
         <Nav/>
         <Main />
         <Footer/>
