@@ -1,3 +1,4 @@
+import { url_get_msg, url_save_msg } from '@/utils/constant_api';
 import { createSlice } from '@reduxjs/toolkit'
 import axios from 'axios';
 
@@ -9,7 +10,6 @@ const msgStore = createSlice({
 
     reducers: {
         setMsgs(state, action) {
-            console.log("setMsgs", action.payload);
             state.msgs = action.payload;
         }
 
@@ -24,14 +24,13 @@ const saveMsg = (content) => {
         content: content
     }
     return async (dispatch) => {
-        const res = await axios.post('http://localhost:18141/api/saveMsg', data)
-        console.log(res);
+        await axios.post(url_save_msg, data)
     }
 };
 
 const getMsgs = () => {
     return async (dispatch) => {
-        const res = await axios.get('http://localhost:18141/api/getMsg')
+        const res = await axios.get(url_get_msg)        
         dispatch(setMsgs(res.data.data))
     }
 };

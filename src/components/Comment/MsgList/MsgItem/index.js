@@ -20,8 +20,7 @@ function MsgItem({content}) {
           <MarkDown content={content || ''} className={"content"} />
         </div>
       </div>
-      <EditBox
-      />
+      <EditBox/>
     </div>
   );
 }
