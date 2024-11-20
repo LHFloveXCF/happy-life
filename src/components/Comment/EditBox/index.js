@@ -11,7 +11,6 @@ function EditBox() {
   const dispatch = useDispatch()
 
   const submit = () => {
-    console.log("txt: ", text);
     dispatch(saveMsg(text))
   }
 
