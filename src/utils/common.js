@@ -1,9 +1,9 @@
 
+import axios from 'axios';
+import Iconv from 'iconv-lite';
 import fetch from 'isomorphic-fetch';
 import jsonSafeStringify from 'json-stringify-safe';
 import jsonSafeParse from 'safe-json-parse/tuple';
-import Iconv from 'iconv-lite';
-import axios from 'axios';
 
 //跳过解码警告
 Iconv.skipDecodeWarning = true;

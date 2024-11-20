@@ -1,8 +1,7 @@
-import { createSlice } from '@reduxjs/toolkit';
 import '@/utils/common';
+import { createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-import {server_host} from '@/utils/constant';
 
 const homeStore = createSlice({
     name: 's_home',
@@ -25,7 +24,7 @@ const getTestData = () => {
     }
 }
 
-export {getTestData}
+export { getTestData };
 
 
 const s_home = homeStore.reducer
