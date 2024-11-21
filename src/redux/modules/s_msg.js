@@ -1,8 +1,7 @@
-import { url_get_msg, url_save_msg } from '@/utils/constant_api';
-import { createSlice } from '@reduxjs/toolkit'
-import axios from 'axios';
 import * as common from '@/utils/common';
-import { json } from 'react-router-dom';
+import { url_get_msg, url_save_msg } from '@/utils/constant_api';
+import { createSlice } from '@reduxjs/toolkit';
+import axios from 'axios';
 
 const msgStore = createSlice({
     name: 's_msg',
@@ -31,17 +30,14 @@ const saveMsg = (content) => {
 };
 
 const getMsgs = () => {
-    console.log("getMsgs: ");
-    
     return dispatch => {
         common.fetchGet(url_get_msg, {}, json => {
-            console.log("res: ", json);
             dispatch(setMsgs(json.data))
         }, {}, dispatch)
     }
 };
 
-export { saveMsg, getMsgs }
+export { getMsgs, saveMsg };
 
 
 const s_msg = msgStore.reducer

@@ -11,7 +11,7 @@ function MsgList({ title, replyRun }) {
     <>
       {msgState.msgs.length !== 0 && msgState.msgs.map((msg, index) => (
         <div key={index} className={"completeMsg"}>
-          <MsgItem content={msg.msg} />
+          <MsgItem content={msg.msg} isReply={false} />
         </div>
       ))}
 

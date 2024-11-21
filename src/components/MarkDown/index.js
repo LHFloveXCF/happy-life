@@ -1,3 +1,4 @@
+import classNames from 'classnames';
 import './hljs.custom.scss';
 import './index.scss';
 
@@ -18,10 +19,10 @@ marked.setOptions({
   breaks: true
 });
 
-function MarkDown({content}) {
+function MarkDown({content, className}) {
   const htmlContent = marked(content || '');
   return (
-    <div className="markdown" dangerouslySetInnerHTML={{ __html: htmlContent }} />
+    <div className={classNames("markdown", className)} dangerouslySetInnerHTML={{ __html: htmlContent }} />
   );
 }
 
