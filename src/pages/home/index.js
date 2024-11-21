@@ -50,10 +50,9 @@ function Home() {
     return (
         <>
             <PageTitle title={siteTitle} desc={poem || ''} className={"homeTitle"} />
-            <div className={"body"}>
+            {/* <div className={"body"}>
                 <Section />
-                <Button onClick={changeImage}>换一张图片</Button>
-            </div>
+            </div> */}
         </>
     );
 }

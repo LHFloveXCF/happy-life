@@ -4,10 +4,11 @@ import React from 'react';
 import classNames from 'classnames';
 
 
-function PageTitle({ title, desc, children }) {
+function PageTitle({ title, desc, className, children }) {
+    console.log('Merged className:', classNames(className, "box"));
     return (
         <>
-            <div className={classNames("box")}>
+            <div className={classNames(className, "box")}>
                 <div className={"title"}>{title}</div>
                 {desc && <div className={"desc"}>{desc}</div>}
                 {children}
