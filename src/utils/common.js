@@ -4,6 +4,7 @@ import Iconv from 'iconv-lite';
 import fetch from 'isomorphic-fetch';
 import jsonSafeStringify from 'json-stringify-safe';
 import jsonSafeParse from 'safe-json-parse/tuple';
+import API_STATUS from '@/utils/constant_api_status';
 
 //跳过解码警告
 Iconv.skipDecodeWarning = true;
@@ -46,21 +47,25 @@ export function fetchPost(url, body = {}, func, extraTools, dispatch, userNickNa
 /**
  * HTTP GET请求
  * */
-export async function fetchGet(url, body = {}, func, extraTools, dispatch, userNickName = '') {
+export async function fetchGet(url, body = {}, func, extraTools, dispatch) {
     let fetchParam = {
+        mode: "cors",
+        timeout: 20 * 1000,
+        headers: {
+            "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8",
+            "Content-Type": "application/x-www-form-urlencoded; charset=utf-8",
+        },
+        method: 'GET'
     };
 
     let desUrl = combineQueryUrl(url, body);
-    try {
-        const response = await axios.get(
-            desUrl,
-            fetchParam);
-            
-        const json = checkFetchStatus(response);
-        handlerFetchResponse(url, json, extraTools, dispatch, func);
-    } catch (error) {
-        handlerFetchError(url, error, extraTools, dispatch);
-    }
+    return fetch(desUrl, fetchParam).then(
+        response => checkFetchStatus(response)
+    ).then(
+        json => handlerFetchResponse(url, json, extraTools, dispatch, func)
+    ).catch(
+        error => handlerFetchError(url, error, extraTools, dispatch)
+    )
 }
 
 /**
@@ -77,11 +82,9 @@ function checkFetchStatus(response) {
 /**
  * 请求响应处理
  * */
-function handlerFetchResponse(url, json, extraTools, dispatch, func) {
+function handlerFetchResponse(url, json, extraTools, dispatch, func) {    
     if (json.status !== void 0) {
-        console.log("handlerFetchResponse", json.status);
-        
-        if (json.status === 0) {
+        if (json.status === API_STATUS.SUCCESS) {
             func(json);	//成功的回调函数
             if (extraTools.actionSuccess !== void 0 && extraTools.route !== void 0) {
                 //操作成功，页面跳转
@@ -94,7 +97,6 @@ function handlerFetchResponse(url, json, extraTools, dispatch, func) {
                 ));
             }
             else {
-                // -仅作为数据展示，除非协议统一做预处理
             }
         } else {
             dispatch(extraTools.actionFailure(
@@ -220,95 +222,6 @@ export function getFormatDateNew(type, date = null) {
     }
 }
 
-/**
- * 客户端缓存（Cookie）管理
- * 该部分实现已经由localStorage 替换
- * */
-/**
- * set cookie
- */
-export function setCookie(key, val, days, path, domain) {
-    var expire = new Date();
-    expire.setTime(expire.getTime() + (days ? 3600000 * 24 * days : 30 * 24 * 60 * 60 * 1000)); // 默认1个月
-    document.cookie = key + '=' + encodeURIComponent(val.toString()) + ';expires=' + expire.toGMTString() + ';path=' +
-        (path ? path : '/') + ';' + (domain ? ('domain=' + domain + ';') : '');
-}
-
-/**
- * del cookie
- */
-export function delCookie(key, path, domain) {
-    var expires = new Date(0);
-    document.cookie = key + '=;expires=' + expires.toUTCString() + ';path=' + (path ? path : '/') + ';' + (domain ?
-        ('domain=' + domain + ';') : '');
-}
-
-/**
- * get cookie
- */
-export function getCookie(key) {
-    var r = new RegExp("(?:^|;+|\\s+)" + key + "=([^;]*)");
-    var m = window.document.cookie.match(r);
-    return (!m ? "" : m[1]) || null;
-}
-
-/**
- * clear cookie
- * */
-export function clearCookie(key) {
-    setCookie(key, '', 1);
-}
-
-
-/**
- * 客户端数据存储（LocalStorage）管理
- * */
-/**
- * set localStorage
- */
-export function setItem(key, val) {
-    val = val.toString();
-    if (typeof (window.Storage) !== 'undefined') {
-        localStorage.setItem(key, val);
-    }
-    else {
-        setCookie(key, val);
-    }
-}
-
-/**
- * get localStorage
- */
-export function getItem(key) {
-    if (typeof (window.Storage) !== 'undefined') {
-        return localStorage.getItem(key);
-    }
-    else {
-        return getCookie(key);
-    }
-}
-
-/**
- * delete localStorage
- */
-export function delItem(key) {
-    if (typeof (window.Storage) !== 'undefined') {
-        delete localStorage[key];
-    }
-    else {
-        delCookie(key);
-    }
-}
-
-/**
- * clear localStorage
- * */
-export function clearItem(key = null) {
-    if (window.Storage !== void 0)
-        localStorage.clear();
-    else
-        clearCookie(key);
-}
 
 /**
  * 该部分为JS数据类型的校验

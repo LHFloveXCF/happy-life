@@ -6,15 +6,14 @@ import Placehold from './Placehold';
 import MsgList from './MsgList';
 import { getMsgs } from '@/redux/modules/s_msg';
 import { useDispatch } from 'react-redux';
-import { useEffect } from 'react';
 
 
 function Comment({ title }) {
   const dispatch = useDispatch()
 
-  useEffect(() => {
+  useMount(() => {
     dispatch(getMsgs())
-  }, [])
+  })
 
   return (
     <div >
