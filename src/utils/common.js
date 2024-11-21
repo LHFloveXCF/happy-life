@@ -8,12 +8,6 @@ import jsonSafeParse from 'safe-json-parse/tuple';
 //跳过解码警告
 Iconv.skipDecodeWarning = true;
 
-//GM操作请求执行状态
-const GM_OPERATE_STATE = {
-    SUCCESS: 1,
-    FAILURE: 0
-};
-
 
 /**
  * HTTP POST请求

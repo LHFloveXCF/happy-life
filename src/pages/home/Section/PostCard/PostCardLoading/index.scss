@@ -1,4 +1,4 @@
-@import '../../../../../styles/base.scss';
+@use '../../../../../styles/base' as b;
 
 .postCardLoading {
   height: 50px + 80px + 80px;
@@ -10,7 +10,7 @@
   .bar {
     width: 85%;
     height: 20px;
-    background-color: $themeColor1;
+    background-color: b.$themeColor1;
     border-radius: 6px;
   }
 }

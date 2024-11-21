@@ -3,34 +3,35 @@ import React, { MouseEventHandler } from 'react';
 
 import Card from '@/components/Card';
 
-import s from './index.scss';
+import './index.scss';
 import PostCardLoading from './PostCardLoading';
 
-interface Props {
-  title?: string;
-  content?: string;
-  date?: number;
-  tags?: string[];
-  loading?: boolean;
-  onClick?: MouseEventHandler<HTMLDivElement>;
-}
+function PostCard({loading}) {
 
-const PostCard: React.FC<Props> = ({ title, content, date, tags, loading, onClick }) => {
+  let title = 'test',
+  content = 'hello world i workd hard',
+  date = new Date(),
+  tags = ['test', 'good'];
+
+  const onClick = () => {
+
+  }
+
   return (
-    <Card className={s.card} isStatic={true} onClick={onClick}>
+    <Card className={"card"} isStatic={true} onClick={onClick}>
       {loading ? (
         <PostCardLoading />
       ) : (
         <>
-          <div className={s.title}>{title}</div>
-          <p className={s.content}>
-            {content!.replace(/<a(.*?)>(.*?)<\/a>/g, '$2').replace(/[# |**|`|>]/g, '')}
+          <div className={"title"}>{title}</div>
+          <p className={"content"}>
+            {content.replace(/<a(.*?)>(.*?)<\/a>/g, '$2').replace(/[# |**|`|>]/g, '')}
           </p>
-          <div className={s.info}>
-            <span className={s.date}>{dayjs(date!).format('YYYY-MM-DD')}</span>
-            <div className={s.tags}>
-              {tags!.map(tag => (
-                <span className={s.tag} key={tag}>
+          <div className={"info"}>
+            <span className={"date"}>{dayjs(date).format('YYYY-MM-DD')}</span>
+            <div className={"tags"}>
+              {tags.map(tag => (
+                <span className={"tag"} key={tag}>
                   {tag}
                 </span>
               ))}
@@ -40,6 +41,6 @@ const PostCard: React.FC<Props> = ({ title, content, date, tags, loading, onClic
       )}
     </Card>
   );
-};
+}
 
 export default PostCard;

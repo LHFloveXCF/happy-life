@@ -1,13 +1,13 @@
-@import '../../../../styles/base.scss';
-@import '../../../../styles/style.scss';
+@use '../../../../styles/base' as b;
+@use '../../../../styles/style.scss';
 
 .tagBase {
   padding: 0 10px;
   border-radius: 10px;
-  color: $textColor;
+  color: b.$textColor;
   height: 30px;
   font-size: 18px;
-  background-color: $themeColor1;
+  background-color: b.$themeColor1;
   @extend .hover;
 }
 
@@ -22,14 +22,14 @@
     align-items: center;
     font-size: 28px;
     font-weight: 700;
-    color: $textColor;
+    color: b.$textColor;
   }
 
   .content {
     margin: 0;
     height: 80px;
     text-indent: 2em;
-    color: $textColor;
+    color: b.$textColor;
     font-size: 18px;
     overflow: hidden;
     text-overflow: ellipsis;

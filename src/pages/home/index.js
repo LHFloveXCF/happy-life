@@ -10,6 +10,7 @@ import { Button } from 'antd';
 import axios from 'axios';
 import { updateUserId } from '@/redux/modules/s_home';
 import { useEffect } from 'react';
+import Aside from './Aside';
 
 function Home() {
     useTitle(siteTitle);
@@ -50,9 +51,10 @@ function Home() {
     return (
         <>
             <PageTitle title={siteTitle} desc={poem || ''} className={"homeTitle"} />
-            {/* <div className={"body"}>
+            <div className={"body"}>
                 <Section />
-            </div> */}
+                <Aside />
+            </div>
         </>
     );
 }

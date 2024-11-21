@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 
 import MyPagination from '@/components/MyPagination';
 import { homeSize } from '@/utils/constant';
+import PostCard from './PostCard';
 
 
 
@@ -18,7 +19,7 @@ function Section({artSum}) {
 
   return (
     <section className={"section"}>
-      <p>TEST</p>
+      <PostCard loading={false}/>
       <MyPagination
         current={page}
         defaultPageSize={homeSize}

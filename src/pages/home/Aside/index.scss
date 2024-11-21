@@ -2,15 +2,16 @@
 
 .aside {
   width: b.$asideWidth;
+  border: 1rem;
 
   .cardSticky {
     position: sticky;
-    top: b.$navHeight + $space;
+    top: b.$navHeight + b.$space;
   }
 }
 
 @media screen and (max-width: 1240px) {
-  .aside {
-    display: none;
-  }
+  // .aside {
+  //   display: none;
+  // }
 }
