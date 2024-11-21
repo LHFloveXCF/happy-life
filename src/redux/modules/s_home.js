@@ -1,30 +1,40 @@
 import '@/utils/common';
 import { createSlice } from '@reduxjs/toolkit';
-import axios from 'axios';
 
 
 const homeStore = createSlice({
     name: 's_home',
     initialState: {
-        data: []
+        data: [],
+        user_info: {},
     },
 
     reducers: {
+        setUserId: (state, action) => {
+            return {
+                ...state,
+                user_info: {
+                    ...state.user_info,
+                    user_id: action.payload
+                }
+            };
+        }
 
     }
 
 })
 
+// 结构出action
+const {setUserId} = homeStore.actions;
 
-const getTestData = () => {
-    return async (dispatch) => {
-        const res = await axios.get('http://localhost:18140/api/test')        
-        console.log(res);
-        
+// 暴露出对应的方法
+const updateUserId = (user_id) => {
+    return (dispatch) => {
+        dispatch(setUserId(user_id))
     }
 }
 
-export { getTestData };
+export { updateUserId };
 
 
 const s_home = homeStore.reducer

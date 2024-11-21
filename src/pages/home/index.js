@@ -3,15 +3,19 @@ import './index.scss';
 import PageTitle from '@/components/PageTitle';
 import { siteTitle, url_daily_poem } from '@/utils/constant';
 import { useMount, useSafeState, useTitle } from 'ahooks';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import Section from './Section';
 
 import { Button } from 'antd';
 import axios from 'axios';
+import { updateUserId } from '@/redux/modules/s_home';
+import { useEffect } from 'react';
 
 function Home() {
     useTitle(siteTitle);
     const [poem, setPoem] = useSafeState('');
+
+    const homeState = useSelector((state) => state.s_home);
 
     const dispatch = useDispatch();
 
@@ -25,6 +29,19 @@ function Home() {
                 console.error('Error fetching the poem:', error);
             });
     })
+
+    useEffect(() => {
+        const storedGuestUserId = localStorage.getItem('guestUserId');
+        if (storedGuestUserId) {
+            console.log("storedGuestUserId: ", storedGuestUserId);
+            
+            dispatch(updateUserId(storedGuestUserId));
+        } else {
+          const newGuestUserId = `guest-${Math.random().toString(36).substr(2, 9)}`;
+          localStorage.setItem('guestUserId', newGuestUserId);
+          dispatch(updateUserId(storedGuestUserId));
+        }
+      }, []);
 
     const changeImage = () => {
 
