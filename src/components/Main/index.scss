@@ -3,11 +3,9 @@
 .main {
   min-height: calc(100vh - #{b.$footerHeight + 2 * b.$space});
 
-  .center {
+  .m_center {
     width: b.$centerWidth;
     margin: auto;
-    display: flex;
-    flex-direction: column;
   }
 }
 
@@ -15,7 +13,7 @@
   .main {
     min-height: calc(100vh - 70rem - 20rem);
 
-    .center {
+    .m_center {
       width: 100vw;
     }
   }

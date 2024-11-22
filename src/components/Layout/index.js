@@ -3,10 +3,9 @@ import './index.scss';
 import { siteTitle } from '@/utils/constant';
 import { useTitle } from 'ahooks';
 import classNames from 'classnames';
-import dayjs from 'dayjs';
-import PageTitle from '../PageTitle';
 import Card from '../Card';
 import LayoutLoading from '../LayoutLoading';
+import PageTitle from '../PageTitle';
 
 
 function Layout({ title, isPost = false, date, classes, loading, rows, children }) {

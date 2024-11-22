@@ -6,9 +6,8 @@ import { useMount, useSafeState, useTitle } from 'ahooks';
 import { useDispatch, useSelector } from 'react-redux';
 import Section from './Section';
 
-import { Button } from 'antd';
-import axios from 'axios';
 import { updateUserId } from '@/redux/modules/s_home';
+import axios from 'axios';
 import { useEffect } from 'react';
 import Aside from './Aside';
 
@@ -50,9 +49,9 @@ function Home() {
 
     return (
         <>
-            <PageTitle title={siteTitle} desc={poem || ''} className={"homeTitle"} />
+            <PageTitle title={siteTitle} desc={poem || ''} style={"homeTitle"} />
             <div className={"body"}>
-                <Section />
+                <Section artSum={16}/>
                 <Aside />
             </div>
         </>

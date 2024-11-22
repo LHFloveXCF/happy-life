@@ -1,5 +1,5 @@
 import './pagination.custom.scss';
-import s from './index.scss';
+import './index.scss';
 
 import { Pagination } from 'antd';
 import React from 'react';
@@ -12,7 +12,7 @@ function MyPagination({setNavShow}) {
   return (
     <>
       {data.total > data.defaultPageSize ? (
-        <div id='myPagination' className={s.pageBox}>
+        <div id='myPagination' className={"pageBox"}>
           <Pagination
             current={data.current}
             total={data.total}

@@ -13,7 +13,7 @@ function App({ mode }) {
   return (
     <>
       <div className={classNames("AppBox", bgClasses[0])}>
-        <Nav/>
+        <Nav />
         <Main />
         <Footer/>
       </div>

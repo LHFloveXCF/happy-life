@@ -11,8 +11,6 @@ function Card({className, loading, children, isStatic, onClick}) {
     <div
       className={classNames(
         "card",
-        { ["center"]: loading },
-        { ["active"]: !isStatic },
         className
       )}
       onClick={onClick}

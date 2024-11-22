@@ -13,7 +13,7 @@ function Main() {
     return (
         <>
             <main className={"main"}>
-                <div className={"center"}>
+                <div className={"m_center"}>
                     <Suspense fallback={<></>}>
                         <Routes>
                             <Route path='/' element={<Home />} />

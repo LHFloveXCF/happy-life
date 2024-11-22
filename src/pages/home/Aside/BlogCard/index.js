@@ -1,10 +1,7 @@
-import { useTime } from '@/utils/timeUtils';
-import "./index.scss";
 import Card from '@/components/Card';
+import { useTime } from '@/utils/timeUtils';
 import { useSelector } from 'react-redux';
-import Avatar from 'antd/es/avatar/avatar';
-import { Space } from 'antd';
-import bg3 from '@/imgs/bg3.webp'
+import "./index.scss";
 
 function BlogCard() {
 
