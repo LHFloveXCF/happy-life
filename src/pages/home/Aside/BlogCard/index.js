@@ -13,8 +13,8 @@ function BlogCard() {
         <>
             <Card className={s.blog_card}>
                 <p className={s.text}>
-                    {timeText}，欢迎伟大的<br />
-                    <span className={s.color}>{homeState.user_info.user_id}</span><br />
+                    {timeText}，欢迎伟大的
+                    <span className={s.color}>{homeState.user_info.user_id}</span>
                     来到
                     <span className={s.color}>沫沫的小窝</span>
                 </p>

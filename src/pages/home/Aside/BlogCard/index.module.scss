@@ -1,23 +1,27 @@
 @use '../../../../styles/base' as b;
 
 .blog_card {
-  height: 88rem;
+  height: 68rem;
   position: relative;
 
   .avatar {
     position: relative;
-    left: 40%;
+    left: 50%;
     top: 0;
     height: 20rem;
+    width: 20rem;
+    transform: translate(-50%, -0%);
+    border-radius: 10%;
   }
 
   .text {
     margin: 0;
     position: absolute;
     top: 30rem;
-    left: 5rem;
-    font-size: 8rem;
-    line-height: 12rem;
+    left: 5%;
+    right: 5%;
+    font-size: 6rem;
+    line-height: 10rem;
   }
 
   .color {
