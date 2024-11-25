@@ -17,6 +17,16 @@ const homeStore = createSlice({
                     user_id: action.payload
                 }
             };
+        },
+        
+        setUserUserAvatar: (state, action) => {
+            return {
+                ...state,
+                user_info: {
+                    ...state.user_info,
+                    user_avatar: action.payload
+                }
+            };
         }
 
     }
@@ -24,7 +34,7 @@ const homeStore = createSlice({
 })
 
 // 结构出action
-const {setUserId} = homeStore.actions;
+const {setUserId, setUserUserAvatar} = homeStore.actions;
 
 // 暴露出对应的方法
 const updateUserId = (user_id) => {
@@ -33,7 +43,13 @@ const updateUserId = (user_id) => {
     }
 }
 
-export { updateUserId };
+const updateUserAvatar = (avatar) => {
+    return (dispatch) => {
+        dispatch(setUserUserAvatar(avatar))
+    }
+}
+
+export { updateUserId, updateUserAvatar };
 
 
 const s_home = homeStore.reducer

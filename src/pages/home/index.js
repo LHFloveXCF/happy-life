@@ -6,7 +6,7 @@ import { useMount, useSafeState, useTitle } from 'ahooks';
 import { useDispatch, useSelector } from 'react-redux';
 import Section from './Section';
 
-import { updateUserId } from '@/redux/modules/s_home';
+import { updateUserId, updateUserAvatar } from '@/redux/modules/s_home';
 import axios from 'axios';
 import { useEffect } from 'react';
 import Aside from './Aside';
@@ -32,14 +32,21 @@ function Home() {
 
     useEffect(() => {
         const storedGuestUserId = localStorage.getItem('guestUserId');
-        if (storedGuestUserId) {
-            console.log("storedGuestUserId: ", storedGuestUserId);
-            
+        const storedGuestUserAvatar = localStorage.getItem('guestUserAvatar');
+        if (storedGuestUserId) {            
             dispatch(updateUserId(storedGuestUserId));
         } else {
           const newGuestUserId = `guest-${Math.random().toString(36).substr(2, 9)}`;
+          dispatch(updateUserId(newGuestUserId));
           localStorage.setItem('guestUserId', newGuestUserId);
-          dispatch(updateUserId(storedGuestUserId));
+        }
+
+        if (storedGuestUserAvatar) {
+            dispatch(updateUserAvatar(storedGuestUserAvatar));
+        } else {
+            const avatar = Math.floor(Math.random() * 4);
+            dispatch(updateUserAvatar(avatar));
+            localStorage.setItem('guestUserAvatar', avatar);
         }
       }, []);
 

@@ -18,7 +18,7 @@ function BlogCard() {
                     来到
                     <span className={s.color}>沫沫的小窝</span>
                 </p>
-                {/* <img src={cardUrl} className={"avatar"} /> */}
+                <img src={`/image/avatar${homeState.user_info.user_avatar}.webp`} className={s.avatar} />
             </Card>
         </>
     );
