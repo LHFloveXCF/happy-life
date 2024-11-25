@@ -1,4 +1,4 @@
-import './index.scss';
+import s from './index.module.scss';
 
 import { useSafeState } from 'ahooks';
 import React from 'react';
@@ -15,10 +15,13 @@ function Section({artSum}) {
   const navigate = useNavigate();
   const [page, setPage] = useSafeState(1);
 
+  console.log("s.section:", s);
+  
+
   
 
   return (
-    <section className={"section"}>
+    <section className={s.section}>
       <PostCard loading={false}/>
       <PostCard loading={false}/>
       <PostCard loading={false}/>

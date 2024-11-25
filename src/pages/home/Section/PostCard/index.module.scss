@@ -11,7 +11,7 @@
   @extend .hover;
 }
 
-.card {
+.section_card {
   cursor: pointer;
 
   .title {
@@ -73,13 +73,13 @@
   }
 }
 
-.card:hover {
+.section_card:hover {
   transform: scale(1.02);
   cursor: pointer;
 }
 
 @media screen and (max-width: 1240px) {
-  .card {
+  .section_card {
     .title {
       height: 50rem;
       line-height: 24rem;

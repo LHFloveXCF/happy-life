@@ -3,7 +3,7 @@ import React, { MouseEventHandler } from 'react';
 
 import Card from '@/components/Card';
 
-import './index.scss';
+import s from './index.module.scss';
 import PostCardLoading from './PostCardLoading';
 
 function PostCard({loading}) {
@@ -18,20 +18,20 @@ function PostCard({loading}) {
   }
 
   return (
-    <Card className={"card"} isStatic={true} onClick={onClick}>
+    <Card className={s.section_card} isStatic={true} onClick={onClick}>
       {loading ? (
         <PostCardLoading />
       ) : (
         <>
-          <div className={"title"}>{title}</div>
-          <p className={"content"}>
+          <div className={s.title}>{title}</div>
+          <p className={s.content}>
             {content.replace(/<a(.*?)>(.*?)<\/a>/g, '$2').replace(/[# |**|`|>]/g, '')}
           </p>
-          <div className={"info"}>
-            <span className={"date"}>{dayjs(date).format('YYYY-MM-DD')}</span>
-            <div className={"tags"}>
+          <div className={s.info}>
+            <span className={s.date}>{dayjs(date).format('YYYY-MM-DD')}</span>
+            <div className={s.tags}>
               {tags.map(tag => (
-                <span className={"tag"} key={tag}>
+                <span className={s.tag} key={tag}>
                   {tag}
                 </span>
               ))}

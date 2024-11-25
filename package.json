@@ -28,11 +28,12 @@
     "react-router-dom": "^6.28.0",
     "react-scripts": "5.0.1",
     "safe-json-parse": "^4.0.0",
+    "sass-loader": "^16.0.3",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "craco start  --port 3001",
-    "build": "craco build",
+    "start": "craco start",
+    "build": "react-app-rewired build",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -56,7 +57,9 @@
   "devDependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "@craco/craco": "^7.1.0",
+    "customize-cra": "^1.0.0",
     "json-server": "^1.0.0-beta.3",
+    "react-app-rewired": "^2.2.1",
     "sass": "^1.80.6",
     "webpack": "^5.96.1"
   }

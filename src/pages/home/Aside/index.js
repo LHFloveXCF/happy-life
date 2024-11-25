@@ -1,10 +1,10 @@
 
 import BlogCard from './BlogCard';
-import './index.scss';
+import s from './index.module.scss';
 
-function Aside() {
+function Aside() {  
   return (
-    <aside className={"aside"}>
+    <aside className={s.aside}>
       <BlogCard />
     </aside>
   );
