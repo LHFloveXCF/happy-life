@@ -23,12 +23,6 @@ function Section({artSum}) {
   return (
     <section className={s.section}>
       <PostCard loading={false}/>
-      <PostCard loading={false}/>
-      <PostCard loading={false}/>
-      <PostCard loading={false}/>
-      <PostCard loading={false}/>
-      <PostCard loading={false}/>
-      <PostCard loading={false}/>
       <MyPagination
         current={page}
         defaultPageSize={homeSize}

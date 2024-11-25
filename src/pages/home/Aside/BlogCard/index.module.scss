@@ -1,7 +1,7 @@
 @use '../../../../styles/base' as b;
 
 .blog_card {
-  height: 68rem;
+  height: 50rem;
   position: relative;
 
   .avatar {
@@ -17,11 +17,11 @@
   .text {
     margin: 0;
     position: absolute;
-    top: 30rem;
+    top: 25rem;
     left: 5%;
     right: 5%;
-    font-size: 6rem;
-    line-height: 10rem;
+    font-size: 4rem;
+    line-height: 6rem;
   }
 
   .color {

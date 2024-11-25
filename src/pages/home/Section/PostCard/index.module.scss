@@ -12,30 +12,59 @@
 }
 
 .section_card {
-  cursor: pointer;
+  cursor: pointer; //用于指定当用户将鼠标指针悬停在某个元素上时应该显示的鼠标光标类型
+  display: flex;
+  flex-direction: row;
+  max-width: 100%;
+  max-height: none;
+  align-items: flex-start;
+
+  .img {
+    flex: 0 0 auto;
+    margin-right: 20px;
+    width: 300px;
+    height: 220px;
+    border-radius: 10%;
+    max-width: 100%;
+  }
+
+  .article_container {
+    flex: 1;
+    top: 110px;
+    max-width: 100%;
+    display: flex;
+    flex-direction: column;
+  }
 
   .title {
     margin: 0;
     height: 80px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    align-items: center; //将容器内的项目（items）在交叉轴（cross axis）方向上居中对齐
+    justify-content: center; //用于在Flex容器的主轴（main axis）上对齐和分配子元素的空间
     font-size: 28px;
-    font-weight: 700;
+    font-weight: bold;
     color: b.$textColor;
   }
 
   .content {
+    justify-content: right;
+    max-width: 100%;
     margin: 0;
+    /* 设置外边距为0 */
     height: 80px;
-    text-indent: 2em;
+    /* 设置固定高度 */
     color: b.$textColor;
-    font-size: 18px;
+    /* 这里似乎是一个变量，用于设置文本颜色，但这不是标准的CSS。如果b.$textColor没有在JS或其他CSS预处理器中定义，这将不会生效 */
+    font-size: 16px;
+    /* 设置字体大小 */
     overflow: hidden;
+    /* 当内容溢出容器时，隐藏溢出的部分 */
     text-overflow: ellipsis;
+    /* 当文本溢出时，用省略号表示被裁剪的文本 */
     display: -webkit-box;
-    -webkit-line-clamp: 3;
+    /* 使用WebKit的盒子模型布局（这是一个非标准的、特定于WebKit的属性，但已被广泛用于实现文本截断） */
     -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3; /* 限制显示的行数 */
   }
 
   .info {
@@ -46,22 +75,19 @@
       @extend .tagBase;
       position: absolute;
       bottom: 0;
-      display: flex;
       justify-content: center;
-      align-items: center;
     }
 
     .tags {
       position: absolute;
       bottom: 0;
-      right: 0;
+      left: 200px;
       max-width: 800px;
-      height: 30px;
 
       .tag {
         @extend .tagBase;
         display: inline-block;
-        margin-right: 20px;
+        margin-right: 0px;
         text-align: center;
         line-height: 30px;
       }
@@ -78,22 +104,35 @@
   cursor: pointer;
 }
 
-@media screen and (max-width: 1240px) {
+/* 媒体查询 */
+@media (max-width: 1240px) {
   .section_card {
-    .title {
-      height: 50rem;
-      line-height: 24rem;
-      font-size: 20rem;
-    }
-
-    .content {
-      height: 72rem;
-      text-indent: 2em;
-      font-size: 16rem;
-    }
-
-    .info {
-      display: none;
-    }
+    flex-direction: row; /* 在小屏幕上使用列布局 */
+    align-items: center; /* 允许子元素在交叉轴上伸展 */
+  }
+ 
+  .section_card .img {
+    width: 50px; /* 图片占据全部宽度 */
+    height: auto; /* 高度自适应 */
+    margin-right: 20px; /* 移除右侧边距 */
+  }
+ 
+  .section_card .article_container {
+    top: 0; /* 移除顶部的偏移 */
+    padding: 10px; /* 添加一些内边距以改善可读性 */
+  }
+ 
+  .section_card .title {
+    height: auto; /* 允许标题根据其内容调整高度 */
+    justify-content: flex-start; /* 标题从容器的开始处对齐 */
+  }
+ 
+  .section_card .content {
+    height: auto; /* 内容区域的高度自适应 */
+  }
+ 
+  .section_card .info .date,
+  .section_card .info .tags {
+    display: none;
   }
 }
