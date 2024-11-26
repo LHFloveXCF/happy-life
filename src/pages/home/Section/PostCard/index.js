@@ -9,7 +9,7 @@ import PostCardLoading from './PostCardLoading';
 function PostCard({ loading }) {
 
   let title = '这是一个标题',
-    content = 'hello world i workd hard',
+    content = "## 这是一个标题\n\n这是一个段落。Markdown是一种轻量级标记语言，允许人们使用易读易写的纯文本格式编写文档，然后转换成有效的HTML。\n\n- 列表项1\n- 列表项2\n  - 子列表项\n\n[这是一个链接](https://www.example.com)\n\n",
     date = new Date(),
     tags = ['test', 'good'];
 

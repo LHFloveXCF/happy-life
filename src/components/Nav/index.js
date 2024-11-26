@@ -52,7 +52,6 @@ function Nav() {
   );
 
   const onModeChange = (event, index) => {
-    console.log("index", index);
     dispatch(changeMode(index))
   }
 
