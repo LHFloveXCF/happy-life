@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import MyPagination from '@/components/MyPagination';
 import { homeSize } from '@/utils/constant';
 import PostCard from './PostCard';
+import { useSelector } from 'react-redux';
 
 
 
@@ -15,14 +16,17 @@ function Section({artSum}) {
   const navigate = useNavigate();
   const [page, setPage] = useSafeState(1);
 
-  console.log("s.section:", s);
+  const homeState = useSelector(state => state.s_home);  
+  console.log("homeState, ", homeState);
   
 
   
 
   return (
     <section className={s.section}>
-      <PostCard loading={false}/>
+      {homeState.article_info_list.map((item, index) => (
+        <PostCard loading={false} article={item} key={index}/>
+      ))}
       <MyPagination
         current={page}
         defaultPageSize={homeSize}

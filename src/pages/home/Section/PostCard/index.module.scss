@@ -2,12 +2,8 @@
 @use '../../../../styles/style.scss';
 
 .tagBase {
-  padding: 0 10px;
-  border-radius: 10px;
-  color: b.$textColor;
-  height: 30px;
+  height: 26px;
   font-size: 18px;
-  background-color: b.$themeColor1;
   @extend .hover;
 }
 
@@ -37,8 +33,8 @@
   }
 
   .title {
-    margin: 0;
-    height: 80px;
+    margin: 20px 0 10px 0;
+    height: 40px;
     align-items: center; //将容器内的项目（items）在交叉轴（cross axis）方向上居中对齐
     justify-content: center; //用于在Flex容器的主轴（main axis）上对齐和分配子元素的空间
     font-size: 28px;
@@ -51,11 +47,11 @@
     max-width: 100%;
     margin: 0;
     /* 设置外边距为0 */
-    height: 80px;
+    height: 100px;
     /* 设置固定高度 */
     color: b.$textColor;
     /* 这里似乎是一个变量，用于设置文本颜色，但这不是标准的CSS。如果b.$textColor没有在JS或其他CSS预处理器中定义，这将不会生效 */
-    font-size: 16px;
+    font-size: 18px;
     /* 设置字体大小 */
     overflow: hidden;
     /* 当内容溢出容器时，隐藏溢出的部分 */
@@ -64,36 +60,35 @@
     display: -webkit-box;
     /* 使用WebKit的盒子模型布局（这是一个非标准的、特定于WebKit的属性，但已被广泛用于实现文本截断） */
     -webkit-box-orient: vertical;
-    -webkit-line-clamp: 3; /* 限制显示的行数 */
+    -webkit-line-clamp: 3;
+    /* 限制显示的行数 */
   }
 
   .info {
     position: relative;
-    height: 50px;
+    height: 26px;
+    bottom: 0;
 
     .date {
       @extend .tagBase;
       position: absolute;
+      padding: auto;
       bottom: 0;
       justify-content: center;
+      left: 140px;
     }
 
     .tags {
       position: absolute;
       bottom: 0;
-      left: 200px;
-      max-width: 800px;
+      left: 260px;
 
       .tag {
         @extend .tagBase;
+        padding: auto;
+        position: relative;
         display: inline-block;
-        margin-right: 0px;
         text-align: center;
-        line-height: 30px;
-      }
-
-      .tag:last-child {
-        margin-right: 0;
       }
     }
   }
@@ -107,32 +102,37 @@
 /* 媒体查询 */
 @media (max-width: 1240px) {
   .section_card {
-    flex-direction: row; /* 在小屏幕上使用列布局 */
-    align-items: center; /* 允许子元素在交叉轴上伸展 */
+    flex-direction: row;
+    /* 在小屏幕上使用列布局 */
+    align-items: center;
+    /* 允许子元素在交叉轴上伸展 */
   }
- 
+
   .section_card .img {
-    width: 50px; /* 图片占据全部宽度 */
-    height: auto; /* 高度自适应 */
-    margin-right: 20px; /* 移除右侧边距 */
+    width: 50px;
+    /* 图片占据全部宽度 */
+    height: auto;
+    /* 高度自适应 */
+    margin-right: 20px;
+    /* 移除右侧边距 */
   }
- 
+
   .section_card .article_container {
-    top: 0; /* 移除顶部的偏移 */
-    padding: 10px; /* 添加一些内边距以改善可读性 */
+    top: 0;
+    /* 移除顶部的偏移 */
+    padding: 10px;
+    /* 添加一些内边距以改善可读性 */
   }
- 
+
   .section_card .title {
-    height: auto; /* 允许标题根据其内容调整高度 */
-    justify-content: flex-start; /* 标题从容器的开始处对齐 */
+    height: auto;
+    /* 允许标题根据其内容调整高度 */
+    justify-content: flex-start;
+    /* 标题从容器的开始处对齐 */
   }
- 
+
   .section_card .content {
-    height: auto; /* 内容区域的高度自适应 */
-  }
- 
-  .section_card .info .date,
-  .section_card .info .tags {
-    display: none;
+    height: auto;
+    /* 内容区域的高度自适应 */
   }
 }

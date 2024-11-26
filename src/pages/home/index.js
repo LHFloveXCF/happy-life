@@ -10,6 +10,7 @@ import { updateUserId, updateUserAvatar } from '@/redux/modules/s_home';
 import axios from 'axios';
 import { useEffect } from 'react';
 import Aside from './Aside';
+import LikeOrNo from '@/components/LikeAndUnLike';
 
 function Home() {
     useTitle(siteTitle);
