@@ -48,9 +48,9 @@ const homeStore = createSlice({
             const updatedArticleInfoList = state.article_info_list.map(article => {
                 if (article.id === id) {
                     switch (type) {
-                        case 1:
+                        case 1: // 点赞
                             return { ...article, like: article.like + 1 };
-                        case 2:
+                        case 2: // 吐槽
                             return { ...article, disLike: article.disLike + 1 };
                     }
 
