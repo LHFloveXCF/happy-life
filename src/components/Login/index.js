@@ -1,5 +1,6 @@
 import { Button, Checkbox, Form, Input, Flex } from 'antd';
 import { LockOutlined, UserOutlined } from '@ant-design/icons';
+import { NavLink } from 'react-router-dom';
 
 function LoginC() {
     const onFinish = (values) => {
@@ -34,9 +35,9 @@ function LoginC() {
 
             <Form.Item>
                 <Button block type="primary" htmlType="submit">
-                    Log in
+                    登 录
                 </Button>
-                or <a href="">Register now!</a>
+                or <NavLink to={"/register"}>Register now!</NavLink>
             </Form.Item>
         </Form>
     )

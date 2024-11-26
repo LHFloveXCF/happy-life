@@ -6,6 +6,7 @@ import {
   CheckOutlined,
   HomeOutlined,
   MenuOutlined,
+  LoginOutlined
 } from '@ant-design/icons';
 import {
   useEventListener,
@@ -20,7 +21,8 @@ import { NavLink, useNavigate } from 'react-router-dom';
 import { useLinkList } from './config';
 import { modeMap, modeMapArr } from '@/utils/modeMap';
 import { changeMode, setNavShow } from '@/redux/modules/s_nav';
-import { Drawer } from 'antd';
+import { Drawer, Tooltip } from 'antd';
+import { useEffect } from 'react';
 
 const bodyStyle = window.document.getElementsByTagName('body')[0].style;
 
@@ -37,10 +39,17 @@ function Nav() {
 
   useUpdateEffect(() => {
     setLocalMode(navState.mode);
-    for (const type of modeMapArr) {      
+    for (const type of modeMapArr) {
       bodyStyle.setProperty(type, modeMap[type][navState.mode]);
     }
   }, [navState.mode]);
+
+  useEffect(() => {
+    setLocalMode(navState.mode);
+    for (const type of modeMapArr) {
+      bodyStyle.setProperty(type, modeMap[type][navState.mode]);
+    }
+  }, [])
 
   useEventListener(
     'mousewheel',
@@ -61,7 +70,10 @@ function Nav() {
         <div className={'navContent'}>
           {/* 主页 */}
           <div className={"homeBtn"} onClick={() => navigate('/')}>
-            <HomeOutlined />
+            <Tooltip title="主页" placement="right">
+              <HomeOutlined />
+            </Tooltip>
+
           </div>
 
           {/* 黑暗模式切换 */}
@@ -108,6 +120,10 @@ function Nav() {
               {item.name}
             </NavLink>
           ))}
+          <div className={"homeAndAdmin"} onClick={() => navigate('login')}>
+            <Tooltip title="登录" placement="rightBottom"><LoginOutlined tooltip="What do you want others to call you?" /></Tooltip>
+
+          </div>
         </div>
       </nav>
       <div className={"mobileNavBtn"} onClick={() => setVisible(true)}>

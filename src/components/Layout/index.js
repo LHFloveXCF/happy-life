@@ -14,8 +14,8 @@ function Layout({ title, isPost = false, date, classes, loading, rows, children 
 
   return (
     <>
-      <PageTitle title={title} className={classNames({ ["postTitle"]: isPost })} />
-      <Card isStatic={true} className={classNames("layoutCard")}>
+      <PageTitle title={title} className={classNames(classes, { ["postTitle"]: isPost })} />
+      <Card isStatic={true} className={classNames("layoutCard", classes)}>
         {loading ? <LayoutLoading rows={rows} /> : children}
       </Card>
     </>

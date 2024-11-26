@@ -4,17 +4,15 @@ const navShowStore = createSlice({
     name: 's_nav',
     initialState: {
         navShow: true,
-        mode: 0,
+        mode: 1,
     },
 
     reducers: {
         setNavShow(state, action) {
-            console.log("setNavShow", action.payload);
             state.navShow = action.payload;
         },
 
         changeMode(state, action) {
-            console.log("changeMode", action.payload);
             state.mode = action.payload;
         }
 

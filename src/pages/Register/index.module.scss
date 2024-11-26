@@ -1,0 +1,12 @@
+@use '../../styles/base' as b;
+
+.register_p {
+  width: 600px;
+}
+
+@media screen and (max-width: 1240px) {
+  .section {
+    width: 100vw;
+    padding: 0 10rem;
+  }
+}

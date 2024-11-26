@@ -1,21 +1,11 @@
 import './index.scss';
 
 import React from 'react';
-import { icp_no, icp_site, source_github } from '@/utils/constant';
+import { icp_no, icp_site, source_github, footer_desc } from '@/utils/constant';
 
 
 
 function Footer() {
-  const frameArr = [
-    'React',
-    'React Router',
-    'Redux',
-    'Webpack',
-    'AntD',
-    'ahooks',
-    'CloudBase'
-  ];
-
   return (
     <footer className={"footer"}>
       <span>
@@ -30,7 +20,7 @@ function Footer() {
         </a>
       </span>
       <span>
-        {frameArr.map((item, index) => (
+        {footer_desc.map((item, index) => (
           <span className={"siteFrame"} key={index}>
             {item}
           </span>

@@ -97,3 +97,8 @@ export const server_host = 'http://127.0.0.1:18141/api/';
 
 // 每日诗词替换链接
 export const url_daily_poem = 'https://v2.jinrishici.com/one.json?client=npm-sdk/1.0';
+export const footer_desc = [
+  '生活',
+  '快乐的分享',
+  '记忆',
+];

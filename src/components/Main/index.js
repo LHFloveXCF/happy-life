@@ -9,6 +9,7 @@ const Home = lazy(() => import('@/pages/home'));
 const About = lazy(() => import('@/pages/About'));
 const Msg = lazy(() => import('@/pages/Msg'));
 const Login = lazy(() => import('@/pages/Login'));
+const Register = lazy(() => import('@/pages/Register'));
 
 function Main() {
     return (
@@ -21,6 +22,7 @@ function Main() {
                             <Route path='about' element={<About />} />
                             <Route path='msg' element={<Msg />} />
                             <Route path='login' element={<Login />} />
+                            <Route path='register' element={<Register />} />
                             <Route path='*' element={<Navigate to='/' replace />} />
                         </Routes>
                     </Suspense>
