@@ -10,7 +10,7 @@ function LikeOrNo({ likeCount, disLikeCount, changeCount, classNmae }) {
                 <span className={s.like_text}>
                     <LikeTwoTone style={{ fontSize: '26px', color: 'aliceblue', left: 0 }} onClick={() => changeCount(1)} /> {likeCount}</span>
                 <span className={s.like_text}>
-                    <DislikeTwoTone style={{ fontSize: '26px', color: 'aliceblue', left: 0 }} onClick={() => changeCount(1)} /> {disLikeCount}</span>
+                    <DislikeTwoTone style={{ fontSize: '26px', color: 'aliceblue', left: 0 }} onClick={() => changeCount(2)} /> {disLikeCount}</span>
             </div>
 
         </>

@@ -1,7 +1,7 @@
 @use 'base' as b;
 
 .trans {
-  transition: all 0.3s !important;
+  transition: all 0.3s ease !important;
 }
 
 .hover {

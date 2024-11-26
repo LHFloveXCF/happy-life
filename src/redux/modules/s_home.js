@@ -16,7 +16,8 @@ const homeStore = createSlice({
                     "test",
                     "good"
                 ],
-                "like": 0
+                "like": 0,
+                "disLike": 0
             }
         ],
     },
@@ -43,13 +44,16 @@ const homeStore = createSlice({
         },
 
         setArticleLikeCount: (state, action) => {
-            const articleId = action.payload;
-            console.log("articleId: ", action.payload);
-            
-
+            const { id, type } = action.payload;
             const updatedArticleInfoList = state.article_info_list.map(article => {
-                if (article.id === articleId) {
-                    return { ...article, like: article.like + 1 };
+                if (article.id === id) {
+                    switch (type) {
+                        case 1:
+                            return { ...article, like: article.like + 1 };
+                        case 2:
+                            return { ...article, disLike: article.disLike + 1 };
+                    }
+
                 }
                 return article;
             });

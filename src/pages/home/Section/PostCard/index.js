@@ -20,8 +20,7 @@ function PostCard({ loading, article }) {
   }
 
   const changeLikeCount = (type) => {
-    console.log("type: ", type);
-    dispatch(updateArticleLikeCount(1))
+    dispatch(updateArticleLikeCount({"id": 1, "type": type}))
   }
 
   return (
@@ -38,7 +37,7 @@ function PostCard({ loading, article }) {
               {article.content.replace(/<a(.*?)>(.*?)<\/a>/g, '$2').replace(/[# |**|`|>]/g, '')}
             </p>
             <div className={s.info}>
-              <LikeOrNo likeCount={article.like} disLikeCount={article.like} changeCount={changeLikeCount} classNmae={s.info} />
+              <LikeOrNo likeCount={article.like} disLikeCount={article.disLike} changeCount={changeLikeCount} classNmae={s.info} />
               <span className={s.date}>{dayjs(article.date).format('YYYY-MM-DD')}</span>
               <div className={s.tags}>
                 {article.tags.map(tag => (
