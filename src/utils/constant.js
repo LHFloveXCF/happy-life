@@ -102,3 +102,8 @@ export const footer_desc = [
   '快乐的分享',
   '记忆',
 ];
+
+export const cur_view = Object.freeze({
+  CLIENT: 1,
+  BACKGROUND: 2,
+});

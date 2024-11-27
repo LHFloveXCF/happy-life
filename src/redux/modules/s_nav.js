@@ -1,3 +1,4 @@
+import { cur_view } from '@/utils/constant';
 import { createSlice } from '@reduxjs/toolkit'
 
 const navShowStore = createSlice({
@@ -5,6 +6,8 @@ const navShowStore = createSlice({
     initialState: {
         navShow: true,
         mode: 1,
+        curView: cur_view.CLIENT,
+        footerShow: true
     },
 
     reducers: {
@@ -14,15 +17,22 @@ const navShowStore = createSlice({
 
         changeMode(state, action) {
             state.mode = action.payload;
-        }
+        },
+
+        changeView(state, action) {
+            state.curView = action.payload;
+        },
+        changeFooterShow(state, action) {
+            state.navShow = action.payload;
+        },
 
     }
 
 })
 
-const { setNavShow, changeMode } = navShowStore.actions
+const { setNavShow, changeMode, changeView, changeFooterShow } = navShowStore.actions
 
-export {setNavShow, changeMode}
+export { setNavShow, changeMode, changeView, changeFooterShow }
 
 
 const s_nav = navShowStore.reducer

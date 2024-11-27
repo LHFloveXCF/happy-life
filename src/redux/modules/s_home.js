@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+import dayjs from 'dayjs';
 
 
 const homeStore = createSlice({
@@ -11,7 +12,7 @@ const homeStore = createSlice({
                 "id": 1,
                 "title": '这是一个标题',
                 "content": '## 这是一个标题\n\n这是一个段落。Markdown是一种轻量级标记语言，允许人们使用易读易写的纯文本格式编写文档，然后转换成有效的HTML。\n\n- 列表项1\n- 列表项2\n  - 子列表项\n\n[这是一个链接](https://www.example.com)\n\n',
-                "date": new Date(),
+                "date": dayjs(new Date()),
                 "tags": [
                     "test",
                     "good"

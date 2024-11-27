@@ -6,7 +6,7 @@ import { useSelector } from 'react-redux';
 import Footer from './components/Footer';
 import Main from './components/Main';
 import Nav from './components/Nav';
-import MarkdownEditor from './pages/BackGround';
+import ClientHome from './pages/Client/client_home';
 
 function App({ mode }) {
 
@@ -17,10 +17,7 @@ function App({ mode }) {
   return (
     <>
       <div className={classNames("AppBox", bgClasses[navState.mode])}>
-        <Nav />
-        <Main />
-        <Footer/>
-        <MarkdownEditor/>
+        <ClientHome/>
       </div>
 
     </>

@@ -18,10 +18,10 @@ const MarkdownEditor = () => {
 
     const mdParser = new MarkdownIt(/* Markdown-it options */);
 
-    const handleImageUpload = async (info) => {        
+    const handleImageUpload = async (info) => {
         if (info.fileList.length === 0) return;
         const file = info.fileList[0];
-        
+
         const formData = new FormData();
         formData.append('file', info.file);
         console.log("fileInput, ", info.file);
@@ -31,44 +31,45 @@ const MarkdownEditor = () => {
                 body: formData,
             });
             const result = await response.json();
-            const imageUrl = result.url; 
+            const imageUrl = result.url;
             insertImageMarkdown(imageUrl);
         } catch (error) {
             console.error('Error uploading image:', error);
         }
     };
 
-    const [uploadUrl, setUploadUrl] = useState(url_upload); 
+    const [uploadUrl, setUploadUrl] = useState(url_upload);
     const [fileList, setFileList] = useState([]);
-   
+
     const props = {
-      onRemove: (file) => {
-        const index = fileList.indexOf(file);
-        const newFileList = fileList.slice();
-        newFileList.splice(index, 1);
-        setFileList(newFileList);
-      },
-      beforeUpload: (file) => {
-        setFileList(prev => [...prev, file]);
-        const formData = new FormData();
-        formData.append('file', file);
-   
-        axios.post(uploadUrl, formData, {
-          headers: {
-            'Content-Type': 'multipart/form-data'
-          }
-        })
-        .then(response => {
-            insertImageMarkdown(response.data.url);
-            setFileList([]);
-        })
-        .catch(error => {
-        });
-   
-        // 阻止自动上传
-        return false;
-      },
-      fileList
+        maxCount: 1,
+        onRemove: (file) => {
+            const index = fileList.indexOf(file);
+            const newFileList = fileList.slice();
+            newFileList.splice(index, 1);
+            setFileList(newFileList);
+        },
+        beforeUpload: (file) => {
+            setFileList(prev => [...prev, file]);
+            const formData = new FormData();
+            formData.append('file', file);
+
+            axios.post(uploadUrl, formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
+            })
+                .then(response => {
+                    insertImageMarkdown(response.data.url);
+                    setFileList([]);
+                })
+                .catch(error => {
+                });
+
+            // 阻止自动上传
+            return false;
+        },
+        fileList
     };
 
     const insertImageMarkdown = (url) => {

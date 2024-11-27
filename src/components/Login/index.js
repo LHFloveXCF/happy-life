@@ -1,10 +1,12 @@
 import { Button, Checkbox, Form, Input, Flex } from 'antd';
 import { LockOutlined, UserOutlined } from '@ant-design/icons';
-import { NavLink } from 'react-router-dom';
+import { useNavigate, NavLink } from 'react-router-dom';
 
 function LoginC() {
+    const navigate = useNavigate();
     const onFinish = (values) => {
         console.log('Received values of form: ', values);
+        navigate("/console")
       };
     return (
         <Form

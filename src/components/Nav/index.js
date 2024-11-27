@@ -23,6 +23,7 @@ import { modeMap, modeMapArr } from '@/utils/modeMap';
 import { changeMode, setNavShow } from '@/redux/modules/s_nav';
 import { Drawer, Tooltip } from 'antd';
 import { useEffect } from 'react';
+import { cur_view } from '@/utils/constant';
 
 const bodyStyle = window.document.getElementsByTagName('body')[0].style;
 
@@ -55,7 +56,9 @@ function Nav() {
     'mousewheel',
     event => {
       event = event || window.event;
-      dispatch(setNavShow(event.wheelDeltaY > 0));
+      if (navState.curView === cur_view.CLIENT) {
+        dispatch(setNavShow(event.wheelDeltaY > 0));
+      }
     },
     { target: document.body }
   );

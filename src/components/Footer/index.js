@@ -1,13 +1,15 @@
 import './index.scss';
 
-import React from 'react';
-import { icp_no, icp_site, source_github, footer_desc } from '@/utils/constant';
+import { footer_desc, icp_no, icp_site, source_github } from '@/utils/constant';
+import classNames from 'classnames';
+import { useSelector } from 'react-redux';
 
 
 
 function Footer() {
+  const navState = useSelector(state => state.s_nav);
   return (
-    <footer className={"footer"}>
+    <footer className={classNames("footer", {"hiddenFooter": navState.footerShow})}>
       <span>
         个人博客系统
         <a href={source_github} target='_blank' rel='noreferrer' className={"text"}>

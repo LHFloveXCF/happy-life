@@ -10,6 +10,7 @@ const About = lazy(() => import('@/pages/About'));
 const Msg = lazy(() => import('@/pages/Msg'));
 const Login = lazy(() => import('@/pages/Login'));
 const Register = lazy(() => import('@/pages/Register'));
+const BackGroundHome = lazy(() => import('@/pages/BackGround/p_show_home'));
 
 function Main() {
     return (
@@ -23,6 +24,8 @@ function Main() {
                             <Route path='msg' element={<Msg />} />
                             <Route path='login' element={<Login />} />
                             <Route path='register' element={<Register />} />
+                            
+                            <Route path='console' element={<BackGroundHome />} />
                             <Route path='*' element={<Navigate to='/' replace />} />
                         </Routes>
                     </Suspense>
