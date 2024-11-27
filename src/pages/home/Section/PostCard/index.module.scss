@@ -3,8 +3,7 @@
 
 .tagBase {
   height: 26px;
-  font-size: 18px;
-  @extend .hover;
+  font-size: 26px;
 }
 
 .section_card {
@@ -66,13 +65,13 @@
 
   .info {
     position: relative;
-    height: 30px;
     bottom: 0;
+    height: 30px;
+    
 
     .date {
       @extend .tagBase;
       position: absolute;
-      padding: auto;
       bottom: 0;
       justify-content: center;
       left: 140px;
@@ -81,11 +80,10 @@
     .tags {
       position: absolute;
       bottom: 0;
-      left: 250px;
+      left: 300px;
 
       .tag {
         @extend .tagBase;
-        padding: auto;
         position: relative;
         display: inline-block;
         text-align: center;

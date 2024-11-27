@@ -1,11 +1,12 @@
-import './global.custom.scss';
 import './App.scss';
+import './global.custom.scss';
 
 import classNames from 'classnames';
-import Nav from './components/Nav';
-import Main from './components/Main';
-import Footer from './components/Footer';
 import { useSelector } from 'react-redux';
+import Footer from './components/Footer';
+import Main from './components/Main';
+import Nav from './components/Nav';
+import MarkdownEditor from './pages/BackGround';
 
 function App({ mode }) {
 
@@ -19,6 +20,7 @@ function App({ mode }) {
         <Nav />
         <Main />
         <Footer/>
+        <MarkdownEditor/>
       </div>
 
     </>
