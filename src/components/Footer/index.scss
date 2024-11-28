@@ -1,12 +1,6 @@
 @use '../../styles/base' as b;
 @use '../../styles/style.scss';
 
-.hiddenFooter {
-  visibility: hidden;
-
-  transform: translate(0, - b.$footerHeight);
-}
-
 .footer {
   height: b.$footerHeight;
   background-color: b.$footerBg;
@@ -38,6 +32,11 @@
   .siteFrame:last-child {
     margin-right: 0;
   }
+}
+
+.hiddenFooter {
+  display: none;
+  transform: translate(0, - b.$footerHeight);
 }
 
 @media screen and (max-width: 1240px) {

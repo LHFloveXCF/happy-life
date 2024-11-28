@@ -1,7 +1,10 @@
+import classNames from 'classnames';
 import './index.scss'
 
 import React, { lazy, Suspense } from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { cur_view } from '@/utils/constant';
 
 
 
@@ -13,10 +16,11 @@ const Register = lazy(() => import('@/pages/Register'));
 const BackGroundHome = lazy(() => import('@/pages/BackGround/p_show_home'));
 
 function Main() {
+    const navState = useSelector(state => state.s_nav);
     return (
         <>
             <main className={"main"}>
-                <div className={"m_center"}>
+                <div className={classNames("m_center", {"m_center_back" : navState.curView === cur_view.BACKGROUND})}>
                     <Suspense fallback={<></>}>
                         <Routes>
                             <Route path='/' element={<Home />} />

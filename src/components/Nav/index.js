@@ -125,7 +125,6 @@ function Nav() {
           ))}
           <div className={"homeAndAdmin"} onClick={() => navigate('login')}>
             <Tooltip title="登录" placement="rightBottom"><LoginOutlined tooltip="What do you want others to call you?" /></Tooltip>
-
           </div>
         </div>
       </nav>
