@@ -22,6 +22,7 @@ import { useTitle } from 'ahooks';
 import style from './index.custom.scss';
 import { b_logout_items } from "@/utils/constant_back";
 import classNames from "classnames";
+import styles from "./style"
 
 
 const { Header, Content, Footer, Sider } = Layout;
@@ -64,28 +65,37 @@ function BackGroundHome() {
         token: { colorBgContainer, borderRadiusLG },
     } = theme.useToken();
 
+    function handleLogout(e) {
+        switch (e.key) {
+            case "1":
+                console.log("handleLogout: ", e);
+                break;
+            case "2":
+                console.log("changePassWord: ", e);
+                break;
+        };
 
-    const menu = ( 
-        <Menu>
-            <Menu.Item key="1" icon={<LoginOutlined />}>退出登录</Menu.Item>
+    }
+
+
+    const menu = (
+        <Menu onClick={handleLogout}>
+            <Menu.Item key="1" icon={<LoginOutlined />} >退出登录</Menu.Item>
             <Menu.Item key="2" icon={<UserOutlined />}>修改密码</Menu.Item>
         </Menu>
     );
 
     return (
         <>
-            <Layout
-                style={{
-                    minHeight: '100vh',
-                }}>
+            <Layout style={styles.b_p_home_layout_outer}>
                 <Sider collapsed={collapsed} onCollapse={(value) => setCollapsed(value)}>
-                    <div className={classNames(style.b_p_logo_side, {[style.b_p_logo_side_collapsed]: collapsed})} />
+                    <div className={classNames(style.b_p_logo_side, { [style.b_p_logo_side_collapsed]: collapsed })} />
                     <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline" items={items} />
                 </Sider>
                 <Layout>
                     <Header
                         style={{
-                            padding: 0,
+                            ...styles.b_p_home_header,
                             background: colorBgContainer,
                         }}>
                         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', height: '64px' }}>
@@ -93,15 +103,11 @@ function BackGroundHome() {
                                 type="text"
                                 icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
                                 onClick={() => setCollapsed(!collapsed)}
-                                style={{
-                                    fontSize: '16px',
-                                    width: 64,
-                                    height: 64,
-                                }}
+                                style={styles.b_p_home_header_btn}
                             />
                             <div style={{ display: 'flex', gap: '8px' }}>
                                 <Dropdown overlay={menu} trigger={['hover']}>
-                                    <Button type="text" icon={<SettingOutlined />} style={{ fontSize: '16px', width: 64, height: 64 }} />
+                                    <Button type="text" icon={<SettingOutlined />} style={styles.b_p_home_header_btn} />
                                 </Dropdown>
                             </div>
                         </div>
