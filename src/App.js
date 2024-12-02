@@ -3,9 +3,6 @@ import './global.custom.scss';
 
 import classNames from 'classnames';
 import { useSelector } from 'react-redux';
-import Footer from './components/Footer';
-import Main from './components/Main';
-import Nav from './components/Nav';
 import ClientHome from './pages/Client/client_home';
 
 function App({ mode }) {

@@ -1,5 +1,8 @@
+
 import { createSlice } from '@reduxjs/toolkit';
 import dayjs from 'dayjs';
+import * as common from '@/utils/common';
+import { url_get_article, url_upload } from '@/utils/constant_api';
 
 
 const homeStore = createSlice({
@@ -63,15 +66,46 @@ const homeStore = createSlice({
                 ...state,
                 article_info_list: updatedArticleInfoList,
             };
+        },
+
+        setArticleList: (state, action) => {
+            const result = action.payload[0];
+            console.log("result, ", result);
+            const article = [{
+                "id": result.id,
+                "title": result.article_title,
+                "content": result.article_content,
+                "date": dayjs(new Date()).toISOString(),
+                "tags": [
+                    result.article_keys
+                ],
+                "like": 0,
+                "disLike": 0
+            }]            
+            return {
+                ...state,
+                article_info_list: article,
+            };
         }
     }
 
 })
 
 // 结构出action
-const { setUserId, setUserUserAvatar, setArticleLikeCount } = homeStore.actions;
+const { setUserId, setUserUserAvatar, setArticleLikeCount, setArticleList } = homeStore.actions;
 
 // 暴露出对应的方法
+const getArticleList = () => {
+    return dispatch => {
+        common.fetchGet(url_get_article, {}, json => {
+            console.log("json:" , json);
+            
+            dispatch(setArticleList(json.data))
+        }, {}, dispatch)
+    }
+};
+
+
 const updateUserId = (user_id) => {
     return (dispatch) => {
         dispatch(setUserId(user_id))
@@ -92,7 +126,7 @@ const updateArticleLikeCount = (likeAdd) => {
 
 
 
-export { updateUserId, updateUserAvatar, updateArticleLikeCount };
+export { updateArticleLikeCount, updateUserAvatar, updateUserId,getArticleList };
 
 
 const s_home = homeStore.reducer

@@ -12,7 +12,7 @@ Iconv.skipDecodeWarning = true;
 /**
  * HTTP POST请求
  * */
-export function fetchPost(url, body = {}, func, extraTools, dispatch, userNickName = '') {
+export async function fetchPost(url, body = {}, func, extraTools, dispatch, userNickName = '') {
     let fetchParam = {
         mode: "cors",
         timeout: 20 * 1000,
@@ -24,17 +24,16 @@ export function fetchPost(url, body = {}, func, extraTools, dispatch, userNickNa
         body: jsonStringify(body)
     };
 
-    return fetch(
-        url,
-        fetchParam
-    ).then(
-        response => checkFetchStatus(response)
-    ).then(json => {
+    try {
+        const response = await fetch(
+            url,
+            fetchParam
+        );
+        const json = checkFetchStatus(response);
         handlerFetchResponse(url, json, extraTools, dispatch, func);
-        // func(json);
-    }).catch(error => {
+    } catch (error) {
         handlerFetchError(url, error, extraTools, dispatch);
-    });
+    }
 }
 
 /**

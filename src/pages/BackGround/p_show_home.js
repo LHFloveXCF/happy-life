@@ -22,7 +22,7 @@ import { useTitle } from 'ahooks';
 import style from './index.custom.scss';
 import { b_logout_items } from "@/utils/constant_back";
 import classNames from "classnames";
-import styles from "./style"
+import styles from "./style";
 
 
 const { Header, Content, Footer, Sider } = Layout;
@@ -35,7 +35,7 @@ function getItem(label, key, icon, children) {
     };
 }
 const items = [
-    getItem('Option 1', '1', <PieChartOutlined />),
+    getItem('写文章', '1', <PieChartOutlined />),
     getItem('Option 2', '2', <DesktopOutlined />),
     getItem('User', 'sub1', <UserOutlined />, [
         getItem('Tom', '3'),
@@ -98,7 +98,7 @@ function BackGroundHome() {
                             ...styles.b_p_home_header,
                             background: colorBgContainer,
                         }}>
-                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', height: '64px' }}>
+                        <div style={styles.b_p_home_header_btn_container}>
                             <Button
                                 type="text"
                                 icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
@@ -112,26 +112,9 @@ function BackGroundHome() {
                             </div>
                         </div>
                     </Header>
-                    <Content
-                        style={{
-                            margin: '0 16px',
-                        }}>
-                        <Breadcrumb
-                            style={{
-                                margin: '16 px 0',
-                            }}>
-                            <Breadcrumb.Item>User</Breadcrumb.Item>
-                            <Breadcrumb.Item>Bill</Breadcrumb.Item>
-                        </Breadcrumb>
-                        <div
-                            style={{
-                                padding: 24,
-                                minHeight: 360,
-                                background: colorBgContainer,
-                                borderRadius: borderRadiusLG,
-                            }}>
-                            Bill is a cat.
-                        </div>
+                    <Content>
+                        {/**写文章 */}
+                        <MarkdownEditor/>
                     </Content>
                 </Layout>
             </Layout>

@@ -6,10 +6,11 @@ import { useMount, useSafeState, useTitle } from 'ahooks';
 import { useDispatch, useSelector } from 'react-redux';
 import Section from './Section';
 
-import { updateUserAvatar, updateUserId } from '@/redux/modules/s_home';
+import { getArticleList, updateUserAvatar, updateUserId } from '@/redux/modules/s_home';
 import axios from 'axios';
 import { useEffect } from 'react';
 import Aside from './Aside';
+import { Button } from 'antd';
 
 function Home() {
     useTitle(siteTitle);
@@ -33,12 +34,12 @@ function Home() {
     useEffect(() => {
         const storedGuestUserId = localStorage.getItem('guestUserId');
         const storedGuestUserAvatar = localStorage.getItem('guestUserAvatar');
-        if (storedGuestUserId) {            
+        if (storedGuestUserId) {
             dispatch(updateUserId(storedGuestUserId));
         } else {
-          const newGuestUserId = `guest-${Math.random().toString(36).substr(2, 9)}`;
-          dispatch(updateUserId(newGuestUserId));
-          localStorage.setItem('guestUserId', newGuestUserId);
+            const newGuestUserId = `guest-${Math.random().toString(36).substr(2, 9)}`;
+            dispatch(updateUserId(newGuestUserId));
+            localStorage.setItem('guestUserId', newGuestUserId);
         }
 
         if (storedGuestUserAvatar) {
@@ -48,17 +49,22 @@ function Home() {
             dispatch(updateUserAvatar(avatar));
             localStorage.setItem('guestUserAvatar', avatar);
         }
-      }, []);
+        dispatch(getArticleList())
+    }, []);
 
     const changeImage = () => {
-
+        // 请求文章
+        console.log("hhhhh");
+        
+        
     }
 
     return (
         <>
             <PageTitle title={siteTitle} desc={poem || ''} style={"homeTitle"} />
+            <Button onClick={() => changeImage}/>
             <div className={"body"}>
-                <Section artSum={16}/>
+                <Section artSum={16} />
                 <Aside />
             </div>
         </>

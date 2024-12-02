@@ -3,14 +3,18 @@ import { useRef, useState } from 'react';
 import Editor from 'react-markdown-editor-lite';
 import 'react-markdown-editor-lite/lib/index.css';
 import './index.custom.scss';
-import { url_upload } from '@/utils/constant_api';
+import { url_save_article, url_upload } from '@/utils/constant_api';
 import { Button, Upload } from 'antd';
 import { UploadOutlined } from '@mui/icons-material';
 import axios from 'axios';
+import styles from './style';
+import * as common from '@/utils/common';
+import { useDispatch } from 'react-redux';
 
 const MarkdownEditor = () => {
     const [markdown, setMarkdown] = useState('');
     const fileInputRef = useRef(null);
+    const dispatch = useDispatch();
 
     const handleEditorChange = (value) => {
         setMarkdown(value.text);
@@ -78,16 +82,33 @@ const MarkdownEditor = () => {
         setMarkdown((prevMarkdown) => (prevMarkdown ? `${prevMarkdown}\n${imageMarkdown}` : imageMarkdown));
     };
 
+    function handleBackSubmitArticle() {
+        let body = {
+            article: markdown
+        }
+        common.fetchPost(url_save_article, body, json => {
+            console.log("handleBackSubmitArticle ", json);
+        }, {}, dispatch)
+    }
+
     return (
         <>
-            <Upload {...props}>
-                <Button icon={<UploadOutlined />}>Click to Upload</Button>
-            </Upload>
-            <Editor
-                value={markdown}
-                allowPasteImage={true}
-                style={{ height: '500px' }} renderHTML={text => mdParser.render(text)} onChange={handleEditorChange}
-            />
+            <div>
+                <div style={styles.b_p_home_markddown_operate}>
+                    <Upload {...props}>
+                        <Button icon={<UploadOutlined />}>插入图片</Button>
+                    </Upload>
+                    <Button>添加封面</Button>
+                    <Button onClick={() => handleBackSubmitArticle()}>发布文章</Button>
+                </div>
+
+                <Editor
+                    value={markdown}
+                    allowPasteImage={true}
+                    style={{ height: '500px' }} renderHTML={text => mdParser.render(text)} onChange={handleEditorChange}
+                />
+            </div>
+
         </>
 
     );
