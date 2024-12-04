@@ -14,6 +14,7 @@ const Msg = lazy(() => import('@/pages/Msg'));
 const Login = lazy(() => import('@/pages/Login'));
 const Register = lazy(() => import('@/pages/Register'));
 const BackGroundHome = lazy(() => import('@/pages/BackGround/p_show_home'));
+const ClientHomeArticle = lazy(() => import('@/pages/Client/Article/c_p_article'));
 
 function Main() {
     const navState = useSelector(state => state.s_nav);
@@ -28,7 +29,8 @@ function Main() {
                             <Route path='msg' element={<Msg />} />
                             <Route path='login' element={<Login />} />
                             <Route path='register' element={<Register />} />
-                            
+                            <Route path='post' element={<ClientHomeArticle />} />
+                            {/** 后台路由 */}
                             <Route path='console' element={<BackGroundHome />} />
                             <Route path='*' element={<Navigate to='/' replace />} />
                         </Routes>

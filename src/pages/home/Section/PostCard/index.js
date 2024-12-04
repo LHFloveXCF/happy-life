@@ -8,13 +8,14 @@ import PostCardLoading from './PostCardLoading';
 import LikeOrNo from '@/components/LikeAndUnLike';
 import { useDispatch } from 'react-redux';
 import {updateArticleLikeCount} from '@/redux/modules/s_home'
+import { useNavigate } from 'react-router-dom';
 
 function PostCard({ loading, article }) {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const onClick = (articleId, userId) => {
-    console.log("-------", articleId, userId);
-    
+    navigate(`/post?title=${encodeURIComponent(articleId)}`)
   }
 
   const changeLikeCount = (type, id) => {    

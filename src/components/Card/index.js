@@ -4,8 +4,6 @@ import { Skeleton } from 'antd';
 import classNames from 'classnames';
 
 
-
-
 function Card({className, loading, children, isStatic, onClick, article}) {
   return (
     <div
