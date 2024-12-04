@@ -58,6 +58,8 @@ function BackGroundHome() {
         dispatch(changeView(cur_view.BACKGROUND));
         dispatch(setNavShow(false));
         dispatch(changeFooterShow(false));
+        console.log("--------");
+        
     }, []);
 
     const [collapsed, setCollapsed] = useState(false);
@@ -68,7 +70,9 @@ function BackGroundHome() {
     function handleLogout(e) {
         switch (e.key) {
             case "1":
-                console.log("handleLogout: ", e);
+                dispatch(changeView(cur_view.CLIENT));
+                dispatch(setNavShow(true));
+                dispatch(changeFooterShow(true));
                 break;
             case "2":
                 console.log("changePassWord: ", e);
@@ -114,7 +118,7 @@ function BackGroundHome() {
                     </Header>
                     <Content>
                         {/**写文章 */}
-                        <MarkdownEditor/>
+                        <MarkdownEditor />
                     </Content>
                 </Layout>
             </Layout>

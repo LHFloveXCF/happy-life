@@ -10,21 +10,19 @@ import { useDispatch } from 'react-redux';
 import {updateArticleLikeCount} from '@/redux/modules/s_home'
 
 function PostCard({ loading, article }) {
-
-  console.log("article", article);
-  
-
   const dispatch = useDispatch();
 
-  const onClick = (type) => {
+  const onClick = (articleId, userId) => {
+    console.log("-------", articleId, userId);
+    
   }
 
-  const changeLikeCount = (type) => {
-    dispatch(updateArticleLikeCount({"id": 1, "type": type}))
+  const changeLikeCount = (type, id) => {    
+    dispatch(updateArticleLikeCount({"id": id, "type": type}))
   }
 
   return (
-    <Card className={s.section_card} isStatic={true} onClick={onClick}>
+    <Card className={s.section_card} isStatic={true} onClick={onClick} article={article}>
       {loading ? (
         <PostCardLoading />
       ) : (
@@ -37,7 +35,7 @@ function PostCard({ loading, article }) {
               {article.content.replace(/<a(.*?)>(.*?)<\/a>/g, '$2').replace(/[# |**|`|>]/g, '')}
             </p>
             <div className={s.info}>
-              <LikeOrNo likeCount={article.like} disLikeCount={article.disLike} changeCount={changeLikeCount} classNmae={s.info} />
+              <LikeOrNo likeCount={article.like} disLikeCount={article.disLike} articleId={article.id} changeCount={changeLikeCount} classNmae={s.info} />
               <span className={s.date}>{dayjs(article.date).format('YYYY-MM-DD')}</span>
               <div className={s.tags}>
                 {article.tags.map(tag => (

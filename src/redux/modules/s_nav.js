@@ -23,7 +23,7 @@ const navShowStore = createSlice({
             state.curView = action.payload;
         },
         changeFooterShow(state, action) {
-            state.navShow = action.payload;
+            state.footerShow = action.payload;
         },
 
     }

@@ -9,7 +9,7 @@ import { useSelector } from 'react-redux';
 function Footer() {
   const navState = useSelector(state => state.s_nav);
   return (
-    <footer className={classNames("footer", {"hiddenFooter": navState.footerShow})}>
+    <footer className={classNames("footer", {"hiddenFooter": !navState.footerShow})}>
       <span>
         个人博客系统
         <a href={source_github} target='_blank' rel='noreferrer' className={"text"}>

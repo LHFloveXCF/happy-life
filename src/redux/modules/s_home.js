@@ -69,22 +69,27 @@ const homeStore = createSlice({
         },
 
         setArticleList: (state, action) => {
-            const result = action.payload[0];
-            console.log("result, ", result);
-            const article = [{
-                "id": result.id,
-                "title": result.article_title,
-                "content": result.article_content,
-                "date": dayjs(new Date()).toISOString(),
-                "tags": [
-                    result.article_keys
-                ],
-                "like": 0,
-                "disLike": 0
-            }]            
+            const result = [];
+            action.payload.forEach(element => {
+                let article = {
+                    "id": element.id,
+                    "title": element.article_title,
+                    "userId": element.user_id,
+                    "content": element.article_content,
+                    "date": dayjs(new Date()).toISOString(),
+                    "tags": [
+                        element.article_keys
+                    ],
+                    "like": 0,
+                    "disLike": 0
+                };
+                result.push(article);
+            });
+            console.log("result: ", result);
+            
             return {
                 ...state,
-                article_info_list: article,
+                article_info_list: result,
             };
         }
     }
@@ -98,8 +103,8 @@ const { setUserId, setUserUserAvatar, setArticleLikeCount, setArticleList } = ho
 const getArticleList = () => {
     return dispatch => {
         common.fetchGet(url_get_article, {}, json => {
-            console.log("json:" , json);
-            
+            console.log("json:", json);
+
             dispatch(setArticleList(json.data))
         }, {}, dispatch)
     }
@@ -126,7 +131,7 @@ const updateArticleLikeCount = (likeAdd) => {
 
 
 
-export { updateArticleLikeCount, updateUserAvatar, updateUserId,getArticleList };
+export { updateArticleLikeCount, updateUserAvatar, updateUserId, getArticleList };
 
 
 const s_home = homeStore.reducer

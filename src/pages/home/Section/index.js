@@ -17,9 +17,6 @@ function Section({artSum}) {
   const [page, setPage] = useSafeState(1);
 
   const homeState = useSelector(state => state.s_home);  
-  console.log("homeState, ", homeState);
-  
-
   
 
   return (

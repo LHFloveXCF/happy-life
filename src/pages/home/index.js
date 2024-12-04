@@ -62,7 +62,6 @@ function Home() {
     return (
         <>
             <PageTitle title={siteTitle} desc={poem || ''} style={"homeTitle"} />
-            <Button onClick={() => changeImage}/>
             <div className={"body"}>
                 <Section artSum={16} />
                 <Aside />
