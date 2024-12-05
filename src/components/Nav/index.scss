@@ -19,6 +19,7 @@
 .hiddenNav {
   box-shadow: none;
   height: 0px;
+  // min-height: b.$navHeight;
   transform: translate(0, - b.$navHeight);
 }
 
