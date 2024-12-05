@@ -21,7 +21,8 @@ const homeStore = createSlice({
                     "good"
                 ],
                 "like": 0,
-                "disLike": 0
+                "disLike": 0,
+                "icon":""
             }
         ],
     },
@@ -81,7 +82,8 @@ const homeStore = createSlice({
                         element.article_keys
                     ],
                     "like": 0,
-                    "disLike": 0
+                    "disLike": 0,
+                    "icon": element.article_icon
                 };
                 result.push(article);
             });

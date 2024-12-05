@@ -17,8 +17,8 @@
   .img {
     flex: 0 0 auto;
     margin-right: 20px;
-    width: 300px;
-    height: 220px;
+    width: 179px;
+    height: 140px;
     border-radius: 10%;
     max-width: 100%;
   }
@@ -32,7 +32,7 @@
   }
 
   .title {
-    margin: 20px 0 10px 0;
+    // margin: 20px 0 10px 0;
     height: 40px;
     align-items: center; //将容器内的项目（items）在交叉轴（cross axis）方向上居中对齐
     justify-content: center; //用于在Flex容器的主轴（main axis）上对齐和分配子元素的空间
@@ -46,47 +46,50 @@
     max-width: 100%;
     margin: 0;
     /* 设置外边距为0 */
-    height: 100px;
-    /* 设置固定高度 */
     color: b.$textColor;
     /* 这里似乎是一个变量，用于设置文本颜色，但这不是标准的CSS。如果b.$textColor没有在JS或其他CSS预处理器中定义，这将不会生效 */
     font-size: 18px;
     /* 设置字体大小 */
     overflow: hidden;
+    -webkit-line-clamp: 3;
+    /* 限制显示的行数 */
     /* 当内容溢出容器时，隐藏溢出的部分 */
     text-overflow: ellipsis;
     /* 当文本溢出时，用省略号表示被裁剪的文本 */
     display: -webkit-box;
     /* 使用WebKit的盒子模型布局（这是一个非标准的、特定于WebKit的属性，但已被广泛用于实现文本截断） */
     -webkit-box-orient: vertical;
-    -webkit-line-clamp: 3;
-    /* 限制显示的行数 */
+    display: -webkit-box;
   }
 
-  .info {
+  .c_home_article_show_operate {
     position: relative;
     bottom: 0;
     height: 30px;
-    
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    margin-top: 3px;
+
 
     .date {
       @extend .tagBase;
-      position: absolute;
-      bottom: 0;
-      justify-content: center;
-      left: 140px;
+      // position: absolute;
+      // bottom: 0;
+      // justify-content: center;
+      // left: 140px;
     }
 
     .tags {
-      position: absolute;
-      bottom: 0;
-      left: 300px;
+      // position: absolute;
+      // bottom: 0;
+      // left: 300px;
 
       .tag {
         @extend .tagBase;
-        position: relative;
-        display: inline-block;
-        text-align: center;
+        // position: relative;
+        // display: inline-block;
+        // text-align: center;
       }
     }
   }
@@ -107,7 +110,7 @@
   }
 
   .section_card .img {
-    width: 50px;
+    width: auto;
     /* 图片占据全部宽度 */
     height: auto;
     /* 高度自适应 */
