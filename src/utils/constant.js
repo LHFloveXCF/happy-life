@@ -95,6 +95,8 @@ export const emailApi = 'https://react-blog-admin-test-1a3424a4e2-1304393382.ap-
 
 export const server_host = 'http://127.0.0.1:18141/api/';
 
+export const imgUrlPrefix = 'http://127.0.0.1:18141/show/'
+
 // 每日诗词替换链接
 export const url_daily_poem = 'https://v2.jinrishici.com/one.json?client=npm-sdk/1.0';
 export const footer_desc = [

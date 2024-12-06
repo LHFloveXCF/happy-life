@@ -71,8 +71,6 @@ img {
 }
 
 .justify_content_center {
-  -webkit-box-pack: center !important;
-  -ms-flex-pack: center !important;
   justify-content: center !important;
 }
 
@@ -81,14 +79,24 @@ img {
 }
 
 .d_flex {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
+  flex-direction: row;
+}
+
+.all_card {
+  margin-bottom: b.$box_space;
+  border-radius: b.$bigRadius;
+  overflow: hidden;
+  background-color: b.$themeColor;
+  color: b.$textColor;
+  padding: b.$space;
 }
 
 .aside {
-  width: 300px;
-  float: right;
+  width: b.$asideWidth;
+  overflow: hidden;
+  display: block;
+  
 }
 
 // antd的message

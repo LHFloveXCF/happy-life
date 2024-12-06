@@ -1,12 +1,17 @@
 @use '../../styles/base' as b;
 
 .main {
-  min-height: calc(100vh - #{b.$footerHeight + 2 * b.$space});
+  // min-height: calc(100vh - #{b.$footerHeight + 2 * b.$space});
+  min-height: calc(100vh - #{b.$footerHeight});
+  // margin-top: b.$navHeight;
 
+  // 前台样式
   .m_center {
     width: b.$centerWidth;
     margin: auto;
+    min-height: 100%;
   }
+  // 管理后台样式
   .m_center_back{
     width: 100vw;
   }
@@ -15,7 +20,7 @@
 
 @media screen and (max-width: 1240px) {
   .main {
-    min-height: calc(100vh - 70rem - 20rem);
+    min-height: calc(100vh - 70rem);
 
     .m_center {
       width: 100vw;

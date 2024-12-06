@@ -24,16 +24,12 @@ export async function fetchPost(url, body = {}, func, extraTools, dispatch, user
         body: jsonStringify(body)
     };
 
-    try {
-        const response = await fetch(
-            url,
-            fetchParam
-        );
-        const json = checkFetchStatus(response);
-        handlerFetchResponse(url, json, extraTools, dispatch, func);
-    } catch (error) {
-        handlerFetchError(url, error, extraTools, dispatch);
-    }
+    return fetch(url, fetchParam).then(
+        response => checkFetchStatus(response)
+    ).then(
+        json => handlerFetchResponse(url, json, extraTools, dispatch, func)
+    ).catch(error => handlerFetchError(url, error, extraTools, dispatch))
+
 }
 
 /**
@@ -74,7 +70,7 @@ function checkFetchStatus(response) {
 /**
  * 请求响应处理
  * */
-function handlerFetchResponse(url, json, extraTools, dispatch, func) {    
+function handlerFetchResponse(url, json, extraTools, dispatch, func) {
     if (json.status !== void 0) {
         if (json.status === API_STATUS.SUCCESS) {
             func(json);	//成功的回调函数
@@ -96,7 +92,6 @@ function handlerFetchResponse(url, json, extraTools, dispatch, func) {
             ));
         }
     } else {
-        console.log("handlerFetchResponse", json.status);
         dispatch(extraTools.actionFailure(
             jsonStringify(json)
         ));

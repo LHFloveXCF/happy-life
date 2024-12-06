@@ -1,4 +1,18 @@
+@use '../../../styles/base' as b;
+
 .c_p_article_show_father {
     height: 100%;
+    width: b.$centerWidth;
     font-size: 20px;
+    margin-top: b.$navHeight;
+}
+
+.c_p_article_show_container {
+    height: 100%;
+    font-size: 20px;
+}
+
+.c_p_article_show_content {
+    margin-right: b.$box_space;
+    min-width: calc(100% - #{b.$asideWidth});
 }

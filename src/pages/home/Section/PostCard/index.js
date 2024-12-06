@@ -9,6 +9,7 @@ import LikeOrNo from '@/components/LikeAndUnLike';
 import { useDispatch } from 'react-redux';
 import { updateArticleLikeCount } from '@/redux/modules/s_home'
 import { useNavigate } from 'react-router-dom';
+import { imgUrlPrefix } from '@/utils/constant';
 
 function PostCard({ loading, article }) {
   const dispatch = useDispatch();
@@ -28,7 +29,7 @@ function PostCard({ loading, article }) {
         <PostCardLoading />
       ) : (
         <>
-          <img src={article.icon} className={s.img} />
+          <img src={`${imgUrlPrefix}${article.icon}`} className={s.img} />
           {/** 内容框 上下布局 */}
           <div className={s.article_container}>
             

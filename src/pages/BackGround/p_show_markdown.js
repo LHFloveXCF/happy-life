@@ -4,7 +4,7 @@ import Editor from 'react-markdown-editor-lite';
 import 'react-markdown-editor-lite/lib/index.css';
 import './index.custom.scss';
 import { url_save_article, url_upload } from '@/utils/constant_api';
-import { Button, Upload } from 'antd';
+import { Button, message, Upload } from 'antd';
 import { UploadOutlined } from '@mui/icons-material';
 import axios from 'axios';
 import styles from './style';
@@ -83,11 +83,12 @@ const MarkdownEditor = () => {
     };
 
     function handleBackSubmitArticle() {
+        // message.info("提交成功！")
         let body = {
             article: markdown
         }
         common.fetchPost(url_save_article, body, json => {
-            console.log("handleBackSubmitArticle ", json);
+            message.info("提交成功！")
         }, {}, dispatch)
     }
 

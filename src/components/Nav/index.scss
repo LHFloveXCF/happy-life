@@ -18,7 +18,8 @@
 
 .hiddenNav {
   box-shadow: none;
-  height: 0px;
+  height: 1px;
+  overflow: hidden;
   // min-height: b.$navHeight;
   transform: translate(0, - b.$navHeight);
 }
