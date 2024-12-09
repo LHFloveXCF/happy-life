@@ -1,36 +1,34 @@
 import s from './index.module.scss';
 
-import { useSafeState } from 'ahooks';
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
-
-import MyPagination from '@/components/MyPagination';
-import { homeSize } from '@/utils/constant';
-import PostCard from './PostCard';
+import { size_config } from '@/utils/constant';
+import { List } from 'antd';
 import { useSelector } from 'react-redux';
+import PostCard from './PostCard';
 
 
 
 
-function Section({artSum}) {
-  const navigate = useNavigate();
-  const [page, setPage] = useSafeState(1);
+function Section({ artSum }) {
+  const homeState = useSelector(state => state.s_home);
+  const shouldShowPagination = homeState.article_info_list.length >= size_config.homeSize;
 
-  const homeState = useSelector(state => state.s_home);  
-  
 
   return (
     <section className={s.section}>
-      {homeState.article_info_list.map((item, index) => (
-        <PostCard loading={false} article={item} key={index}/>
-      ))}
-      <MyPagination
-        current={page}
-        defaultPageSize={homeSize}
-        total={artSum}
-        setPage={setPage}
-        autoScroll={true}
-        scrollToTop={document.body.clientHeight - 80}
+      <List
+        itemLayout="vertical"
+        size="large"
+        pagination={shouldShowPagination ? {
+          onChange: (page) => {
+          },
+          pageSize: size_config.homeSize,
+        } : false}
+        dataSource={homeState.article_info_list}
+        renderItem={(item, index) => (
+          <List.Item key={index}>
+            <PostCard loading={false} article={item} key={index} />
+          </List.Item>
+        )}
       />
     </section>
   );

@@ -86,27 +86,32 @@ const homeStore = createSlice({
                     "icon": element.article_icon
                 };
                 result.push(article);
-            });
-            console.log("result: ", result);
-            
+            });            
             return {
                 ...state,
                 article_info_list: result,
             };
-        }
+        },
+        setDataCurPage: (state, action) => {
+            return {
+                ...state,
+                data: {
+                    ...state.data,
+                    current: action.payload
+                }
+            };
+        },
     }
 
 })
 
 // 结构出action
-const { setUserId, setUserUserAvatar, setArticleLikeCount, setArticleList } = homeStore.actions;
+const { setUserId, setUserUserAvatar, setArticleLikeCount, setArticleList, setDataCurPage } = homeStore.actions;
 
 // 暴露出对应的方法
 const getArticleList = () => {
     return dispatch => {
         common.fetchGet(url_get_article, {}, json => {
-            console.log("json:", json);
-
             dispatch(setArticleList(json.data))
         }, {}, dispatch)
     }
@@ -131,9 +136,15 @@ const updateArticleLikeCount = (likeAdd) => {
     }
 };
 
+const updateCurrentPage = (cur_page) => {
+    return (dispatch) => {
+        dispatch(setDataCurPage(cur_page))
+    }
+};
 
 
-export { updateArticleLikeCount, updateUserAvatar, updateUserId, getArticleList };
+
+export { updateArticleLikeCount, updateUserAvatar, updateUserId, getArticleList, updateCurrentPage };
 
 
 const s_home = homeStore.reducer

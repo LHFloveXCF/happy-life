@@ -59,9 +59,13 @@ export const staleTime = 180000;
 export const siteCountStale = 300000;
 
 // 首页文章分页，每页数据
-export const homeSize = 8;
-export const msgSize = 10;
-export const detailPostSize = 10;
+export const size_config = Object.freeze({
+  homeSize: 8,
+  msgSize: 10,
+  detailPostSize: 10,
+  articleBackSize: 20,
+});
+
 
 // 个人信息
 export const myName = '飞鸟';
@@ -109,3 +113,25 @@ export const cur_view = Object.freeze({
   CLIENT: 1,
   BACKGROUND: 2,
 });
+
+export const c_b_sign_state = Object.freeze({
+  write_article: "1",
+  setting_article: "3",
+});
+
+export const c_b_article_table = [
+  {
+    title: 'title',
+    dataIndex: 'title',
+    key: 'key',
+  },
+  {
+    title: 'id',
+    dataIndex: 'id',
+    key: 'key',
+  }, {
+    title: 'content',
+    key: 'key',
+    dataIndex: 'content',
+  },
+]

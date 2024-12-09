@@ -10,7 +10,7 @@ import { getArticleList, updateUserAvatar, updateUserId } from '@/redux/modules/
 import axios from 'axios';
 import { useEffect } from 'react';
 import Aside from './Aside';
-import { Button } from 'antd';
+import { Button, message } from 'antd';
 
 function Home() {
     useTitle(siteTitle);
@@ -27,7 +27,7 @@ function Home() {
                 setPoem(res.data.data.content);
             })
             .catch(error => {
-                console.error('Error fetching the poem:', error);
+                message.error('Error fetching the poem:', error);
             });
     })
 
@@ -63,7 +63,7 @@ function Home() {
         <>
             <PageTitle title={siteTitle} desc={poem || ''} style={"homeTitle"} />
             <div className={"body"}>
-                <Section artSum={16} />
+                <Section artSum={10} />
                 <Aside />
             </div>
         </>

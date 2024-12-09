@@ -1,15 +1,15 @@
+import * as common from '@/utils/common';
+import { url_save_article } from '@/utils/constant_api';
+import { UploadOutlined } from '@mui/icons-material';
+import { Button, Input, message, Space, Upload } from 'antd';
 import MarkdownIt from 'markdown-it';
 import { useRef, useState } from 'react';
 import Editor from 'react-markdown-editor-lite';
 import 'react-markdown-editor-lite/lib/index.css';
+import { useDispatch, useSelector } from 'react-redux';
 import './index.custom.scss';
-import { url_save_article, url_upload } from '@/utils/constant_api';
-import { Button, message, Upload } from 'antd';
-import { UploadOutlined } from '@mui/icons-material';
-import axios from 'axios';
 import styles from './style';
-import * as common from '@/utils/common';
-import { useDispatch } from 'react-redux';
+import classNames from 'classnames';
 
 const MarkdownEditor = () => {
     const [markdown, setMarkdown] = useState('');
@@ -20,30 +20,34 @@ const MarkdownEditor = () => {
         setMarkdown(value.text);
     };
 
+    // 标题控制
+    const [articleTitle, setArticleTitle] = useState("");
+    // 封面控制
+    const [articleImage, setArticleImage] = useState("");
+    const handleTitleImageUpload = (file) => {
+        common.uploadImage(file, (imageUrl) => {            
+            setArticleImage(imageUrl.split('/').pop())
+        })
+    }
+
+    function test(e) {
+        console.log("variableName:", e.target.value);
+    }
+
     const mdParser = new MarkdownIt(/* Markdown-it options */);
-
-    const handleImageUpload = async (info) => {
-        if (info.fileList.length === 0) return;
-        const file = info.fileList[0];
-
-        const formData = new FormData();
-        formData.append('file', info.file);
-        console.log("fileInput, ", info.file);
-        try {
-            const response = await fetch(url_upload, {
-                method: 'POST',
-                body: formData,
-            });
-            const result = await response.json();
-            const imageUrl = result.url;
-            insertImageMarkdown(imageUrl);
-        } catch (error) {
-            console.error('Error uploading image:', error);
-        }
-    };
-
-    const [uploadUrl, setUploadUrl] = useState(url_upload);
+    // 内容图片上传
     const [fileList, setFileList] = useState([]);
+    const handleContentImageUpload = (file) => {
+        common.uploadImage(file, (imageUrl) => {
+            insertImageMarkdown(imageUrl);
+            setFileList([]);
+        })
+
+    };
+    const insertImageMarkdown = (url) => {
+        const imageMarkdown = `![Uploaded Image](${url})\n`;
+        setMarkdown((prevMarkdown) => (prevMarkdown ? `${prevMarkdown}\n${imageMarkdown}` : imageMarkdown));
+    };
 
     const props = {
         maxCount: 1,
@@ -53,39 +57,17 @@ const MarkdownEditor = () => {
             newFileList.splice(index, 1);
             setFileList(newFileList);
         },
-        beforeUpload: (file) => {
-            setFileList(prev => [...prev, file]);
-            const formData = new FormData();
-            formData.append('file', file);
-
-            axios.post(uploadUrl, formData, {
-                headers: {
-                    'Content-Type': 'multipart/form-data'
-                }
-            })
-                .then(response => {
-                    insertImageMarkdown(response.data.url);
-                    setFileList([]);
-                })
-                .catch(error => {
-                });
-
-            // 阻止自动上传
-            return false;
-        },
         fileList
     };
 
-    const insertImageMarkdown = (url) => {
-        const currentText = markdown;
-        const imageMarkdown = `![Uploaded Image](${url})\n`;
-        setMarkdown((prevMarkdown) => (prevMarkdown ? `${prevMarkdown}\n${imageMarkdown}` : imageMarkdown));
-    };
-
+    const {signState} = useSelector(state => state.s_b_home);
+    
+    // 提交文章
     function handleBackSubmitArticle() {
-        // message.info("提交成功！")
         let body = {
-            article: markdown
+            article: markdown,
+            title: articleTitle,
+            image: articleImage
         }
         common.fetchPost(url_save_article, body, json => {
             message.info("提交成功！")
@@ -94,12 +76,20 @@ const MarkdownEditor = () => {
 
     return (
         <>
-            <div>
+            <div className={classNames(signState !== "1" ? "b_p_home_div_hide" : "")}>
+                <div>
+                    <Space.Compact style={{ width: '100%' }}>
+                        <Input addonBefore="标题：" value={articleTitle} onChange={(e) => setArticleTitle(e.target.value)} />
+                        <Button type="primary">Submit</Button>
+                    </Space.Compact>
+                </div>
                 <div style={styles.b_p_home_markddown_operate}>
-                    <Upload {...props}>
+                    <Upload {...props} beforeUpload={(e) => handleContentImageUpload(e)}>
                         <Button icon={<UploadOutlined />}>插入图片</Button>
                     </Upload>
-                    <Button>添加封面</Button>
+                    <Upload maxCount={1} beforeUpload={(e) => handleTitleImageUpload(e)}>
+                        <Button icon={<UploadOutlined />}>添加封面</Button>
+                    </Upload>
                     <Button onClick={() => handleBackSubmitArticle()}>发布文章</Button>
                 </div>
 

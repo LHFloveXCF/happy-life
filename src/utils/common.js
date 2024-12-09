@@ -4,10 +4,27 @@ import Iconv from 'iconv-lite';
 import fetch from 'isomorphic-fetch';
 import jsonSafeStringify from 'json-stringify-safe';
 import jsonSafeParse from 'safe-json-parse/tuple';
+import { url_upload } from './constant_api';
+import axios from 'axios';
 
 //跳过解码警告
 Iconv.skipDecodeWarning = true;
 
+// 处理图片上传
+export async function uploadImage(file, func) {
+    const formData = new FormData();
+    formData.append('file', file);
+    return axios.post(url_upload, formData, {
+        headers: {
+            'Content-Type': 'multipart/form-data'
+        }
+    })
+        .then(response => {
+            func(response.data.url);
+        })
+        .catch(error => {
+        });
+}
 
 /**
  * HTTP POST请求

@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import MarkdownEditor from "./p_show_markdown";
 import { useDispatch, useSelector } from "react-redux";
 import { changeFooterShow, changeView, setNavShow } from "@/redux/modules/s_nav";
-import { cur_view } from "@/utils/constant";
+import { c_b_sign_state, cur_view } from "@/utils/constant";
 import React, { useState } from 'react';
 import {
     DesktopOutlined,
@@ -16,13 +16,15 @@ import {
     DownOutlined,
     SettingOutlined
 } from '@ant-design/icons';
-import { Breadcrumb, Layout, Menu, theme, Button, Tooltip, Flex, Dropdown, Space, message } from 'antd';
+import { Breadcrumb, Layout, Menu, theme, Button, Tooltip, Flex, Dropdown } from 'antd';
 import { siteTitle } from '@/utils/constant';
 import { useTitle } from 'ahooks';
 import style from './index.custom.scss';
 import { b_logout_items } from "@/utils/constant_back";
 import classNames from "classnames";
 import styles from "./style";
+import { updateSignState } from "@/redux/modules/s_b_home";
+import BackArticleSetting from "./p_show_article";
 
 
 const { Header, Content, Footer, Sider } = Layout;
@@ -35,10 +37,10 @@ function getItem(label, key, icon, children) {
     };
 }
 const items = [
-    getItem('写文章', '1', <PieChartOutlined />),
+    getItem('写文章', c_b_sign_state.write_article, <PieChartOutlined />),
     getItem('Option 2', '2', <DesktopOutlined />),
-    getItem('User', 'sub1', <UserOutlined />, [
-        getItem('Tom', '3'),
+    getItem('文章管理', 'sub1', <UserOutlined />, [
+        getItem('文章列表', c_b_sign_state.setting_article),
         getItem('Bill', '4'),
         getItem('Alex', '5'),
     ]),
@@ -53,20 +55,19 @@ function BackGroundHome() {
     const navState = useSelector(state => state.s_nav);
     const dispatch = useDispatch();
 
-
+    // 组件加载时候执行一次的操作
     useEffect(() => {
         dispatch(changeView(cur_view.BACKGROUND));
         dispatch(setNavShow(false));
         dispatch(changeFooterShow(false));
-        console.log("--------");
-        
     }, []);
-
+    // antd layout折叠管理
     const [collapsed, setCollapsed] = useState(false);
     const {
         token: { colorBgContainer, borderRadiusLG },
     } = theme.useToken();
 
+    // 设置相关操作
     function handleLogout(e) {
         switch (e.key) {
             case "1":
@@ -80,8 +81,7 @@ function BackGroundHome() {
         };
 
     }
-
-
+    // 设置选项
     const menu = (
         <Menu onClick={handleLogout}>
             <Menu.Item key="1" icon={<LoginOutlined />} >退出登录</Menu.Item>
@@ -89,12 +89,18 @@ function BackGroundHome() {
         </Menu>
     );
 
+    // 切换页签
+    const changeSignState = (e) => {
+        dispatch(updateSignState(e.key))
+    }
+
+
     return (
         <>
             <Layout style={styles.b_p_home_layout_outer}>
                 <Sider collapsed={collapsed} onCollapse={(value) => setCollapsed(value)}>
                     <div className={classNames(style.b_p_logo_side, { [style.b_p_logo_side_collapsed]: collapsed })} />
-                    <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline" items={items} />
+                    <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline" items={items} onClick={changeSignState}/>
                 </Sider>
                 <Layout>
                     <Header
@@ -119,6 +125,7 @@ function BackGroundHome() {
                     <Content>
                         {/**写文章 */}
                         <MarkdownEditor />
+                        <BackArticleSetting />
                     </Content>
                 </Layout>
             </Layout>
