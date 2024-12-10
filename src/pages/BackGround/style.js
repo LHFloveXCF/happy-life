@@ -50,6 +50,16 @@ let styles = {
         textAlign: 'center',
         padding: '10px 0',
         boxShadow: `0 - 1px 5px rgba(0, 0, 0, 0.5)`,
+        display: 'flex',
+        justifyContent: 'flex-end'
+    },
+    // #fc5531
+    b_p_home_markddown_operate_addition_submit_button: {
+        backgroundColor: '#fc5531',
+        color: '#fff',
+        borderRadius: '20px',
+        overflow: 'visable',
+        marginRight: '10px'
     }
 
 };

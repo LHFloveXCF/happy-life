@@ -54,6 +54,8 @@ const MarkdownEditor = () => {
             title: articleTitle,
             image: articleImage
         }
+        console.log("----", body);
+        
         common.fetchPost(url_save_article, body, json => {
             message.info("提交成功！")
         }, {}, dispatch)
@@ -61,28 +63,21 @@ const MarkdownEditor = () => {
 
     return (
         <>
-            <Layout>
-                <Content>
-                    <div className={classNames(signState !== "1" ? "b_p_home_div_hide" : "", "b_p_home_layout_content")}>
-                        <div style={styles.b_p_home_markddown_operate}>
-                            <Button onClick={() => handleBackSubmitArticle()}>发布文章</Button>
-                        </div>
-                        <BackOperateUpload insertImageToArticle={insertImageMarkdown} />
+            <div className={classNames(signState !== "1" ? "b_p_home_div_hide" : "", "b_p_home_layout_content")}>
+                <BackOperateUpload insertImageToArticle={insertImageMarkdown} />
+                <Editor
+                    value={markdown}
+                    allowPasteImage={true}
+                    style={{ height: '1000px' }} renderHTML={text => mdParser.render(text)} onChange={handleEditorChange}
+                />
 
-                        <Editor
-                            value={markdown}
-                            allowPasteImage={true}
-                            style={{ height: '1000px' }} renderHTML={text => mdParser.render(text)} onChange={handleEditorChange}
-                        />
+                <BackOperateAddition setArticleImage={setArticleImage} articleTitle={articleTitle} setArticleTitle={setArticleTitle} />
+                <div style={styles.b_p_home_markddown_operate_addition_submit}>
+                    <Button style={styles.b_p_home_markddown_operate_addition_submit_button}
+                        onClick={() => handleBackSubmitArticle()}>发布文章</Button>
+                </div>
 
-                        <BackOperateAddition setArticleImage={setArticleImage} articleTitle={articleTitle} setArticleTitle={setArticleTitle} />
-                        <div style={styles.b_p_home_markddown_operate_addition_submit}>
-                            <Button onClick={() => handleBackSubmitArticle()}>发布文章</Button>
-                        </div>
-
-                    </div>
-                </Content>
-            </Layout>
+            </div>
 
         </>
 
