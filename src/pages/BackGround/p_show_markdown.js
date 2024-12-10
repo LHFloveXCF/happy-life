@@ -1,19 +1,22 @@
 import * as common from '@/utils/common';
-import { url_save_article } from '@/utils/constant_api';
-import { UploadOutlined } from '@mui/icons-material';
-import { Button, Input, message, Space, Upload } from 'antd';
+import { url_save_article, url_upload } from '@/utils/constant_api';
+import { Button, Image, Input, Layout, message, Space, Upload } from 'antd';
+import { PlusOutlined } from '@ant-design/icons';
+import classNames from 'classnames';
 import MarkdownIt from 'markdown-it';
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 import Editor from 'react-markdown-editor-lite';
 import 'react-markdown-editor-lite/lib/index.css';
 import { useDispatch, useSelector } from 'react-redux';
 import './index.custom.scss';
 import styles from './style';
-import classNames from 'classnames';
+import { UploadOutlined } from '@mui/icons-material';
+import BackOperateUpload from './b_p_article_operate_upload';
+import BackOperateAddition from './b_p_article_operate_addition';
+import { Content, Footer } from 'antd/es/layout/layout';
 
 const MarkdownEditor = () => {
     const [markdown, setMarkdown] = useState('');
-    const fileInputRef = useRef(null);
     const dispatch = useDispatch();
 
     const handleEditorChange = (value) => {
@@ -24,44 +27,26 @@ const MarkdownEditor = () => {
     const [articleTitle, setArticleTitle] = useState("");
     // 封面控制
     const [articleImage, setArticleImage] = useState("");
-    const handleTitleImageUpload = (file) => {
-        common.uploadImage(file, (imageUrl) => {            
-            setArticleImage(imageUrl.split('/').pop())
-        })
-    }
 
-    function test(e) {
-        console.log("variableName:", e.target.value);
+    function test(info) {
+        if (info.file.status !== 'uploading') {
+            console.log(info.file, info.fileList);
+        }
+        if (info.file.status === 'done') {
+            message.success(`${info.file.name} file uploaded successfully`);
+        } else if (info.file.status === 'error') {
+            message.error(`${info.file.name} file upload failed.`);
+        }
     }
 
     const mdParser = new MarkdownIt(/* Markdown-it options */);
-    // 内容图片上传
-    const [fileList, setFileList] = useState([]);
-    const handleContentImageUpload = (file) => {
-        common.uploadImage(file, (imageUrl) => {
-            insertImageMarkdown(imageUrl);
-            setFileList([]);
-        })
-
-    };
     const insertImageMarkdown = (url) => {
         const imageMarkdown = `![Uploaded Image](${url})\n`;
         setMarkdown((prevMarkdown) => (prevMarkdown ? `${prevMarkdown}\n${imageMarkdown}` : imageMarkdown));
     };
 
-    const props = {
-        maxCount: 1,
-        onRemove: (file) => {
-            const index = fileList.indexOf(file);
-            const newFileList = fileList.slice();
-            newFileList.splice(index, 1);
-            setFileList(newFileList);
-        },
-        fileList
-    };
+    const { signState } = useSelector(state => state.s_b_home);
 
-    const {signState} = useSelector(state => state.s_b_home);
-    
     // 提交文章
     function handleBackSubmitArticle() {
         let body = {
@@ -76,29 +61,28 @@ const MarkdownEditor = () => {
 
     return (
         <>
-            <div className={classNames(signState !== "1" ? "b_p_home_div_hide" : "")}>
-                <div>
-                    <Space.Compact style={{ width: '100%' }}>
-                        <Input addonBefore="标题：" value={articleTitle} onChange={(e) => setArticleTitle(e.target.value)} />
-                        <Button type="primary">Submit</Button>
-                    </Space.Compact>
-                </div>
-                <div style={styles.b_p_home_markddown_operate}>
-                    <Upload {...props} beforeUpload={(e) => handleContentImageUpload(e)}>
-                        <Button icon={<UploadOutlined />}>插入图片</Button>
-                    </Upload>
-                    <Upload maxCount={1} beforeUpload={(e) => handleTitleImageUpload(e)}>
-                        <Button icon={<UploadOutlined />}>添加封面</Button>
-                    </Upload>
-                    <Button onClick={() => handleBackSubmitArticle()}>发布文章</Button>
-                </div>
+            <Layout>
+                <Content>
+                    <div className={classNames(signState !== "1" ? "b_p_home_div_hide" : "", "b_p_home_layout_content")}>
+                        <div style={styles.b_p_home_markddown_operate}>
+                            <Button onClick={() => handleBackSubmitArticle()}>发布文章</Button>
+                        </div>
+                        <BackOperateUpload insertImageToArticle={insertImageMarkdown} />
 
-                <Editor
-                    value={markdown}
-                    allowPasteImage={true}
-                    style={{ height: '500px' }} renderHTML={text => mdParser.render(text)} onChange={handleEditorChange}
-                />
-            </div>
+                        <Editor
+                            value={markdown}
+                            allowPasteImage={true}
+                            style={{ height: '1000px' }} renderHTML={text => mdParser.render(text)} onChange={handleEditorChange}
+                        />
+
+                        <BackOperateAddition setArticleImage={setArticleImage} articleTitle={articleTitle} setArticleTitle={setArticleTitle} />
+                        <div style={styles.b_p_home_markddown_operate_addition_submit}>
+                            <Button onClick={() => handleBackSubmitArticle()}>发布文章</Button>
+                        </div>
+
+                    </div>
+                </Content>
+            </Layout>
 
         </>
 

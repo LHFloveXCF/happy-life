@@ -83,7 +83,8 @@ const homeStore = createSlice({
                     ],
                     "like": 0,
                     "disLike": 0,
-                    "icon": element.article_icon
+                    "icon": element.article_icon,
+                    "time": element.article_time
                 };
                 result.push(article);
             });            

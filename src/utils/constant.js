@@ -118,20 +118,27 @@ export const c_b_sign_state = Object.freeze({
   write_article: "1",
   setting_article: "3",
 });
-
+// 后台-文章列表
 export const c_b_article_table = [
-  {
-    title: 'title',
-    dataIndex: 'title',
-    key: 'key',
-  },
   {
     title: 'id',
     dataIndex: 'id',
-    key: 'key',
-  }, {
+    key: 'id',
+  },
+  {
+    title: 'title',
+    dataIndex: 'title',
+    key: 'title',
+  },
+  {
     title: 'content',
-    key: 'key',
+    key: 'content',
     dataIndex: 'content',
+    ellipsis: true,
+  },
+  {
+    title: 'time',
+    key: 'time',
+    dataIndex: 'time',
   },
 ]
