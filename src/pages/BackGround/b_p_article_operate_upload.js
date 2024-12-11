@@ -22,11 +22,10 @@ const BackOperateUpload = ({ insertImageToArticle, setArticleImage }) => {
     const handleChange = ({ fileList: newFileList, file: curFile }) => {
         let updatedFileList = [...newFileList]; 
         if (curFile.status === 'done') {
-            const { response } = curFile;
-            console.log("response:", response);
-            
+            const { response } = curFile;            
             if (response.code !== API_STATUS.UPLOAD_SUC) {
                 updatedFileList = updatedFileList.filter(item => item.response.url !== response.url);
+                updatedFileList.push(curFile);
                 message.error(response.message)
             } else {
                 if (typeof insertImageToArticle === 'function') {
