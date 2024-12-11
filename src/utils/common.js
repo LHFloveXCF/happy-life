@@ -94,14 +94,12 @@ function handlerFetchResponse(url, json, extraTools, dispatch, func) {
             if (extraTools.actionSuccess !== void 0 && extraTools.route !== void 0) {
                 //操作成功，页面跳转
                 dispatch(extraTools.actionSuccess(json.data, extraTools.route));
-            }
-            else if (extraTools.actionSuccess !== void 0) {
+            } else if (extraTools.actionSuccess !== void 0) {
                 //页面通知
                 dispatch(extraTools.actionSuccess(
                     json.message || '操作成功'
                 ));
-            }
-            else {
+            } else {
             }
         } else {
             dispatch(extraTools.actionFailure(
@@ -119,6 +117,8 @@ function handlerFetchResponse(url, json, extraTools, dispatch, func) {
  * 请求错误处理
  * */
 function handlerFetchError(url, error, extraTools, dispatch) {
+    console.log("variableName:", error);
+
     if (extraTools.actionFailure) {
         dispatch(extraTools.actionFailure(error.message + '. 多半是GM服务端没开，抓紧的……'));
     };

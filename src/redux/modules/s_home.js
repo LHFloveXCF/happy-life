@@ -1,8 +1,8 @@
 
+import * as common from '@/utils/common';
+import { url_get_article } from '@/utils/constant_api';
 import { createSlice } from '@reduxjs/toolkit';
 import dayjs from 'dayjs';
-import * as common from '@/utils/common';
-import { url_get_article, url_upload } from '@/utils/constant_api';
 
 
 const homeStore = createSlice({
@@ -57,6 +57,8 @@ const homeStore = createSlice({
                             return { ...article, like: article.like + 1 };
                         case 2: // 吐槽
                             return { ...article, disLike: article.disLike + 1 };
+
+                        default:
                     }
 
                 }
@@ -145,7 +147,7 @@ const updateCurrentPage = (cur_page) => {
 
 
 
-export { updateArticleLikeCount, updateUserAvatar, updateUserId, getArticleList, updateCurrentPage };
+export { getArticleList, updateArticleLikeCount, updateCurrentPage, updateUserAvatar, updateUserId };
 
 
 const s_home = homeStore.reducer

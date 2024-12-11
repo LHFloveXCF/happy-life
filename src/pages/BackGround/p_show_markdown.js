@@ -1,19 +1,16 @@
 import * as common from '@/utils/common';
-import { url_save_article, url_upload } from '@/utils/constant_api';
-import { Button, Image, Input, Layout, message, Space, Upload } from 'antd';
-import { PlusOutlined } from '@ant-design/icons';
+import { url_save_article } from '@/utils/constant_api';
+import { Button, message } from 'antd';
 import classNames from 'classnames';
 import MarkdownIt from 'markdown-it';
 import { useState } from 'react';
 import Editor from 'react-markdown-editor-lite';
 import 'react-markdown-editor-lite/lib/index.css';
 import { useDispatch, useSelector } from 'react-redux';
+import BackOperateAddition from './b_p_article_operate_addition';
+import BackOperateUpload from './b_p_article_operate_upload';
 import './index.custom.scss';
 import styles from './style';
-import { UploadOutlined } from '@mui/icons-material';
-import BackOperateUpload from './b_p_article_operate_upload';
-import BackOperateAddition from './b_p_article_operate_addition';
-import { Content, Footer } from 'antd/es/layout/layout';
 
 const MarkdownEditor = () => {
     const [markdown, setMarkdown] = useState('');
@@ -53,11 +50,10 @@ const MarkdownEditor = () => {
             article: markdown,
             title: articleTitle,
             image: articleImage
-        }
-        console.log("----", body);
-        
+        }        
         common.fetchPost(url_save_article, body, json => {
             message.info("提交成功！")
+            // 提交成功后；该怎么办
         }, {}, dispatch)
     }
 

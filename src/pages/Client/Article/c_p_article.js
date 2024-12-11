@@ -1,11 +1,10 @@
-import Layout from "@/components/Layout";
 import MarkDown from "@/components/MarkDown";
 import useUrlState from '@ahooksjs/use-url-state';
 import { useSelector } from "react-redux";
 
-import style from './index.module.scss';
-import '../../../global.custom.scss';
 import classNames from "classnames";
+import '../../../global.custom.scss';
+import style from './index.module.scss';
 
 function ClientArticle() {
 

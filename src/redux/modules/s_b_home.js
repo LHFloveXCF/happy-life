@@ -21,7 +21,7 @@ const backHomeStore = createSlice({
 
 });
 
-const { setMsgs, setSignState } = backHomeStore.actions
+const {setSignState } = backHomeStore.actions
 
 const saveMsg = (content) => {
     const data = {

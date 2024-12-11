@@ -52,16 +52,16 @@ function Nav() {
     }
   }, [])
 
-  useEventListener(
-    'mousewheel',
-    event => {
-      event = event || window.event;
-      if (navState.curView === cur_view.CLIENT) {
-        dispatch(setNavShow(event.wheelDeltaY > 0));
-      }
-    },
-    { target: document.body }
-  );
+  // useEventListener(
+  //   'mousewheel',
+  //   event => {
+  //     event = event || window.event;
+  //     if (navState.curView === cur_view.CLIENT) {
+  //       dispatch(setNavShow(event.wheelDeltaY > 0));
+  //     }
+  //   },
+  //   { target: document.body }
+  // );
 
   const onModeChange = (event, index) => {
     dispatch(changeMode(index))

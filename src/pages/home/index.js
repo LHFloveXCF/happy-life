@@ -7,10 +7,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import Section from './Section';
 
 import { getArticleList, updateUserAvatar, updateUserId } from '@/redux/modules/s_home';
+import { message } from 'antd';
 import axios from 'axios';
 import { useEffect } from 'react';
 import Aside from './Aside';
-import { Button, message } from 'antd';
 
 function Home() {
     useTitle(siteTitle);
@@ -51,13 +51,6 @@ function Home() {
         }
         dispatch(getArticleList())
     }, []);
-
-    const changeImage = () => {
-        // 请求文章
-        console.log("hhhhh");
-        
-        
-    }
 
     return (
         <>

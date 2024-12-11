@@ -1,15 +1,14 @@
 import dayjs from 'dayjs';
-import React, { MouseEventHandler } from 'react';
 
 import Card from '@/components/Card';
 
+import LikeOrNo from '@/components/LikeAndUnLike';
+import { updateArticleLikeCount } from '@/redux/modules/s_home';
+import { imgUrlPrefix } from '@/utils/constant';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import s from './index.module.scss';
 import PostCardLoading from './PostCardLoading';
-import LikeOrNo from '@/components/LikeAndUnLike';
-import { useDispatch } from 'react-redux';
-import { updateArticleLikeCount } from '@/redux/modules/s_home'
-import { useNavigate } from 'react-router-dom';
-import { imgUrlPrefix } from '@/utils/constant';
 
 function PostCard({ loading, article }) {
   const dispatch = useDispatch();

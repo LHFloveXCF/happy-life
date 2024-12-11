@@ -8,5 +8,8 @@ export default {
 	ERROR_DATA_DECRYPT: 106,			//数据解密错误
 	ERROR_DATA_RESOLVE: 107,			//数据解析错误
 	ERROR_REQ: 108,						//接口请求失败
-	ERROR_INTERNAL: 109					//服务器内部错误
+	ERROR_INTERNAL: 109,					//服务器内部错误
+	UPLOAD_ERR: 114,
+	UPLOAD_REPEAT: 115,
+	UPLOAD_SUC: 116,
 };

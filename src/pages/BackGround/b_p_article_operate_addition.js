@@ -1,11 +1,8 @@
-import { url_upload } from '@/utils/constant_api';
-import { PlusOutlined } from '@ant-design/icons';
-import { Image, Input, message, Upload } from 'antd';
-import { useState } from 'react';
+import { Input } from 'antd';
 import 'react-markdown-editor-lite/lib/index.css';
+import BackOperateUpload from './b_p_article_operate_upload';
 import './index.custom.scss';
 import styles from './style';
-import BackOperateUpload from './b_p_article_operate_upload';
 
 const BackOperateAddition = ({ setArticleImage, articleTitle, setArticleTitle }) => {
 

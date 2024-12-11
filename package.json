@@ -41,7 +41,7 @@
   },
   "scripts": {
     "start": "craco start",
-    "build": "react-app-rewired build",
+    "build": "craco build",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {

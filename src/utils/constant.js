@@ -118,6 +118,10 @@ export const c_b_sign_state = Object.freeze({
   write_article: "1",
   setting_article: "3",
 });
+export const c_b_operate_buttion_key = Object.freeze({
+  logout: "1",
+  change_password: "2",
+});
 // 后台-文章列表
 export const c_b_article_table = [
   {

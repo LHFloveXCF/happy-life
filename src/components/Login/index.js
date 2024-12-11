@@ -1,12 +1,30 @@
-import { Button, Checkbox, Form, Input, Flex } from 'antd';
+import { actionFailure, actionSuccess } from '@/redux/modules/r_global';
+import { changeView } from '@/redux/modules/s_nav';
+import * as common from '@/utils/common';
+import { cur_view } from '@/utils/constant';
+import { url_login_back } from '@/utils/constant_api';
 import { LockOutlined, UserOutlined } from '@ant-design/icons';
-import { useNavigate, NavLink } from 'react-router-dom';
+import { Button, Checkbox, Flex, Form, Input } from 'antd';
+import { useDispatch } from 'react-redux';
+import { NavLink, useNavigate } from 'react-router-dom';
 
 function LoginC() {
+    const dispatch = useDispatch();
     const navigate = useNavigate();
     const onFinish = (values) => {
-        console.log('Received values of form: ', values);
-        navigate("/console")
+        // 登录验证
+        let params = {
+            userName: values.username,
+            passWord: values.password,
+        }
+        let extraTools = {
+            actionFailure: actionFailure,
+            actionSuccess: actionSuccess
+        }
+        common.fetchPost(url_login_back, params, res => {            
+            // dispatch(changeView(cur_view.BACKGROUND));
+            navigate("/console");
+        }, extraTools, dispatch);
       };
     return (
         <Form

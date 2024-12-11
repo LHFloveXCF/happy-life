@@ -5,6 +5,7 @@ import { useState } from 'react';
 import 'react-markdown-editor-lite/lib/index.css';
 import './index.custom.scss';
 import styles from './style';
+import API_STATUS from '@/utils/constant_api_status';
 
 const BackOperateUpload = ({ insertImageToArticle, setArticleImage }) => {
     const [previewOpen, setPreviewOpen] = useState(false);
@@ -19,15 +20,25 @@ const BackOperateUpload = ({ insertImageToArticle, setArticleImage }) => {
         setPreviewOpen(true);
     };
     const handleChange = ({ fileList: newFileList, file: curFile }) => {
+        let updatedFileList = [...newFileList]; 
         if (curFile.status === 'done') {
-            if (typeof insertImageToArticle === 'function') {
-                insertImageToArticle(curFile.response.url)
-            }
-            if (typeof setArticleImage === 'function') {
-                setArticleImage(curFile.response.url.split('/').pop())
+            const { response } = curFile;
+            console.log("response:", response);
+            
+            if (response.code !== API_STATUS.UPLOAD_SUC) {
+                updatedFileList = updatedFileList.filter(item => item.response.url !== response.url);
+                message.error(response.message)
+            } else {
+                if (typeof insertImageToArticle === 'function') {
+                    insertImageToArticle(response.url)
+                }
+                if (typeof setArticleImage === 'function') {
+                    setArticleImage(response.url.split('/').pop())
+                }
+
             }
         }
-        setFileList(newFileList)
+        setFileList(updatedFileList)
     };
 
     const uploadButton = (

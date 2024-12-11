@@ -1,8 +1,11 @@
-import { padding, width } from "@mui/system";
+import { display, padding, width } from "@mui/system";
 
 let styles = {
     b_p_home_layout_outer: {
         minHeight: '100vh'
+    },
+    b_p_home_layout_outer_hide: {
+        display: 'none'
     },
     b_p_home_header: {
         padding: 0,
@@ -59,7 +62,7 @@ let styles = {
         color: '#fff',
         borderRadius: '20px',
         overflow: 'visable',
-        marginRight: '10px'
+        marginRight: '20px'
     }
 
 };
