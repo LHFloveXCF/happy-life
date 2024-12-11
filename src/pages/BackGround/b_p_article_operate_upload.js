@@ -6,6 +6,7 @@ import 'react-markdown-editor-lite/lib/index.css';
 import './index.custom.scss';
 import styles from './style';
 import API_STATUS from '@/utils/constant_api_status';
+import ImgCrop from 'antd-img-crop';
 
 const BackOperateUpload = ({ insertImageToArticle, setArticleImage }) => {
     const [previewOpen, setPreviewOpen] = useState(false);
@@ -22,19 +23,17 @@ const BackOperateUpload = ({ insertImageToArticle, setArticleImage }) => {
     const handleChange = ({ fileList: newFileList, file: curFile }) => {
         let updatedFileList = [...newFileList]; 
         if (curFile.status === 'done') {
-            const { response } = curFile;            
+            const { response } = curFile;     
             if (response.code !== API_STATUS.UPLOAD_SUC) {
                 updatedFileList = updatedFileList.filter(item => item.response.url !== response.url);
                 updatedFileList.push(curFile);
                 message.error(response.message)
-            } else {
-                if (typeof insertImageToArticle === 'function') {
-                    insertImageToArticle(response.url)
-                }
-                if (typeof setArticleImage === 'function') {
-                    setArticleImage(response.url.split('/').pop())
-                }
-
+            }
+            if (typeof insertImageToArticle === 'function') {
+                insertImageToArticle(response.url)
+            }
+            if (typeof setArticleImage === 'function') {
+                setArticleImage(response.url.split('/').pop())
             }
         }
         setFileList(updatedFileList)
@@ -60,6 +59,7 @@ const BackOperateUpload = ({ insertImageToArticle, setArticleImage }) => {
     return (
         <>
             <div style={styles.b_p_home_markddown_operate}>
+            <ImgCrop rotationSlider>
                 <Upload
                     action={url_upload}
                     listType="picture-card"
@@ -69,6 +69,7 @@ const BackOperateUpload = ({ insertImageToArticle, setArticleImage }) => {
                 >
                     {fileList.length >= 8 ? null : uploadButton}
                 </Upload>
+                </ImgCrop>
                 {previewImage && (
                     <Image
                         wrapperStyle={{
