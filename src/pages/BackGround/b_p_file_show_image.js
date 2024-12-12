@@ -1,20 +1,24 @@
 import { deleteArticle, deleteImage, getBackImageList } from '@/redux/modules/r_b_home';
 import { c_b_image_table, c_b_sign_state, size_config } from '@/utils/constant';
-import { Button, message, Space, Table } from 'antd';
+import { ExclamationCircleFilled } from '@ant-design/icons';
+import { Button, message, Space, Table, Modal } from 'antd';
 import classNames from 'classnames';
 import { useEffect, useState } from 'react';
 import 'react-markdown-editor-lite/lib/index.css';
 import { useDispatch, useSelector } from 'react-redux';
 import './index.custom.scss';
 
+
 const BackImageSetting = () => {
+    const { confirm } = Modal;
     const dispatch = useDispatch();
+    const { signState, image_list } = useSelector(state => state.r_b_home);
 
     useEffect(() => {
         dispatch(getBackImageList())
-    }, [dispatch]);
+    }, [dispatch, signState]);
 
-    const { signState, image_list } = useSelector(state => state.r_b_home);
+    
 
     // 是否展示分页标签
     const shouldShowPagination = image_list.length >= size_config.articleBackSize;
@@ -29,12 +33,19 @@ const BackImageSetting = () => {
         },
     };
 
-    // 删除图片
-    function handleDeleteImage(image) {
-        dispatch(deleteImage(image, json => {
-            message.info(json.message);
-        }));
-    };
+    const showPromiseConfirm = (image) => {
+        confirm({
+          title: '确定要删除这张图片吗',
+          icon: <ExclamationCircleFilled />,
+          content: '删除后文件不可恢复！',
+          onOk() {
+            dispatch(deleteImage(image, json => {
+                message.info(json.message);
+            }));
+          },
+          onCancel() {},
+        });
+      };
 
     const ImageOperateColumn = (item) => {
         return (<div>
@@ -42,7 +53,7 @@ const BackImageSetting = () => {
                 <Button size="small">
                     查看
                 </Button>
-                <Button size="small" onClick={() => handleDeleteImage(item.item)}>
+                <Button size="small" onClick={() => showPromiseConfirm(item.item)}>
                     删除
                 </Button>
             </Space>
