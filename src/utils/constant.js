@@ -117,6 +117,7 @@ export const cur_view = Object.freeze({
 export const c_b_sign_state = Object.freeze({
   write_article: "1",
   setting_article: "3",
+  file_image: "9",
 });
 export const c_b_operate_buttion_key = Object.freeze({
   logout: "1",
@@ -145,4 +146,23 @@ export const c_b_article_table = [
     key: 'time',
     dataIndex: 'time',
   },
+]
+// 后台-图片列表
+export const c_b_image_table = [
+  {
+    title: 'id',
+    dataIndex: 'id',
+    key: 'id',
+  },
+  {
+    title: 'MD5',
+    dataIndex: 'MD5',
+    key: 'MD5',
+  },
+  {
+    title: 'path',
+    key: 'path',
+    dataIndex: 'path',
+    ellipsis: true,
+  }
 ]

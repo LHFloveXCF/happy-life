@@ -22,6 +22,7 @@ import BackArticleSetting from "./b_p_show_article";
 import MarkdownEditor from "./b_p_article_show";
 import styles from "./style";
 import { useNavigate } from "react-router-dom";
+import BackImageSetting from "./b_p_file_show_image";
 
 
 const { Header, Content, Footer, Sider } = Layout;
@@ -42,7 +43,7 @@ const items = [
         getItem('Alex', '5'),
     ]),
     getItem('Team', 'sub2', <TeamOutlined />, [getItem('Team 1', '6'), getItem('Team 2', '8')]),
-    getItem('Files', '9', <FileOutlined />),
+    getItem('文件管理', 'sub3', <FileOutlined />,[getItem('图片管理', c_b_sign_state.file_image)]),
 ];
 
 function BackGroundHome() {
@@ -127,7 +128,10 @@ function BackGroundHome() {
                             <Content>
                                 {/**写文章 */}
                                 <MarkdownEditor />
+                                {/**文章管理 */}
                                 <BackArticleSetting />
+                                {/**图片管理 */}
+                                <BackImageSetting />
                             </Content>
                         </Layout>
                     </Layout>

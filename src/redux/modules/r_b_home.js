@@ -1,4 +1,4 @@
-import { url_delete_article, url_get_article, url_save_msg } from '@/utils/constant_api';
+import { url_delete_article, url_delete_image, url_get_article, url_get_image, url_save_msg } from '@/utils/constant_api';
 import { createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 import * as common from '@/utils/common';
@@ -10,6 +10,7 @@ const backHomeStore = createSlice({
         msgs: [],
         signState: 1,
         article_info_list: [],
+        image_list: [],
     },
 
     reducers: {
@@ -52,12 +53,37 @@ const backHomeStore = createSlice({
                 article_info_list: result,
             }
         },
+        setImageList: (state, action) => {
+            const result = [];
+            action.payload.forEach(element => {
+                let iamge = {
+                    "id": element.file_id,
+                    "MD5": element.file_md5,
+                    "path": element.file_path,
+                };
+                result.push(iamge);
+            });            
+            console.log("result:", result);
+
+            return {
+                ...state,
+                image_list: result,
+            };
+        },
+        deleteOneImage: (state, action) => {
+            let result = [...state.image_list];
+            result = result.filter(item => item.id !== action.payload);
+            return {
+                ...state,
+                image_list: result,
+            }
+        },
 
     }
 
 });
 
-const {setSignState, setArticleList, deleteOneArticle } = backHomeStore.actions
+const {setSignState, setArticleList, deleteOneArticle, setImageList, deleteOneImage } = backHomeStore.actions
 
 const saveMsg = (content) => {
     const data = {
@@ -89,8 +115,26 @@ const getBackArticleList = () => {
         }, {}, dispatch)
     }
 };
+// 后台获取图片列表
+const getBackImageList = () => {
+    return dispatch => {
+        common.fetchGet(url_get_image, {}, json => {
+            
+            dispatch(setImageList(json.data))
+        }, {}, dispatch)
+    }
+};
+// 删除文章
+const deleteImage = (image, callBack) => {
+    return (dispatch) => {
+        common.fetchPost(url_delete_image, {id: image.id}, json => {
+            dispatch(deleteOneImage(image.id));
+            callBack(json);
+        }, {}, dispatch);
+    };
+};
 
-export { saveMsg, updateSignState, deleteArticle, getBackArticleList };
+export { saveMsg, updateSignState, deleteArticle, getBackArticleList, getBackImageList, deleteImage };
 
 
 const r_b_home = backHomeStore.reducer
