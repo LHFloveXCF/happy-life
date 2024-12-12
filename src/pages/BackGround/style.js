@@ -63,7 +63,19 @@ let styles = {
         borderRadius: '20px',
         overflow: 'visable',
         marginRight: '20px'
+    },
+    b_p_file_show_img_container: {
+        textAlign: 'center',
+        padding: '20px'
+    },
+    b_p_file_show_img: {
+        maxWidth: "100%",
+        maxHight: "100%",
+        width: '300px',
+        hight: '200px',
+        objectFit: 'cover'
     }
+    
 
 };
 

@@ -42,7 +42,7 @@ const items = [
         getItem('Bill', '4'),
         getItem('Alex', '5'),
     ]),
-    getItem('Team', 'sub2', <TeamOutlined />, [getItem('Team 1', '6'), getItem('Team 2', '8')]),
+    getItem('用户管理', 'sub2', <TeamOutlined />, [getItem('用户列表', '6')]),
     getItem('文件管理', 'sub3', <FileOutlined />,[getItem('图片管理', c_b_sign_state.file_image)]),
 ];
 

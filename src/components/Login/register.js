@@ -1,8 +1,14 @@
 import {
   Button,
   Form,
-  Input
+  Input,
+  message
 } from 'antd';
+
+
+import * as common from '@/utils/common';
+import { url_user_rigster } from '@/utils/constant_api';
+import { useNavigate } from 'react-router-dom';
 
 const formItemLayout = {
   labelCol: {
@@ -36,8 +42,22 @@ const tailFormItemLayout = {
 };
 const Register = () => {
   const [form] = Form.useForm();
+
+  const navigate = useNavigate();
+
   const onFinish = (values) => {
-    console.log('Received values of form: ', values);
+    let params = {
+      email: values.email,
+      username: values.nickname,
+      password: values.password
+    }
+    console.log("values ", values);
+    
+    common.fetchPost(url_user_rigster, params, json => {
+      message.info(json.data.message);
+      navigate("/login");
+            
+    }, {}, null );
   };
   return (
     <Form

@@ -11,6 +11,7 @@ const backHomeStore = createSlice({
         signState: 1,
         article_info_list: [],
         image_list: [],
+        user_list: [], // 用户列表
     },
 
     reducers: {

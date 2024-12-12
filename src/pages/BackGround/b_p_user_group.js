@@ -7,7 +7,7 @@ import './index.custom.scss';
 import { useEffect, useState } from 'react';
 import { deleteArticle, getBackArticleList } from '@/redux/modules/r_b_home';
 
-const BackArticleSetting = () => {
+const BackUserSetting = () => {
     const { signState, article_info_list } = useSelector(state => state.r_b_home);
     const dispatch = useDispatch();
 
@@ -69,4 +69,4 @@ const BackArticleSetting = () => {
     );
 };
 
-export default BackArticleSetting;
+export default BackUserSetting;
