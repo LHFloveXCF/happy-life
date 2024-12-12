@@ -50,7 +50,7 @@ function Home() {
             localStorage.setItem('guestUserAvatar', avatar);
         }
         dispatch(getArticleList())
-    }, []);
+    }, [dispatch]);
 
     return (
         <>

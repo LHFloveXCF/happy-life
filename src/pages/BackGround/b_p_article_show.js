@@ -3,7 +3,7 @@ import { url_save_article } from '@/utils/constant_api';
 import { Button, message } from 'antd';
 import classNames from 'classnames';
 import MarkdownIt from 'markdown-it';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Editor from 'react-markdown-editor-lite';
 import 'react-markdown-editor-lite/lib/index.css';
 import { useDispatch, useSelector } from 'react-redux';
@@ -11,30 +11,33 @@ import BackOperateAddition from './b_p_article_operate_addition';
 import BackOperateUpload from './b_p_article_operate_upload';
 import './index.custom.scss';
 import styles from './style';
+import { useNavigate } from 'react-router-dom';
 
-const MarkdownEditor = () => {
+const MarkdownEditor = ({article}) => {
     const [markdown, setMarkdown] = useState('');
-    const dispatch = useDispatch();
-
-    const handleEditorChange = (value) => {
-        setMarkdown(value.text);
-    };
-
     // 标题控制
     const [articleTitle, setArticleTitle] = useState("");
     // 封面控制
     const [articleImage, setArticleImage] = useState("");
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
 
-    function test(info) {
-        if (info.file.status !== 'uploading') {
-            console.log(info.file, info.fileList);
+    useEffect(() => {
+        if (article) {
+            setMarkdown(article.content);
         }
-        if (info.file.status === 'done') {
-            message.success(`${info.file.name} file uploaded successfully`);
-        } else if (info.file.status === 'error') {
-            message.error(`${info.file.name} file upload failed.`);
-        }
-    }
+    }, [article]);
+
+    function initAllState() {
+        setMarkdown("");
+        setArticleImage("");
+        setArticleTitle("");
+    };
+
+    // 内容变更
+    const handleEditorChange = (value) => {
+        setMarkdown(value.text);
+    };
 
     const mdParser = new MarkdownIt(/* Markdown-it options */);
     const insertImageMarkdown = (url) => {
@@ -42,7 +45,7 @@ const MarkdownEditor = () => {
         setMarkdown((prevMarkdown) => (prevMarkdown ? `${prevMarkdown}\n${imageMarkdown}` : imageMarkdown));
     };
 
-    const { signState } = useSelector(state => state.s_b_home);
+    const { signState } = useSelector(state => state.r_b_home);
 
     // 提交文章
     function handleBackSubmitArticle() {
@@ -52,8 +55,8 @@ const MarkdownEditor = () => {
             image: articleImage
         }        
         common.fetchPost(url_save_article, body, json => {
-            message.info("提交成功！")
-            // 提交成功后；该怎么办
+            message.info("提交成功！");
+            initAllState();
         }, {}, dispatch)
     }
 

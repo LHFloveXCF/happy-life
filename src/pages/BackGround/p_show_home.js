@@ -1,4 +1,4 @@
-import { updateSignState } from "@/redux/modules/s_b_home";
+import { updateSignState } from "@/redux/modules/r_b_home";
 import { changeFooterShow, changeView, setNavShow } from "@/redux/modules/s_nav";
 import { c_b_operate_buttion_key, c_b_sign_state, cur_view, siteTitle } from "@/utils/constant";
 import {
@@ -18,8 +18,8 @@ import classNames from "classnames";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import style from './index.custom.scss';
-import BackArticleSetting from "./p_show_article";
-import MarkdownEditor from "./p_show_markdown";
+import BackArticleSetting from "./b_p_show_article";
+import MarkdownEditor from "./b_p_article_show";
 import styles from "./style";
 import { useNavigate } from "react-router-dom";
 
@@ -58,7 +58,9 @@ function BackGroundHome() {
         dispatch(changeView(cur_view.BACKGROUND));
         dispatch(setNavShow(false));
         dispatch(changeFooterShow(false));
-    }, []);
+        dispatch(updateSignState(c_b_sign_state.write_article));
+
+    }, [dispatch]);
     // antd layout折叠管理
     const [collapsed, setCollapsed] = useState(false);
     const {
@@ -91,8 +93,8 @@ function BackGroundHome() {
 
     // 切换页签
     const changeSignState = (e) => {
-        dispatch(updateSignState(e.key))
-    }
+        dispatch(updateSignState(e.key));
+    };
     return (
         <>
             {
