@@ -117,6 +117,8 @@ export const cur_view = Object.freeze({
 export const c_b_sign_state = Object.freeze({
   write_article: "1",
   setting_article: "3",
+  user_list: "6",
+  role_list: "7",
   file_image: "9",
 });
 export const c_b_operate_buttion_key = Object.freeze({
@@ -164,5 +166,42 @@ export const c_b_image_table = [
     key: 'path',
     dataIndex: 'path',
     ellipsis: true,
+  }
+]
+// 后台-用户列表
+export const c_b_user_table = [
+  {
+    title: 'id',
+    dataIndex: 'id',
+    key: 'id',
+  },
+  {
+    title: 'name',
+    dataIndex: 'name',
+    key: 'name',
+  },
+  {
+    title: 'email',
+    key: 'email',
+    dataIndex: 'email',
+    ellipsis: true,
+  }
+]
+// 后台-角色列表
+export const c_b_role_table = [
+  {
+    title: 'roleId',
+    dataIndex: 'roleId',
+    key: 'roleId',
+  },
+  {
+    title: 'name',
+    dataIndex: 'name',
+    key: 'name',
+  },
+  {
+    title: 'desc',
+    key: 'desc',
+    dataIndex: 'desc',
   }
 ]

@@ -23,6 +23,8 @@ import MarkdownEditor from "./b_p_article_show";
 import styles from "./style";
 import { useNavigate } from "react-router-dom";
 import BackImageSetting from "./b_p_file_show_image";
+import BackUserSetting from "./b_p_user_group";
+import BackUserRoleSetting from "./b_p_user_role_group";
 
 
 const { Header, Content, Footer, Sider } = Layout;
@@ -39,10 +41,8 @@ const items = [
     getItem('Option 2', '2', <DesktopOutlined />),
     getItem('文章管理', 'sub1', <UserOutlined />, [
         getItem('文章列表', c_b_sign_state.setting_article),
-        getItem('Bill', '4'),
-        getItem('Alex', '5'),
     ]),
-    getItem('用户管理', 'sub2', <TeamOutlined />, [getItem('用户列表', '6')]),
+    getItem('用户管理', 'sub2', <TeamOutlined />, [getItem('用户列表', c_b_sign_state.user_list), getItem('角色列表', c_b_sign_state.role_list)]),
     getItem('文件管理', 'sub3', <FileOutlined />,[getItem('图片管理', c_b_sign_state.file_image)]),
 ];
 
@@ -130,6 +130,10 @@ function BackGroundHome() {
                                 <MarkdownEditor />
                                 {/**文章管理 */}
                                 <BackArticleSetting />
+                                {/**用户管理 */}
+                                <BackUserSetting />
+                                {/**角色管理 */}
+                                <BackUserRoleSetting />
                                 {/**图片管理 */}
                                 <BackImageSetting />
                             </Content>
