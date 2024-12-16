@@ -1,3 +1,6 @@
+@use '../../styles/base' as b;
+@use '../../styles/style.scss';
+
 .custom-upload-button {
     display: inline-block;
     padding: 10px;
@@ -6,6 +9,7 @@
     border: none;
     cursor: pointer;
 }
+
 .b_p_logo_side {
     height: 120px;
     background-image: url("../../../public/image/avatar1.webp");
@@ -30,6 +34,7 @@
 .b_p_home_div_hide {
     display: none;
 }
+
 .b_p_home_div_footer {
     position: sticky;
     bottom: 0;
@@ -40,4 +45,33 @@
     text-align: center;
     padding: 10px 0;
     box-shadow: 0 -1px 5px rgba(0, 0, 0, 0.5);
+}
+
+.highlight-row {
+    background-color: #7FFFAA;
+    /* 你可以根据需要改变这个颜色 */
+}
+
+.custom-button-wrapper {
+    position: relative;
+    display: inline-block;
+}
+
+.notification-dot {
+    position: absolute;
+    top: -3px;
+    /* 根据需要调整位置 */
+    left: -3px;
+    /* 根据需要调整位置 */
+    width: 8px;
+    /* 红点大小 */
+    height: 8px;
+    /* 红点大小 */
+    background-color: red;
+    /* 红点颜色 */
+    border-radius: 50%;
+    /* 使红点成为圆形 */
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
+    /* 可选：添加阴影以增强视觉效果 */
+    z-index: 1;
 }

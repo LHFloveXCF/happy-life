@@ -1,4 +1,4 @@
-import { display, padding, width } from "@mui/system";
+import { borderRadius, display, padding, width } from "@mui/system";
 
 let styles = {
     b_p_home_layout_outer: {
@@ -74,8 +74,16 @@ let styles = {
         width: '300px',
         hight: '200px',
         objectFit: 'cover'
+    },
+    b_p_red_dot: {
+        display: "inline-block",
+        maxHight: "100%",
+        width: '10px',
+        hight: '10px',
+        backgroundColor: 'red',
+        borderRadius: '50%',
+        marginRight: '8px',
     }
-    
 
 };
 

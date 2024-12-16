@@ -3,7 +3,7 @@
 
 .tagBase {
   height: 26px;
-  font-size: 26px;
+  font-size: 14px;
 }
 
 .section_card {
@@ -66,15 +66,16 @@
   .c_home_article_show_operate {
     position: relative;
     bottom: 0;
-    height: 30px;
+    height: 20px;
     display: flex;
     -webkit-box-align: center;
     align-items: center;
     margin-top: 3px;
+    justify-content: space-around;
 
 
     .date {
-      @extend .tagBase;
+      // @extend .tagBase;
       // position: absolute;
       // bottom: 0;
       // justify-content: center;
@@ -87,7 +88,7 @@
       // left: 300px;
 
       .tag {
-        @extend .tagBase;
+        // @extend .tagBase;
         // position: relative;
         // display: inline-block;
         // text-align: center;

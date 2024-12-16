@@ -7,6 +7,7 @@
 .hover {
   @extend .trans;
 }
+
 .hover:hover {
   background-color: b.$hoverColor;
 }
@@ -25,6 +26,16 @@
   cursor: pointer;
   background-color: b.$themeColor1;
   @extend .hover;
+}
+
+.row-dot {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  background-color: red;
+  border-radius: 50%;
+  margin-right: 8px;
+  /* 与行内容之间的间距 */
 }
 
 .tagBase {
