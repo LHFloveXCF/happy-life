@@ -5,12 +5,12 @@ import { Pagination } from 'antd';
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { homeSize } from '@/utils/constant';
-import {updateCurrentPage} from '@/redux/modules/s_home';
+import {updateCurrentPage} from '@/redux/modules/r_c_home';
 
 
 
 function MyPagination({setNavShow}) {
-  const homeState = useSelector(state => state.s_home);
+  const homeState = useSelector(state => state.r_c_home);
   console.log("variableName:", homeState.article_info_list);
   
   const dispatch = useDispatch();

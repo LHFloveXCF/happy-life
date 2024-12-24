@@ -63,7 +63,7 @@ const BackUserRoleSettingUpdate = ({ isOpen: operateRole, setOpen }) => {
             <Modal title="角色编辑" open={operateRole !== null} onCancel={() => setOpen(null)} closeIcon={null} footer={customFooter} >
                 {operateRole !== null && (
                     <div>
-                        <Input addonBefore="角色编号： " value={operateRole.roleId} onChange={(e) => changeRole(e.target.value, 1)}></Input>
+                        <Input addonBefore="角色编号：" value={operateRole.roleId} onChange={(e) => changeRole(e.target.value, 1)}></Input>
                         <Input addonBefore="角色名字：" value={operateRole.name} onChange={(e) => changeRole(e.target.value, 2)}></Input>
                         <Input addonBefore="角色描述：" value={operateRole.desc} onChange={(e) => changeRole(e.target.value, 3)}></Input>
                     </div>

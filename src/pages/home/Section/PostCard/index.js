@@ -3,7 +3,7 @@ import dayjs from 'dayjs';
 import Card from '@/components/Card';
 
 import LikeOrNo from '@/components/LikeAndUnLike';
-import { updateArticleLikeCount } from '@/redux/modules/s_home';
+import { updateArticleLikeCount } from '@/redux/modules/r_c_home';
 import { imgUrlPrefix } from '@/utils/constant';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';

@@ -1,18 +1,157 @@
 @use '../../../styles/base' as b;
-
-.c_p_article_show_father {
+// a#article s#show
+.a_s_home {
     height: 100%;
     width: b.$centerWidth;
     font-size: 20px;
     margin-top: b.$navHeight;
 }
 
-.c_p_article_show_container {
+.a_s_main {
     height: 100%;
     font-size: 20px;
+    margin-top: 0px;
 }
 
-.c_p_article_show_content {
+.a_s_content_box_content {
     margin-right: b.$box_space;
     min-width: calc(100% - #{b.$asideWidth});
+}
+
+.a_s_content_box {
+    background-color: #e6eded;
+}
+
+.a_s_footer_home {
+    margin-top: 8px;
+    background-color: #e6eded;
+}
+
+.a_s_footer_main {
+    justify-content: space-between;
+}
+
+.a_s_footer_img {
+    margin-right: 8px;
+    padding-top: 9px;
+    display: block;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 1px solid #e8e8ed;
+}
+
+.a_s_footer_form {
+    padding: 14px 0;
+    width: 100%;
+    position: relative;
+    border-radius: 8px;
+    background-color: rgba(245, 246, 247, 0.8);
+}
+
+.a_s_footer_form_text {
+    display: block;
+    width: 100%;
+    background: rgba(248, 249, 251, 0.8);
+    border: none;
+    padding: 0 16px;
+    border-radius: 4px;
+    resize: none;
+    height: 88px;
+    font-size: 14px;
+    line-height: 22px;
+    box-sizing: border-box;
+    font-family: 'SF Pro Display', Roboto, Noto, Arial, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+
+.a_s_footer_form_operate_box {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 16px 0 16px;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    -webkit-transition: display .3s ease-in-out;
+    transition: display .3s ease-in-out;
+}
+
+.a_s_footer_form_operate_box_l {
+    align-items: center;
+}
+
+.a_s_footer_form_operate_box_c {
+    align-items: center;
+}
+
+.a_s_footer_form_operate_box_r {
+    align-items: center;
+}
+
+.a_s_footer_form_operate_box_item {
+    display: block;
+    width: 60px;
+    height: 24px;
+    background: #fc5531;
+    color: #fff;
+    border-radius: 16px;
+    font-size: 14px;
+    text-align: center;
+    line-height: 24px;
+    border: none;
+}
+
+// 评论列表
+.a_s_list_home {
+    list-style: none;
+}
+
+.a_s_list_main {
+    padding-top: 16px;
+    padding-bottom: 16px;
+    width: 100%;
+    margin-left: 8px;
+}
+.a_s_list_top_box {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 4px;
+    line-height: 20px;
+    font-size: 14px;
+}
+.a_s_list_top_box_l {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    position: relative;
+    right: 0;
+    top: 0;
+    padding-right: 8px;
+}
+.a_s_list_mid_box {
+    font-size: 14px;
+    color: #222226;
+    line-height: 22px;
+    word-break: break-word;
+}
+.a_s_aside_home {
+  position: sticky;
+  top: b.$navHeight;
+}
+.a_s_aside_main {
+    position: fixed;
+    top: b.$navHeight;
+    z-index: 1000;
+    width: b.$asideWidth;
+}
+.a_s_aside_img_home {
+    display: flex;
+    justify-content: center; /* 水平方向居中 */
+    align-items: center;     
+}
+.a_s_aside_img_main {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 1px solid #e8e8ed;     
 }

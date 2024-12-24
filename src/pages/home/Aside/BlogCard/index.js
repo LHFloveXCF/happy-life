@@ -6,7 +6,7 @@ import s from "./index.module.scss";
 function BlogCard() {
 
     const { timeText } = useTime();
-    const homeState = useSelector((state) => state.s_home);
+    const homeState = useSelector((state) => state.r_c_home);
 
 
     return (

@@ -9,7 +9,7 @@ import PostCard from './PostCard';
 
 
 function Section({ artSum }) {
-  const homeState = useSelector(state => state.s_home);
+  const homeState = useSelector(state => state.r_c_home);
   const shouldShowPagination = homeState.article_info_list.length >= size_config.homeSize;
 
 

@@ -6,7 +6,7 @@ import { useMount, useSafeState, useTitle } from 'ahooks';
 import { useDispatch, useSelector } from 'react-redux';
 import Section from './Section';
 
-import { getArticleList, updateUserAvatar, updateUserId } from '@/redux/modules/s_home';
+import { getArticleList, updateUserAvatar, updateUserId } from '@/redux/modules/r_c_home';
 import { message } from 'antd';
 import axios from 'axios';
 import { useEffect } from 'react';
@@ -16,7 +16,7 @@ function Home() {
     useTitle(siteTitle);
     const [poem, setPoem] = useSafeState('');
 
-    const homeState = useSelector((state) => state.s_home);
+    const homeState = useSelector((state) => state.r_c_home);
 
     const dispatch = useDispatch();
 
