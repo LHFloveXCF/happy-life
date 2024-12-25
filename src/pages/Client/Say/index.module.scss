@@ -7,10 +7,6 @@
     font-size: 20px;
     margin-top: b.$navHeight;
 }
-
-.bordered_div {
-    border: 1px solid black;
-}
 // 总布局-top
 .s_top {
     font-size: 60px;
@@ -22,8 +18,8 @@
 .s_mid {
     font-size: 16px;
     display: flex;
-    padding: 5px;
-    margin-bottom: 10px;
+    // padding: 5px;
+    // margin-bottom: 10px;
     flex-direction: column;
     align-items: center;
 }
@@ -50,7 +46,7 @@
     width: 50px;
     height: 50px;
     border-radius: 50%;
-    border: 1px solid #e8e8ed;
+    // border: 1px solid #e8e8ed;
 }
 .s_content_mid {
     margin-right: 10px;
@@ -84,7 +80,7 @@
     width: 30px;
     height: 30px;
     border-radius: 50%;
-    border: 1px solid #e8e8ed;
+    // border: 1px solid #e8e8ed;
 }
 .s_content_footer {
     width: 100%;

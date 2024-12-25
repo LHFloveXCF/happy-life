@@ -3,7 +3,7 @@ import classNames from "classnames";
 import { useState } from 'react';
 import style from './index.module.scss';
 import '../../../global.custom.scss';
-
+// 说说界面-内容组件
 function SaySayContent({ item }) {
     const [isExpanded, setIsExpanded] = useState(false);
     const [userId, setUserId] = useState(0);
@@ -12,6 +12,11 @@ function SaySayContent({ item }) {
     const handleExpanded = (userId, isExpanded) => {
         setIsExpanded(isExpanded);
         setUserId(userId);
+    };
+
+    const handReplay = () => {
+        // 回复说说
+        
     };
     return (
         <>
