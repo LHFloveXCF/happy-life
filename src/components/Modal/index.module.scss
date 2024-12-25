@@ -1,0 +1,25 @@
+@use '../../styles/base' as b;
+
+// m#modal
+.m_home {
+    display: flex;
+    flex-direction: row;
+    width: 720px;
+}
+
+.m_img {
+    margin-right: 20px;
+    margin-left: 20px;
+    padding-top: 9px;
+    display: block;
+    width: 300px;
+    height: 300px;
+}
+
+// 问候语
+.m_greet {
+    padding-top: 9px;
+    display: flex;
+    justify-content: center;
+    font-size: 16px;
+}

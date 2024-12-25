@@ -96,8 +96,11 @@ img {
   width: b.$asideWidth;
   overflow: hidden;
   display: block;
-  margin-left: 6px;
+  margin-left: 30px;
   margin-top: b.$navHeight;
+}
+.bordered_div {
+  border: 1px solid black;
 }
 
 // antd的message

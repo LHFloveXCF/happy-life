@@ -1,0 +1,127 @@
+@use '../../../styles/base' as b;
+
+// s#saysay 说说 c#content内容
+.s_home {
+    height: 100%;
+    width: b.$centerWidth;
+    font-size: 20px;
+    margin-top: b.$navHeight;
+}
+
+.bordered_div {
+    border: 1px solid black;
+}
+// 总布局-top
+.s_top {
+    font-size: 60px;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+// 总布局-middle
+.s_mid {
+    font-size: 16px;
+    display: flex;
+    padding: 5px;
+    margin-bottom: 10px;
+    flex-direction: column;
+    align-items: center;
+}
+// 内容
+.s_content_home {
+    font-size: 16px;
+    padding: 5px;
+    width: 720px;
+}
+.s_content_main {
+    display: flex;
+    flex-direction: row;
+    padding: 10px;
+}
+.s_content_l {
+    margin-right: 10px;
+    width: 60px;
+    // box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); // 底部阴影
+}
+.s_content_img {
+    margin-right: 8px;
+    padding-top: 9px;
+    display: block;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 1px solid #e8e8ed;
+}
+.s_content_mid {
+    margin-right: 10px;
+    width: 100%;
+    // border: 1px solid #e8e8ed;
+    padding: 10px;
+}
+.s_c_detail_home {
+    width: 100%;
+}
+.s_c_detail_mid {
+    width: 100%;
+    min-height: 30px;
+    padding: auto;
+}
+.s_c_detail_footer {
+    display: flex;
+    flex-direction: row;
+}
+.s_c_detail_r {
+    padding: 10px;
+    width: 100%;
+}
+.s_c_detail_img {
+    margin-right: 8px;
+    padding-top: 9px;
+    display: block;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 1px solid #e8e8ed;
+}
+.s_content_footer {
+    width: 100%;
+    margin-top: 10px;
+    // border: 1px solid #e8e8ed;
+}
+.s_c_replay_home {
+    display: flex;
+    justify-content: flex-end;
+}
+.s_c_replay_collapsed_input {
+    width: 100%;
+    padding: 5px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    cursor: text;
+}
+
+.s_c_replay_expanded_input {
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    resize: none;
+}
+
+.reply_button {
+    margin-top: 10px;
+    padding: 5px 10px;
+    font-size: 14px;
+    color: white;
+    background-color: #b8cbdf;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.reply_button:hover {
+    background-color: #0056b3;
+}

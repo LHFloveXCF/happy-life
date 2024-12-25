@@ -10,6 +10,7 @@ import style from './index.module.scss';
 import { addOneArticleMsg, getArticleMsg } from "@/redux/modules/r_c_home";
 import { getTimeBetween } from "@/utils/timeUtils";
 import { message } from "antd";
+import ModalReward from "@/components/Modal/ModalReward";
 
 function ClientArticle() {
     const [search] = useUrlState();
@@ -42,10 +43,22 @@ function ClientArticle() {
         return date.toLocaleTimeString();
     }
 
+    // 打赏弹出框
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    function handleModalOk() {
+        setIsModalOpen(false);
+    };
+
     return (
         <>
             <div className={classNames(style.a_s_home, "justify_content_center", "d_flex")}>
                 <div className={classNames("all_card", style.a_s_home, style.a_s_main)}>
+                    {/**打赏列表 */}
+                    <div className={classNames(style.a_s_left_home)}>
+                        <div className={classNames(style.a_s_left_content)} onClick={() => setIsModalOpen(true)}>
+                            <span className={classNames(style.a_s_reward_home)}>赏</span>
+                        </div>
+                    </div>
                     <div className={classNames("all_card", style.a_s_content_box)}>
                         <MarkDown className={style.a_s_content_box_content} content={article.content}></MarkDown>
                     </div>
@@ -113,6 +126,8 @@ function ClientArticle() {
                         </div>
                     </div>
                 </aside>
+
+                <ModalReward isModalOpen={isModalOpen} handleOk={handleModalOk} handleCancel={handleModalOk}></ModalReward>
             </div>
 
 
