@@ -9,7 +9,7 @@ function App({ mode }) {
 
   const bgClasses = ["bg0", "bg1", "bg2", "bg3"];
 
-  const navState = useSelector((state) => state.s_nav);
+  const navState = useSelector((state) => state.r_c_nav);
 
   return (
     <>

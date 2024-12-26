@@ -9,6 +9,7 @@ import {
 import * as common from '@/utils/common';
 import { url_user_rigster } from '@/utils/constant_api';
 import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 const formItemLayout = {
   labelCol: {
@@ -41,6 +42,7 @@ const tailFormItemLayout = {
   },
 };
 const Register = () => {
+  const homeState = useSelector(state => state.r_c_home);
   const [form] = Form.useForm();
 
   const navigate = useNavigate();
@@ -49,9 +51,10 @@ const Register = () => {
     let params = {
       email: values.email,
       username: values.nickname,
-      password: values.password
+      password: values.password,
+      avatar: homeState.user_info.user_avatar
     }
-    console.log("values ", values);
+    console.log("values ", params);
     
     common.fetchPost(url_user_rigster, params, json => {
       message.info(json.data.message);

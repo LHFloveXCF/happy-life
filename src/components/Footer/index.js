@@ -7,7 +7,7 @@ import { useSelector } from 'react-redux';
 
 
 function Footer() {
-  const navState = useSelector(state => state.s_nav);
+  const navState = useSelector(state => state.r_c_nav);
   return (
     <footer className={classNames("footer", {"hiddenFooter": !navState.footerShow})}>
       <span>

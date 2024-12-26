@@ -35,5 +35,5 @@ const { setNavShow, changeMode, changeView, changeFooterShow } = navShowStore.ac
 export { setNavShow, changeMode, changeView, changeFooterShow }
 
 
-const s_nav = navShowStore.reducer
-export default s_nav
+const r_c_nav = navShowStore.reducer
+export default r_c_nav

@@ -1,50 +1,42 @@
 // 说说展示界面
 // 打赏弹出框
-import { imgUrlPrefix } from '@/utils/constant';
+import HorizontalModel from '@/components/CommonAll/horizontalModel';
+import { addOneSay, getSay } from '@/redux/modules/r_c_say';
 import classNames from "classnames";
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import '../../../global.custom.scss';
 import SaySayContent from './c_p_say_content';
 import style from './index.module.scss';
-import HorizontalModel from '@/components/CommonAll/horizontalModel';
-import { useState } from 'react';
 
 function SaySay() {
     const [sayWord, setSayWord] = useState('');
+    const homeState = useSelector(state =>  state.r_c_home);
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(getSay());
+    }, []);
+
     const handleSay = () => {
         // 发布说说
+        if (homeState.isAuth) {
+            const saySay = {
+                "userId": 1,
+                "content": sayWord,
+                "toUserId": 0,
+                "avatar": homeState.user_info.user_avatar
+            }
+            dispatch(addOneSay(saySay));
+        } else {
+            navigate("/login");
+        };
         
     };
-    const says = [
-        {
-            "img": `${imgUrlPrefix}1733380822066.webp`,
-            "content": "content-mid",
-            "userName": "content-mid",
-            "userId": 1,
-            "replay": [
-                {
-                    "img": `${imgUrlPrefix}1733380822066.webp`,
-                    "content": "content-mid",
-                    "userName": "content-mid",
-                }
-            ],
-
-        },
-        {
-            "img": `${imgUrlPrefix}1733380822066.webp`,
-            "content": "content-mid",
-            "userName": "content-mid",
-            "userId": 1,
-            "replay": [
-                {
-                    "img": `${imgUrlPrefix}1733380822066.webp`,
-                    "content": "content-mid",
-                    "userName": "content-mid",
-                }
-            ],
-
-        }
-    ];
-
+    const sayState = useSelector(state => state.r_c_say);
+    
     return (
         <>
             <div className={classNames(style.s_home)}>
@@ -56,7 +48,7 @@ function SaySay() {
                     <div className={classNames(style.s_content_home)}>
                         <div className={classNames("all_card", style.s_content_main)}>
                             <div className={classNames(style.s_content_l)}>
-                                <img src={`${imgUrlPrefix}1733380822066.webp`} className={classNames(style.s_content_img)} alt=''></img>
+                                <img src={`/image/avatar${homeState.user_info.user_avatar}.webp`} className={classNames(style.s_content_img)} alt=''></img>
                             </div>
                             <div className={classNames(style.s_content_mid)}>
                                 {/** 发布区域 */}
@@ -67,8 +59,8 @@ function SaySay() {
                                         className={classNames(style.s_c_replay_expanded_input)}
                                     />
                                     <div className={classNames(style.s_c_replay_home)}>
-                                        <button className={classNames(style.reply_button)} onClick={() => handleSay} >
-                                            发布</button>
+                                        <button className={classNames(style.reply_button)} onClick={() => handleSay()} >
+                                            {homeState.isAuth ? "发布" : "请登录"}</button>
                                     </div>
                                 </div>
                             </div>
@@ -79,7 +71,7 @@ function SaySay() {
                 {/**历史信息 */}
                 <div className={classNames(style.s_mid)}>
                     <div className={classNames(style.s_content_home)}>
-                        {says.length !== 0 && says.map((item, index) => (
+                        {sayState.say.length !== 0 && sayState.say.map((item, index) => (
                             <SaySayContent item={item}></SaySayContent>
                         ))}
                     </div>

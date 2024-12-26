@@ -1,3 +1,5 @@
+import dayjs from "dayjs";
+
 export function useTime() {
     const hour = new Date().getHours();
     const timeText =
@@ -39,3 +41,8 @@ export function getTimeBetween(time) {
 
     return { timeText };
 };
+
+export function getTimeFormat(time) {
+    const timeText = dayjs(time).format('{YYYY} MM-DDTHH:mm:ss');
+    return {timeText};
+}

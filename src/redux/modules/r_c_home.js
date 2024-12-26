@@ -9,6 +9,7 @@ import dayjs from 'dayjs';
 const homeStore = createSlice({
     name: 'r_c_home',
     initialState: {
+        isAuth: false,
         data: [],
         user_info: {},
         article_info_list: [
@@ -33,6 +34,9 @@ const homeStore = createSlice({
     },
 
     reducers: {
+        setAuth: (state, action) => {
+            return {...state, isAuth: action.payload};
+        },
         setUserId: (state, action) => {
             return {
                 ...state,
@@ -158,9 +162,12 @@ const homeStore = createSlice({
 })
 
 // 结构出action
-const { setUserId, setUserUserAvatar, setArticleLikeCount, setArticleList, setDataCurPage, setArticleMsg, addArticleMsg, setUserRealId } = homeStore.actions;
+const { setUserId, setUserUserAvatar, setArticleLikeCount, setArticleList, setDataCurPage, setArticleMsg, addArticleMsg, setUserRealId, setAuth } = homeStore.actions;
 
 // 暴露出对应的方法
+const updateIsAuth = (isAuth) => {
+    return dispatch => {dispatch(setAuth(isAuth))};
+};
 const updateUserRealId = (userRealId) => {
     return dispatch => {
         dispatch(setUserRealId(userRealId));
@@ -215,7 +222,7 @@ const updateCurrentPage = (cur_page) => {
 
 
 
-export { getArticleList, updateArticleLikeCount, updateCurrentPage, updateUserAvatar, updateUserId, getArticleMsg, addOneArticleMsg, updateUserRealId };
+export { getArticleList, updateArticleLikeCount, updateCurrentPage, updateUserAvatar, updateUserId, getArticleMsg, addOneArticleMsg, updateUserRealId, updateIsAuth };
 
 
 const r_c_home = homeStore.reducer

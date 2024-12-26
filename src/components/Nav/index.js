@@ -6,7 +6,9 @@ import {
   CheckOutlined,
   HomeOutlined,
   MenuOutlined,
-  LoginOutlined
+  LoginOutlined,
+  AppstoreAddOutlined,
+  LogoutOutlined
 } from '@ant-design/icons';
 import {
   useEventListener,
@@ -20,22 +22,24 @@ import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { useLinkList } from './config';
 import { modeMap, modeMapArr } from '@/utils/modeMap';
-import { changeMode, setNavShow } from '@/redux/modules/s_nav';
+import { changeMode, setNavShow } from '@/redux/modules/r_c_nav';
 import { Drawer, Tooltip } from 'antd';
 import { useEffect } from 'react';
 import { cur_view } from '@/utils/constant';
+import { useAuth } from '@/utils/auth';
 
 const bodyStyle = window.document.getElementsByTagName('body')[0].style;
 
 
 function Nav() {
-
+  const { isAuthenticated } = useAuth
   const navigate = useNavigate();
   const { secondNavArr, navArr, mobileNavArr } = useLinkList();
   const modeOptions = ['rgb(19, 38, 36)', 'rgb(110, 180, 214)', 'rgb(171, 194, 208)'];
   const [_, setLocalMode] = useLocalStorageState('localMode');
   const dispatch = useDispatch();
-  const navState = useSelector((state) => state.s_nav)
+  const navState = useSelector((state) => state.r_c_nav)
+  const homeState = useSelector(state => state.r_c_home);
   const [visible, setVisible] = useSafeState(false);
 
   useUpdateEffect(() => {
@@ -67,6 +71,8 @@ function Nav() {
     dispatch(changeMode(index))
   }
 
+
+
   return (
     <>
       <nav className={classNames('nav', { "hiddenNav": !navState.navShow })} >
@@ -95,6 +101,12 @@ function Nav() {
               ))}
             </div>
           </div>
+          {/**管理后台按钮 */}
+          {homeState.isAuth && (
+            <div className={"backGroundBtn"} onClick={() => navigate("/console")}>
+                <AppstoreAddOutlined/>
+            </div>
+          )}
 
           {/* 文章单独按钮 */}
           <div className={"articlesBtn"}>
@@ -123,8 +135,10 @@ function Nav() {
               {item.name}
             </NavLink>
           ))}
-          <div className={"homeAndAdmin"} onClick={() => navigate('login')}>
-            <Tooltip title="登录" placement="rightBottom"><LoginOutlined tooltip="What do you want others to call you?" /></Tooltip>
+          <div className={"homeAndAdmin"}>
+            {!homeState.isAuth ?
+              (<Tooltip title="登录" placement="rightBottom"><LoginOutlined tooltip="What do you want others to call you?" onClick={() => navigate('login')}/></Tooltip>) :
+              (<LogoutOutlined/>)}
           </div>
         </div>
       </nav>

@@ -1,5 +1,5 @@
 import { updateSignState } from "@/redux/modules/r_b_home";
-import { changeFooterShow, changeView, setNavShow } from "@/redux/modules/s_nav";
+import { changeFooterShow, changeView, setNavShow } from "@/redux/modules/r_c_nav";
 import { c_b_operate_buttion_key, c_b_sign_state, cur_view, siteTitle } from "@/utils/constant";
 import {
     DesktopOutlined,
@@ -51,7 +51,7 @@ function BackGroundHome() {
 
     useTitle(siteTitle);
 
-    const navState = useSelector(state => state.s_nav);
+    const navState = useSelector(state => state.r_c_nav);
     const dispatch = useDispatch();
 
     // 组件加载时候执行一次的操作

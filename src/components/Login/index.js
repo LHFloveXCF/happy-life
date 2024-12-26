@@ -1,7 +1,9 @@
-import { updateUserRealId } from '@/redux/modules/r_c_home';
+import { updateIsAuth, updateUserRealId } from '@/redux/modules/r_c_home';
 import { actionFailure, actionSuccess } from '@/redux/modules/r_global';
+import { useAuth } from '@/utils/auth';
 import * as common from '@/utils/common';
 import { url_login_back } from '@/utils/constant_api';
+import { auth_enum } from '@/utils/constant_auth';
 import { LockOutlined, UserOutlined } from '@ant-design/icons';
 import { Button, Checkbox, Flex, Form, Input, message } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
@@ -10,6 +12,7 @@ import { NavLink, useNavigate } from 'react-router-dom';
 function LoginC() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    const { login  } = useAuth();
     const homeState = useSelector(state => state.r_c_home);
     const onFinish = (values) => {
         // 登录验证
@@ -21,10 +24,17 @@ function LoginC() {
             actionFailure: actionFailure,
             actionSuccess: actionSuccess
         }
-        common.fetchPost(url_login_back, params, res => {
-            if (res.data.length !== 0) {
-                dispatch(updateUserRealId(res.data[0].user_id));
-                navigate("/console");
+        common.fetchPost(url_login_back, params, res => {            
+            if (res.data) {
+                const user = res.data;
+                login();
+                if (user.roleId === auth_enum.admin) {
+                    navigate("/");
+                } else {
+                    navigate("/");
+                }
+                dispatch(updateUserRealId(user.userId));
+                dispatch(updateIsAuth(true))
             };
         }, extraTools, dispatch);
     };

@@ -11,13 +11,13 @@ const sayStore = createSlice({
     initialState: {
         say: [
             {
-                "img": `${imgUrlPrefix}1733380822066.webp`,
+                "avatar": "1",
                 "content": "content-mid",
                 "userName": "content-mid",
                 "userId": 1,
                 "replay": [
                     {
-                        "img": `${imgUrlPrefix}1733380822066.webp`,
+                        "avatar": "1",
                         "content": "content-mid",
                         "userName": "content-mid",
                     }
@@ -30,13 +30,14 @@ const sayStore = createSlice({
         setSay: (state, action) => {
             const result = [];
             action.payload.forEach(element => {
-                let articleMsg = {
-                    "img": element.id,
-                    "content": element.article_id,
-                    "userName": element.msg_from,
-                    "userId": element.msg_from,
+                let say = {
+                    "avatar": element.user_avatar,
+                    "content": element.content,
+                    "userName": element.user_name,
+                    "userId": element.user_id,
+                    "replay": []
                 };
-                result.push(articleMsg);
+                result.push(say);
             });
             return {
                 ...state,
@@ -44,15 +45,19 @@ const sayStore = createSlice({
             };
         },
         addSay: (state, action) => {
-            const result = [].concat(state.article_msg);
+            const result = [].concat(state.say);
             let element = action.payload;
-            let articleMsg = {
-                "img": element.id,
-                "content": element.article_id,
-                "userName": element.msg_from,
-                "userId": element.msg_from,
+
+            let say = {
+                "avatar": element.avatar,
+                "content": element.content,
+                "userName": element.userId,
+                "userId": element.userId,
+                "replay": []
             };
-            result.push(articleMsg);
+            result.push(say);
+            console.log("variableName:", result);
+
             return {
                 ...state,
                 say: result,
@@ -66,16 +71,16 @@ const sayStore = createSlice({
 const { setSay, addSay } = sayStore.actions;
 
 // 暴露出对应的方法
-const addOneSay = (articleId, content, userId, toUserId) => {
+const addOneSay = (say) => {
     return dispatch => {
-        common.fetchPost(url_save_say, { articleId: articleId, content: content, userId: userId, toUserId: toUserId }, json => {
-            dispatch(addSay(json.data))
+        common.fetchPost(url_save_say, say, json => {
+            dispatch(addSay(say))
         }, {}, dispatch)
     }
 };
-const getSay = (articleId) => {
+const getSay = () => {    
     return dispatch => {
-        common.fetchGet(url_get_say, { data: common.jsonStringify({ articleId: articleId }) }, json => {
+        common.fetchGet(url_get_say, {}, json => {
             dispatch(setSay(json.data))
         }, {}, dispatch)
     }

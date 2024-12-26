@@ -161,6 +161,11 @@
     .modeBtn:hover .modeOpions {
       top: 60px;
     }
+    .backGroundBtn {
+      @extend .homeAndAdmin;
+      right: 160px;
+      margin-right: 0;
+    }
   }
 }
 
