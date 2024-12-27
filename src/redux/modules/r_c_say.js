@@ -15,6 +15,7 @@ const sayStore = createSlice({
                 "content": "content-mid",
                 "userName": "content-mid",
                 "userId": 1,
+                "time": 0,
                 "replay": [
                     {
                         "avatar": "1",
@@ -35,6 +36,7 @@ const sayStore = createSlice({
                     "content": element.content,
                     "userName": element.user_name,
                     "userId": element.user_id,
+                    "time": element.time,
                     "replay": []
                 };
                 result.push(say);
@@ -53,6 +55,7 @@ const sayStore = createSlice({
                 "content": element.content,
                 "userName": element.userId,
                 "userId": element.userId,
+                "time": element.time,
                 "replay": []
             };
             result.push(say);

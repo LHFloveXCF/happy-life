@@ -7,12 +7,13 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import '../../../global.custom.scss';
-import SaySayContent from './c_p_say_content';
+import SaySayList from './c_p_say_list';
 import style from './index.module.scss';
 
 function SaySay() {
+    const sayState = useSelector(state => state.r_c_say);
     const [sayWord, setSayWord] = useState('');
-    const homeState = useSelector(state =>  state.r_c_home);
+    const homeState = useSelector(state => state.r_c_home);
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
@@ -33,10 +34,10 @@ function SaySay() {
         } else {
             navigate("/login");
         };
-        
+
     };
-    const sayState = useSelector(state => state.r_c_say);
-    
+
+
     return (
         <>
             <div className={classNames(style.s_home)}>
@@ -65,15 +66,16 @@ function SaySay() {
                                 </div>
                             </div>
                         </div>
-                        <HorizontalModel/>
+                        <HorizontalModel />
                     </div>
                 </div>
                 {/**历史信息 */}
                 <div className={classNames(style.s_mid)}>
                     <div className={classNames(style.s_content_home)}>
-                        {sayState.say.length !== 0 && sayState.say.map((item, index) => (
+                        <SaySayList sayState={sayState}></SaySayList>
+                        {/* {sayState.say.length !== 0 && sayState.say.map((item, index) => (
                             <SaySayContent item={item}></SaySayContent>
-                        ))}
+                        ))} */}
                     </div>
                 </div>
                 <div>

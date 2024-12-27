@@ -43,6 +43,5 @@ export function getTimeBetween(time) {
 };
 
 export function getTimeFormat(time) {
-    const timeText = dayjs(time).format('{YYYY} MM-DDTHH:mm:ss');
-    return {timeText};
+    return dayjs(time).format('YYYY-MM-DD HH:mm:ss');
 }

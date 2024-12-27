@@ -99,6 +99,7 @@ img {
   margin-left: 30px;
   margin-top: b.$navHeight;
 }
+
 .bordered_div {
   border: 1px solid black;
 }
@@ -111,6 +112,29 @@ img {
   color: b.$textColor !important;
   font-size: 18px !important;
 }
+// antd的pagination
+.custom-pagination .ant-pagination-item {
+  border: 1px solid #007bff;
+  background-color: #f0f8ff;
+  color: #007bff;
+}
+
+.custom-pagination .ant-pagination-item-active {
+  border: 1px solid #0056b3;
+  background-color: #e0e0e0;
+  color: #0056b3;
+}
+
+.custom-pagination .ant-pagination-prev,
+.custom-pagination .ant-pagination-next {
+  color: #007bff;
+}
+
+.custom-pagination .ant-pagination-prev:hover,
+.custom-pagination .ant-pagination-next:hover {
+  color: #0056b3;
+}
+
 
 @media screen and (max-width: 1240px) {
 
