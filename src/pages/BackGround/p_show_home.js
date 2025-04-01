@@ -39,15 +39,15 @@ function getItem(label, key, icon, children) {
 }
 const items = [
     getItem('写文章', c_b_sign_state.write_article, <PieChartOutlined />),
-    getItem('错题管理', 'sub4', <FileOutlined />, [
-        getItem('错题列表', c_b_sign_state.wrong_question_list),
-    ]),
     getItem('Option 2', '2', <DesktopOutlined />),
     getItem('文章管理', 'sub1', <UserOutlined />, [
         getItem('文章列表', c_b_sign_state.setting_article),
     ]),
     getItem('用户管理', 'sub2', <TeamOutlined />, [getItem('用户列表', c_b_sign_state.user_list), getItem('角色列表', c_b_sign_state.role_list)]),
     getItem('文件管理', 'sub3', <FileOutlined />,[getItem('图片管理', c_b_sign_state.file_image)]),
+    getItem('错题管理', 'sub4', <FileOutlined />, [
+        getItem('错题列表', c_b_sign_state.wrong_question_list),
+    ]),
 ];
 
 function BackGroundHome() {

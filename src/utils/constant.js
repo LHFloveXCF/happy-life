@@ -109,7 +109,7 @@ export const c_b_sign_state = {
     user_list: '6',
     role_list: '7',
     file_image: '9',
-    wrong_question_list: '6', // 新增错题列表状态
+    wrong_question_list: '10', // 新增错题列表状态
 };
 export const c_b_operate_buttion_key = Object.freeze({
   logout: "1",
