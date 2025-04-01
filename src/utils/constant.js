@@ -3,8 +3,8 @@ export const env = 'react-blog-admin-test-1a3424a4e2';
 
 export const source_github = 'https://github.com/lzxjack/react-blog';
 
-export const icp_site = 'https://beian.miit.gov.cn/#/Integrated/index';
-export const icp_no = '沫沫的微笑-001';
+export const icp_site = 'https://beian.miit.gov.cn/';
+export const icp_no = '沪ICP备2024102860号-1';
 
 export const blogAdminUrl = 'https://admin.lzxjack.top:81';
 
@@ -97,9 +97,21 @@ export const avatarArrLen = defaultCommentAvatarArr.length;
 // 评论回复时，发送邮件提醒的API地址
 export const emailApi = 'https://react-blog-admin-test-1a3424a4e2-1304393382.ap-shanghai.app.tcloudbase.com/email';
 
-export const server_host = 'http://127.0.0.1:18141/api/';
+// 环境特定配置
+const envConfigs = {
+  dev: {
+    host: 'http://172.20.12.25:18141/api/'
+  },
+  release: {
+    host: 'https://www.luckymomo.cn/api/'
+  }
+};
+const hostEnv = process.env.NODE_ENV || 'release';
+export const hostConfig = {
+  ...envConfigs[hostEnv]
+};
 
-export const imgUrlPrefix = 'http://127.0.0.1:18141/show/'
+export const imgUrlPrefix = 'https://www.luckymomo.cn/show/'
 
 // 每日诗词替换链接
 export const url_daily_poem = 'https://v2.jinrishici.com/one.json?client=npm-sdk/1.0';
@@ -114,13 +126,14 @@ export const cur_view = Object.freeze({
   BACKGROUND: 2,
 });
 
-export const c_b_sign_state = Object.freeze({
-  write_article: "1",
-  setting_article: "3",
-  user_list: "6",
-  role_list: "7",
-  file_image: "9",
-});
+export const c_b_sign_state = {
+    write_article: '1',
+    setting_article: '2',
+    user_list: '3',
+    role_list: '4',
+    file_image: '5',
+    wrong_question_list: '6', // 新增错题列表状态
+};
 export const c_b_operate_buttion_key = Object.freeze({
   logout: "1",
   change_password: "2",

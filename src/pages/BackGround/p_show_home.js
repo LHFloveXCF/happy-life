@@ -25,6 +25,7 @@ import { useNavigate } from "react-router-dom";
 import BackImageSetting from "./b_p_file_show_image";
 import BackUserSetting from "./b_p_user_group";
 import BackUserRoleSetting from "./b_p_user_role_group";
+import BackWrongQuestionSetting from "./b_p_wrong_question_show"; // 新增导入
 
 
 const { Header, Content, Footer, Sider } = Layout;
@@ -38,6 +39,9 @@ function getItem(label, key, icon, children) {
 }
 const items = [
     getItem('写文章', c_b_sign_state.write_article, <PieChartOutlined />),
+    getItem('错题管理', 'sub4', <FileOutlined />, [
+        getItem('错题列表', c_b_sign_state.wrong_question_list),
+    ]),
     getItem('Option 2', '2', <DesktopOutlined />),
     getItem('文章管理', 'sub1', <UserOutlined />, [
         getItem('文章列表', c_b_sign_state.setting_article),

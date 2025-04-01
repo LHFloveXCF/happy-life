@@ -1,11 +1,10 @@
 
+import { getTimeFormat } from "@/utils/timeUtils";
 import classNames from "classnames";
 import { useState } from 'react';
-import style from './index.module.scss';
-import '../../../global.custom.scss';
 import { useSelector } from "react-redux";
-import dayjs from "dayjs";
-import { getTimeFormat } from "@/utils/timeUtils";
+import '../../../global.custom.scss';
+import style from './index.module.scss';
 // 说说界面-内容组件
 function SaySayContent({ item }) {
     const [isExpanded, setIsExpanded] = useState(false);
@@ -32,6 +31,7 @@ function SaySayContent({ item }) {
                     <div className={classNames(style.s_c_detail_home)}>
                         <div className={classNames(style.s_c_detail_mid)}>
                             <div className={classNames(style.s_c_detail_text)}>
+                                <span  className={classNames(style.s_c_detail_name)}>{item.userName}</span>
                                 {item.content}
                             </div>
                             <div className={classNames(style.s_c_detail_time)}>

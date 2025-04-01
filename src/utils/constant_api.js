@@ -1,5 +1,6 @@
-import { server_host } from "./constant";
+import { hostConfig } from "./constant";
 
+const server_host = hostConfig.host;
 export const url_upload = server_host + 'upload';
 export const url_save_article = server_host + 'saveArticle';
 export const url_save_msg = server_host + 'saveMsg';
@@ -20,3 +21,7 @@ export const url_delete_image = server_host + 'deleteImage';
 export const url_delete_user = server_host + 'deleteUser';
 export const url_delete_role = server_host + 'deleteRole';
 export const url_update_role = server_host + 'updateRole';
+export const url_get_wrong_questions = server_host + 'getWrongQuestions';
+export const url_add_wrong_question = server_host + 'addWrongQuestion';
+export const url_update_wrong_question_mastery = server_host + 'updateWrongQuestionMastery';
+export const url_delete_wrong_question = server_host + 'deleteWrongQuestion';

@@ -25,7 +25,7 @@ function SaySay() {
         // 发布说说
         if (homeState.isAuth) {
             const saySay = {
-                "userId": 1,
+                "userId": homeState.user_info.user_real_id,
                 "content": sayWord,
                 "toUserId": 0,
                 "avatar": homeState.user_info.user_avatar
@@ -34,7 +34,6 @@ function SaySay() {
         } else {
             navigate("/login");
         };
-
     };
 
 
@@ -73,9 +72,6 @@ function SaySay() {
                 <div className={classNames(style.s_mid)}>
                     <div className={classNames(style.s_content_home)}>
                         <SaySayList sayState={sayState}></SaySayList>
-                        {/* {sayState.say.length !== 0 && sayState.say.map((item, index) => (
-                            <SaySayContent item={item}></SaySayContent>
-                        ))} */}
                     </div>
                 </div>
                 <div>

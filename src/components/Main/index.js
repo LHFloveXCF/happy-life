@@ -17,6 +17,7 @@ const Login = lazy(() => import('@/pages/Login'));
 const Register = lazy(() => import('@/pages/Register'));
 const BackGroundHome = lazy(() => import('@/pages/BackGround/p_show_home'));
 const ClientHomeArticle = lazy(() => import('@/pages/Client/Article/c_p_article'));
+const WrongQuestions = lazy(() => import('@/pages/Client/WrongQuestions/c_p_wrong_questions'));
 const SaySay = lazy(() => import('@/pages/Client/Say/c_p_say'));
 
 function Main() {
@@ -34,6 +35,7 @@ function Main() {
                                 <Route path='login' element={<Login />} />
                                 <Route path='register' element={<Register />} />
                                 <Route path='post' element={<ClientHomeArticle />} />
+                                <Route path='wrong' element={<WrongQuestions />} />
                                 <Route path='say' element={
                                     <SaySay />
                                 } />
