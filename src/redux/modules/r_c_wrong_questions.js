@@ -10,7 +10,7 @@ import { createSlice } from '@reduxjs/toolkit';
 const wrongQuestionsStore = createSlice({
     name: 'r_c_wrong_questions',
     initialState: {
-        data: {},
+        data: [],
         loading: false
     },
 

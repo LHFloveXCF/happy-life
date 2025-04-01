@@ -29,7 +29,7 @@ function LoginC() {
                 const user = res.data;
                 login();
                 if (user.roleId === auth_enum.admin) {
-                    navigate("/");
+                    navigate("/console");
                 } else {
                     navigate("/");
                 }

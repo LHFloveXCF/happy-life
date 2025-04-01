@@ -32,28 +32,6 @@ export const smallLoadingUrl = 'https://img.lzxjack.top:99/202203302022741.webp'
 // 博客运行起始日
 export const time = '2020-12-16 14:00:00';
 
-// // 博客背景图片
-// export const blogBackGroundImgs = [
-//   'https://img.lzxjack.top:99/20210818111500.jpg',
-//   'https://img.lzxjack.top:99/20210818111501.png',
-//   'https://img.lzxjack.top:99/20210818111502.jpg',
-//   'https://img.lzxjack.top:99/20211126190312.jpg',
-//   'https://img.lzxjack.top:99/202203241558769.jpg',
-//   'https://img.lzxjack.top:99/202203241604408.jpg',
-//   'https://img.lzxjack.top:99/202203241627101.jpg',
-//   'https://img.lzxjack.top:99/202203241627102.jpg',
-//   'https://img.lzxjack.top:99/202203241627103.jpg'
-// ];
-// // 背景图选择
-// export const imgNum = 7;
-
-// // 与模式相符合的背景图
-// export const modeBg = [
-//   'https://img.lzxjack.top:99/202203241627101.jpg',
-//   'https://img.lzxjack.top:99/202203242228220.jpg',
-//   'https://img.lzxjack.top:99/202203241627103.jpg'
-// ];
-
 // 数据缓存时间
 export const staleTime = 180000;
 export const siteCountStale = 300000;
@@ -100,7 +78,7 @@ export const emailApi = 'https://react-blog-admin-test-1a3424a4e2-1304393382.ap-
 // 环境特定配置
 const envConfigs = {
   dev: {
-    host: 'http://172.20.12.25:18141/api/'
+    host: 'http://127.0.0.1:18141/api/'
   },
   release: {
     host: 'https://www.luckymomo.cn/api/'
@@ -125,13 +103,12 @@ export const cur_view = Object.freeze({
   CLIENT: 1,
   BACKGROUND: 2,
 });
-
 export const c_b_sign_state = {
     write_article: '1',
-    setting_article: '2',
-    user_list: '3',
-    role_list: '4',
-    file_image: '5',
+    setting_article: '3', 
+    user_list: '6',
+    role_list: '7',
+    file_image: '9',
     wrong_question_list: '6', // 新增错题列表状态
 };
 export const c_b_operate_buttion_key = Object.freeze({

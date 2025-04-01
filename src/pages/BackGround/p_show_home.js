@@ -134,6 +134,7 @@ function BackGroundHome() {
                                 <MarkdownEditor />
                                 {/**文章管理 */}
                                 <BackArticleSetting />
+                                <BackWrongQuestionSetting/>
                                 {/**用户管理 */}
                                 <BackUserSetting />
                                 {/**角色管理 */}
